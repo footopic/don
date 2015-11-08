@@ -35,7 +35,6 @@ piyo
 * item
 * test
 '''
-    console.log('load server')
     @setState(article: article)
 
   getInitialState: ->
@@ -47,18 +46,12 @@ piyo
 
   componentDidMount: ->
     # NOTE: this.isMounted()
-    console.log 'componet did mount'
     @loadArticleFromServer()
     setInterval @loadArticleFromServer, @props.pollInterval
 
   render: ->
-    console.log "state"
-    console.log @state
     article = @state.article
     `<div>
         <Article article={article} />
     </div>`
-
-
-document.addEventListener "DOMContentLoaded", (_e) ->
-  ReactDOM.render `<Application flux={flux} pollInterval={ 2000 } />`, document.getElementById('app')
+    console.log('load server')

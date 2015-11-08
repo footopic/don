@@ -25,3 +25,8 @@ table
 br
 
 = link_to 'New Article', new_article_path
+
+= javascript_include_tag ''
+javascript:
+  document.addEventListener "DOMContentLoaded", (_e) ->
+    ReactDOM.render `<Application flux={flux} pollInterval={ 2000 } />`, document.getElementById('app')
