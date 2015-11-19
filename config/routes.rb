@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   resources :articles
+  resources :articles
+  resources :articles
   root 'home#index'
   get 'home/index'
 

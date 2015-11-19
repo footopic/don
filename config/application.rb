@@ -33,7 +33,6 @@ module Dashi
     config.active_record.raise_in_transactional_callbacks = true
 
     config.generators do |g|
-      g.template_engine :slim
       g.assets false
       g.helper false
     end
