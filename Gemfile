@@ -37,6 +37,7 @@ gem 'omniauth-twitter'
 
 gem 'dotenv-rails'
 
+gem 'browserify-rails'
 gem 'react-rails', '~> 1.0'
 
 group :development, :test do
