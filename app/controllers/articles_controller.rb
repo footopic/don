@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :authenticate_user!, :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :check_article_owner, only: [:edit, :update, :destroy]
 
   # GET /articles
   # GET /articles.json
@@ -24,7 +25,7 @@ class ArticlesController < ApplicationController
   # POST /articles
   # POST /articles.json
   def create
-    @article = Article.new(article_params)
+    @article = current_user.articles.create(article_params)
 
     respond_to do |format|
       if @article.save
@@ -69,6 +70,13 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:title, :text, :user_id)
+      params.require(:article).permit(:title, :text)
+    end
+
+    def check_article_owner
+      unless curretn_user.is_owner(@article)
+        # TODO: セキュリティ上メッセージは消す
+        redirect_to @article, notice: '記事の作者ではありません'
+      end
     end
 end
