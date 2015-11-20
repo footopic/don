@@ -74,7 +74,7 @@ class ArticlesController < ApplicationController
     end
 
     def check_article_owner
-      unless curretn_user.is_owner(@article)
+      unless current_user.is_owner(@article)
         # TODO: セキュリティ上メッセージは消す
         redirect_to @article, notice: '記事の作者ではありません'
       end
