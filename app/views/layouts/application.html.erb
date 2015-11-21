@@ -2,18 +2,20 @@
 <html>
 <head>
   <title>Dashi</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
+<%= render 'shared/navbar' %>
+<%= render 'shared/slidemenu' %>
 <%= yield %>
 
 <% if user_signed_in? %>
-    <%= link_to "Sign out", destroy_user_session_path %>
+    <%= link_to "ログアウト", destroy_user_session_path %>
 <% else %>
-    <%= link_to "Sign in with Twitter", user_omniauth_authorize_path(:twitter) %>
+    <%= link_to "Twitter ログイン", user_omniauth_authorize_path(:twitter) %>
 <% end %>
 
 <p class="notice"><%= notice %></p>
