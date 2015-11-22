@@ -2,7 +2,6 @@
 
 $sidebar_width: 80px;
 
-
 #side-bar {
   background: gray none repeat scroll 0 0;
   color: rgba(255, 255, 255, 0.9);
@@ -14,7 +13,6 @@ $sidebar_width: 80px;
   width: $sidebar_width;
   z-index: 4;
   padding-top: 20px;
-
 
   ul {
     padding: 0;
@@ -66,4 +64,40 @@ body {
   margin-left: $sidebar_width;
 }
 
-
+.article {
+  .tumbnail {
+    float: left;
+    img {
+      width: 5em;
+      border-radius: 50%;
+    }
+  }
+  .infos {
+    padding-left: 10px;
+    overflow: hidden;
+    p {
+      margin: 0;
+    }
+    h2 {
+      margin: 0;
+      i {
+        font-size: .7em;
+        color: gray;
+      }
+    }
+    .info-footer {
+      overflow: hidden;
+      .record {
+        color: gainsboro;
+        overflow: hidden;
+        .author {
+          float: left;
+        }
+        .date {
+          float: left;
+          margin-left: 1em;
+        }
+      }
+    }
+  }
+}
