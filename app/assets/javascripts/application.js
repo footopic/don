@@ -13,5 +13,4 @@
 //= require jquery
 //= require jquery_ujs
 //= require marked
-//= require jquery.sidr
 //= require_tree .

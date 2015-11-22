@@ -1,3 +1,0 @@
-$(function() {
-    $('#sidr-btn').sidr();
-});
