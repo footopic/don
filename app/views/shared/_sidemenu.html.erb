@@ -1,6 +1,24 @@
 <div id="side-bar">
-  <ul>
-    <li><%= fa_icon %></li>
-    <li>articles</li>
-  </ul>
+  <nav>
+    <ul>
+      <li>
+        <a href="/articles/new">
+          <%= fa_icon 'pencil' %>
+          <span>NEW POST</span>
+        </a>
+      </li>
+      <li>
+        <a href="/">
+          <%= fa_icon 'home' %>
+          <span>TOP</span>
+        </a>
+      </li>
+      <li>
+        <a href="/articles">
+          <%= fa_icon 'database' %>
+          <span>POSTS</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
 </div>

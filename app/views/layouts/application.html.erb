@@ -8,8 +8,9 @@
 </head>
 <body>
 
-<%= render 'shared/navbar' %>
 <%= render 'shared/sidemenu' %>
+<%= render 'shared/navbar' %>
+
 <%= yield %>
 
 <% if user_signed_in? %>

@@ -1,0 +1,69 @@
+/* TODO: split from parts */
+
+$sidebar_width: 80px;
+
+
+#side-bar {
+  background: gray none repeat scroll 0 0;
+  color: rgba(255, 255, 255, 0.9);
+  height: 100%;
+  left: 0;
+  min-height: 100%;
+  position: fixed;
+  top: 0;
+  width: $sidebar_width;
+  z-index: 4;
+  padding-top: 20px;
+
+
+  ul {
+    padding: 0;
+  }
+  li {
+    list-style-type: none;
+
+    a {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      color: rgba(0, 0, 0, 0.3);
+      display: block;
+      font-size: 28px;
+      height: 68px;
+      text-align: center;
+      width: 80px;
+
+      background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+      border: medium none;
+      box-shadow: none;
+      margin: 0;
+      padding: 0;
+      line-height: .5;
+
+      i {
+        color: rgba(0, 0, 0, 0.1);
+        display: block;
+        font-size: 28px;
+        text-align: center;
+        transition-duration: 0.3s;
+        width: 80px;
+      }
+      span {
+        color: rgba(0, 0, 0, 0.3);
+        font-size: 11px;
+        text-align: center;
+      }
+
+      &:hover {
+        text-decoration: none;
+        i, span {
+          color: white;
+        }
+      }
+    }
+  }
+}
+
+body {
+  margin-left: $sidebar_width;
+}
+
+
