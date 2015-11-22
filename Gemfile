@@ -41,6 +41,8 @@ gem 'dotenv-rails'
 gem 'browserify-rails'
 gem 'react-rails', '~> 1.0'
 
+gem 'marked-rails'
+
 # Use bootstrap-sass
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'autoprefixer-rails'

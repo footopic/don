@@ -1,7 +1,4 @@
-var marked = require('marked');
-
 $(function() {
-    console.log('loaded article_form');
     var $title = $('#article_title');
     var $text_edit = $('#article_text');
     var $text_preview = $('#text-preview-area');
