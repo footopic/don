@@ -1,19 +1,30 @@
 <p id="notice"><%= notice %></p>
+<div class="container-fluid article-header">
+  <div class="article-titles">
+    <h1 calass="title">
+      Title
+      <% if current_user.is_owner(@article) %>
+          <%= link_to edit_article_path(@article) do
+            fa_icon 'pencil'
+          end %>
+      <% end %>
+    </h1>
+    <div class="record pull-left">
+      TODO
+    </div>
+  </div>
+  <div class="article-subinfos">
+    <p>
+      <strong>User:</strong>
+      <%= @article.user_id %>
+    </p>
+  </div>
+</div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @article.title %>
-</p>
+<div class="container-fluid article-text">
+  <div id="text-preview"></div>
+</div>
 
-<p>
-  <strong>Text:</strong>
+<div id="text-raw" class="hide">
   <%= @article.text %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @article.user_id %>
-</p>
-
-<%= link_to 'Edit', edit_article_path(@article) %> |
-<%= link_to 'Back', articles_path %>
+</div>
