@@ -114,3 +114,8 @@ body {
     float: right;
   }
 }
+
+#text-preview-area {
+  height: 50em;
+  overflow-y: scroll;
+}
