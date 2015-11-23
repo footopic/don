@@ -2,7 +2,7 @@
 <div class="container-fluid article-header">
   <div class="article-titles">
     <h1 calass="title">
-      Title
+      <%= @article.title %>
       <% if current_user.is_owner(@article) %>
           <%= link_to edit_article_path(@article) do
             fa_icon 'pencil'
