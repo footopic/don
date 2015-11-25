@@ -1,6 +1,0 @@
-== README
-
-client-web, api-server, rails など リポジトリを分けました
-https://github.com/footopic
-
-
