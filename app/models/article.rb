@@ -3,7 +3,7 @@ class Article < ActiveRecord::Base
 
   def to_date_str
     # TODO: use module
-    return self.diff(self.created_at, Time.now)
+    return self.diff(self.updated_at, Time.now)
   end
 
   def diff(src, dist)

@@ -1,6 +1,16 @@
-<h1>Editing Article</h1>
-
-<%= render 'form' %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-6">
+      <%= render 'form' %>
+    </div>
+    <div class="col-lg-6">
+      <div id="text-preview-area" class="markdown-body">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid article-preview">
+</div>
 
 <%= link_to 'Show', @article %> |
 <%= link_to 'Back', articles_path %>

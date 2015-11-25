@@ -3,20 +3,24 @@ $(function() {
     var $text_edit = $('#article_text');
     var $text_preview = $('#text-preview-area');
     var $submit_btn = $('#btn-submit');
+    if (!$title.length || !$text_edit.length) {
+        return;
+    }
     var l = localStorage;
-
-    // ローカルストレージに保存されていたら復元
-    if (l.getItem("text") != null) {
-        var text = l.getItem("text");
-        $text_edit.val(text);
-    }
-    if (l.getItem("title") != null) {
-        $title.val(l.getItem("title"));
-    }
 
     if ($text_edit.val() != null) {
         $text_preview.html(marked($text_edit.val()));
     }
+
+    // // ローカルストレージに保存されていたら復元
+    if ($text_edit.val() == "" && l.getItem("text") != null) {
+        var text = l.getItem("text");
+        $text_edit.val(text);
+    }
+    if ($title.val() == "" && $title.length && l.getItem("title") != null) {
+        $title.val(l.getItem("title"));
+    }
+
 
     // 変更をマークダウンにしプレビューに反映する
     $text_edit.keyup(function() {

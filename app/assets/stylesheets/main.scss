@@ -101,3 +101,21 @@ body {
     }
   }
 }
+
+.article-header {
+  overflow: hidden;
+  margin: 20px;
+  padding-bottom: 10px;
+  border-bottom: solid;
+  .article-titles {
+    float: left;
+  }
+  .article-subinfos {
+    float: right;
+  }
+}
+
+#text-preview-area {
+  height: 50em;
+  overflow-y: scroll;
+}
