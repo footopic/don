@@ -53,7 +53,7 @@ gem 'seed-fu'
 
 
 gem 'carrierwave'
-gem 'mini_magick'
+gem 'rmagick', require: 'RMagick'
 gem 'fog'
 
 group :development, :test do
