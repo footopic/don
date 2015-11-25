@@ -29,3 +29,8 @@ vim ./.env
 TWITTER_CONSUMER_KEY="********"
 TWITTER_CONSUMER_SECRET="********"
 ```
+
+```setup ImageMagick
+yum -y install libjpeg-devel libpng-devel
+yum -y install ImageMagick ImageMagic-devel
+```
