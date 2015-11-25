@@ -10,6 +10,9 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require_self
+ *= require github-markdown-css/github-markdown
+ *= require_tree .
  */
 @import "bootstrap-sprockets";
 @import "bootstrap-custom";
@@ -17,5 +20,5 @@
 
 @import "main";
 
-//= require_tree .
-//= require_self
+/*
+ */
