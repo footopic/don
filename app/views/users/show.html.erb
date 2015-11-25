@@ -1,0 +1,16 @@
+<% provide(:title, @user.provider) %>
+<h1>My page (<%= @user.uid %>)</h1>
+
+<% if @user.image? %>
+  <%= image_tag @user.image.thumb.url %>
+<% else %>
+  <%= image_tag 'noimage.gif' %>
+<% end %>
+
+<%= form_for(@user) do |f| %>
+    <%= f.label :image %>
+    <%= image_tag @user.image.thumb.url if @user.image? %>
+    <%= f.file_field :image %>
+    <%= f.submit %>
+    <%= f.hidden_field :image_cache %>
+<% end %>

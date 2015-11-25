@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'users/index'
+
+  get 'users/show'
+
   resources :articles
   resources :user
   root 'home#index'
@@ -8,4 +12,5 @@ Rails.application.routes.draw do
   devise_scope :user do
     get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
   end
+  resources :users, :only => [:index, :show]
 end

@@ -51,7 +51,7 @@ gem 'font-awesome-rails'
 gem 'bower-rails', '~> 0.10.0'
 
 gem 'carrierwave'
-gem 'mini_magick'
+gem 'rmagick', require: 'RMagick'
 gem 'fog'
 
 group :development, :test do
