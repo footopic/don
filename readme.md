@@ -10,7 +10,9 @@ install
 bundle install
 
 # bower-rails
-rake bower:install
+./bin/rake bower:install
+
+./bin/rake db:migrate
 
 ```
 
