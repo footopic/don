@@ -26,6 +26,10 @@ $(function() {
     $text_edit.keyup(function() {
         $text_preview.html(marked($(this).val()));
         l.setItem("text", $(this).val());
+        // code hilighting
+        $('pre code').each(function(i, block) {
+            hljs.highlightBlock(block);
+        });
     });
     $title.keyup(function() {
         l.setItem("title", $(this).val());

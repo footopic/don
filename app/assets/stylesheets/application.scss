@@ -13,6 +13,7 @@
  *= require_self
  *= require github-markdown-css/github-markdown
  *= require emojify.js/dist/css/basic/emojify.min.css
+ *= require highlightjs/styles/github.css
  *= require_tree .
  */
 @import "bootstrap-sprockets";
@@ -20,6 +21,3 @@
 @import "font-awesome";
 
 @import "main";
-
-/*
- */
