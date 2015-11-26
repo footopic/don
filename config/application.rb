@@ -36,5 +36,10 @@ module Dashi
       g.assets false
       g.helper false
     end
+
+    # add asset path node modules
+    config.assets.paths << config.root.join('node_modules')
+    # add asset path emojify.js images
+    config.assets.paths << config.root.join('node_modules', 'emojify.js', 'dist', 'images')
   end
 end

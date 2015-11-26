@@ -12,5 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require emojify.js/dist/js/emojify.min.js
 //= require marked
 //= require_tree .
