@@ -75,15 +75,16 @@ body {
   .infos {
     padding-left: 10px;
     overflow: hidden;
-    p {
-      margin: 0;
-    }
     h2 {
       margin: 0;
       i {
         font-size: .7em;
         color: gray;
       }
+    }
+    .categories {
+      height: 1em;
+      margin: .5em;
     }
     .info-footer {
       overflow: hidden;

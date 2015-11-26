@@ -20,9 +20,7 @@
 
 <%= yield %>
 
-<% if user_signed_in? %>
-    <%= link_to "ログアウト", destroy_user_session_path %>
-<% else %>
+<% unless user_signed_in? %>
     <%= link_to "Twitter ログイン", user_omniauth_authorize_path(:twitter) %>
 <% end %>
 

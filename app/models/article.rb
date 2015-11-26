@@ -15,7 +15,7 @@ class Article < ActiveRecord::Base
 
   def to_date_str
     # TODO: use module
-    return self.diff(self.updated_at, Time.now)
+    return diff(updated_at, Time.now)
   end
 
   def diff(src, dist)
@@ -36,5 +36,21 @@ class Article < ActiveRecord::Base
     else
       (d / 1.seconds).round.to_s + 's'
     end
+  end
+
+  def categories_text
+    @categories_text ||= categories.join('/')
+  end
+
+  def categories
+    @categories ||= names[0...(names.length - 1)]
+  end
+
+  def names
+    @names ||= title.split('/')
+  end
+
+  def main_title
+    @main_title ||= names[-1]
   end
 end

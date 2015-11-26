@@ -1,8 +1,9 @@
 <p id="notice"><%= notice %></p>
 <div class="container-fluid article-header">
   <div class="article-titles">
+    <p id="categories-preview"><%= @article.categories_text %></p>
     <h1 calass="title">
-      <%= @article.title %>
+      <%= @article.main_title %>
       <% if current_user.is_owner(@article) %>
           <%= link_to edit_article_path(@article) do
             fa_icon 'pencil'
