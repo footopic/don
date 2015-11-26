@@ -120,9 +120,22 @@ body {
   overflow-y: scroll;
 }
 
+.emoji {
+  margin-bottom: 0em;
+}
+
 .emoji-suggest {
   width: 1.4em;
   height: 1.4em;
   display: inline-block;
   margin-bottom: 0em;
+}
+
+#categories-preview {
+  margin-bottom: .5em;
+  font-size: 1.4em;
+  color: darkgrey;
+}
+#title-preview {
+  margin: 0;
 }
