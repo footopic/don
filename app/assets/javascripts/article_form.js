@@ -8,8 +8,20 @@ $(function() {
     }
     var l = localStorage;
 
-    if ($text_edit.val() != null) {
+    function updatePreview() {
         $text_preview.html(marked($text_edit.val()));
+        // code hilighting
+        $('pre code').each(function(i, block) {
+            hljs.highlightBlock(block);
+        });
+        // 絵文字
+        emojify.run($text_preview[0]);
+    }
+
+    console.log($text_edit.val());
+    console.log($text_edit.val() != null);
+    if ($text_edit.val() != null) {
+        updatePreview();
     }
 
     // // ローカルストレージに保存されていたら復元
@@ -21,15 +33,10 @@ $(function() {
         $title.val(l.getItem("title"));
     }
 
-
     // 変更をマークダウンにしプレビューに反映する
     $text_edit.keyup(function() {
-        $text_preview.html(marked($(this).val()));
         l.setItem("text", $(this).val());
-        // code hilighting
-        $('pre code').each(function(i, block) {
-            hljs.highlightBlock(block);
-        });
+        updatePreview();
     });
     $title.keyup(function() {
         l.setItem("title", $(this).val());
