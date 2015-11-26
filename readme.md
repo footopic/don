@@ -9,10 +9,11 @@ install
 # bundler
 bundle install
 
-# bower-rails
-./bin/rake bower:install
-
+# migration (sqlite3 in dev)
 ./bin/rake db:migrate
+
+# npm
+npm install
 
 ```
 
