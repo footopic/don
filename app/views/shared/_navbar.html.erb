@@ -1,4 +1,4 @@
-<div class="navbar navbar-default">
+<div id="navbar" class="navbar navbar-default">
   <!-- header -->
   <div class="container">
     <div class="nabar-header">
@@ -15,7 +15,7 @@
     <!-- content -->
     <div class="collapse navbar-collapse">
       <!-- search form -->
-      <%= search_form_for @q, url: search_articles_path, class: 'form-group', html: { class: 'navbar-form navbar-left' } do |f| %>
+      <%= search_form_for @q, url: search_articles_path, class: 'form-group', html: {class: 'navbar-form navbar-left'} do |f| %>
           <%= f.search_field :title_cont, placeholder: '検索', class: 'form-control' %>
           <%= f.submit '検索', class: 'btn btn-default' %>
       <% end %>
@@ -23,8 +23,25 @@
       <!-- right content -->
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
-            <!-- TODO: link mypage -->
-            <li><a href="#"><%= current_user.uid %></a></li>
+            <li>
+              <%= image_tag 'noimg.png' %>
+            </li>
+            <li class="dropdown">
+              <%= link_to '#',
+                          class: 'dropdown-toggle',
+                          data: { toggle: 'dropdown' } do %>
+                  <%= current_user.screen_name %>
+                  <span class="caret"></span>
+              <% end %>
+              <ul class="dropdown-menu">
+                <li>
+                  <%= link_to 'マイページ', current_user %>
+                </li>
+                <li>
+                  <%= link_to '設定変更', edit_user_path(current_user) %>
+                </li>
+              </ul>
+            </li>
         <% else %>
             <li><%= link_to "Twitter ログイン", user_omniauth_authorize_path(:twitter) %></li>
         <% end %>
