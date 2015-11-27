@@ -12,6 +12,7 @@
 
 class Article < ActiveRecord::Base
   belongs_to :user
+  has_many :comments, dependent: :destroy
 
   def to_date_str
     # TODO: use module
