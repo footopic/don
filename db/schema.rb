@@ -22,8 +22,10 @@ ActiveRecord::Schema.define(version: 20151125151630) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string  "provider", default: "", null: false
-    t.integer "uid",                   null: false
+    t.string  "provider",    default: "", null: false
+    t.integer "uid",                      null: false
+    t.string  "screen_name", default: "", null: false
+    t.string  "name",        default: "", null: false
   end
 
 end
