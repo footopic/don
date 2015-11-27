@@ -20,10 +20,6 @@ class Article < ActiveRecord::Base
 
   def diff(src, dist)
     d = dist - src
-    p d
-    p d / 1.day
-    p d / 1.hour
-    p d / 1.minute
 
     if d >= 1.month
       (d / 1.month).round.to_s + 'mo'
