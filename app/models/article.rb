@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: articles
+#
+#  id         :integer          not null, primary key
+#  title      :string
+#  text       :string
+#  user_id    :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Article < ActiveRecord::Base
   belongs_to :user
 
@@ -12,15 +24,17 @@ class Article < ActiveRecord::Base
     p d / 1.day
     p d / 1.hour
     p d / 1.minute
+
     if d >= 1.month
-      return (d / 1.month).round.to_s + 'mo'
+      (d / 1.month).round.to_s + 'mo'
     elsif d >= 1.day
-      return (d / 1.day).round.to_s + 'd'
+      (d / 1.day).round.to_s + 'd'
     elsif d >= 1.hour
-      return (d / 1.hour).round.to_s + 'h'
+      (d / 1.hour).round.to_s + 'h'
     elsif d >= 1.minute
-      return (d / 1.minute).round.to_s + 'm'
+      (d / 1.minute).round.to_s + 'm'
+    else
+      (d / 1.seconds).round.to_s + 's'
     end
-    (d / 1.seconds).round.to_s + 's'
   end
 end
