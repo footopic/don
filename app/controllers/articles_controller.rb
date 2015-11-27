@@ -5,8 +5,7 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.order('updated_at DESC')
-    p @articles
+    @articles = @q.result.order('updated_at DESC')
   end
 
   # GET /articles/1
@@ -31,7 +30,7 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       if @article.save
-        format.html { redirect_to @article, flash: { success: 'Article was successfully created.'} }
+        format.html { redirect_to @article, flash: { success: 'Article was successfully created.' } }
         format.json { render :show, status: :created, location: @article }
       else
         format.html { render :new }
@@ -45,7 +44,7 @@ class ArticlesController < ApplicationController
   def update
     respond_to do |format|
       if @article.update(article_params)
-        format.html { redirect_to @article, flash: { success: 'Article was successfully updated.'} }
+        format.html { redirect_to @article, flash: { success: 'Article was successfully updated.' } }
         format.json { render :show, status: :ok, location: @article }
       else
         format.html { render :edit }
@@ -59,26 +58,32 @@ class ArticlesController < ApplicationController
   def destroy
     @article.destroy
     respond_to do |format|
-      format.html { redirect_to articles_url, flash: { success: 'Article was successfully deleted.'} }
+      format.html { redirect_to articles_url, flash: { success: 'Article was successfully deleted.' } }
       format.json { head :no_content }
     end
   end
 
+  def search
+    index
+    render :index
+  end
+
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_article
-      @article = Article.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def article_params
-      params.require(:article).permit(:title, :text)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_article
+    @article = Article.find(params[:id])
+  end
 
-    def check_article_owner
-      unless current_user.is_owner(@article)
-        # TODO: セキュリティ上メッセージは消す
-        redirect_to @article, notice: '記事の作者ではありません'
-      end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def article_params
+    params.require(:article).permit(:title, :text)
+  end
+
+  def check_article_owner
+    unless current_user.is_owner(@article)
+      # TODO: セキュリティ上メッセージは消す
+      redirect_to @article, notice: '記事の作者ではありません'
     end
+  end
 end
