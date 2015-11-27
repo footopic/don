@@ -64,6 +64,12 @@ body {
   margin-left: $sidebar_width;
 }
 
+ul.articles, ul.users {
+  li {
+    list-style-type: none;
+  }
+}
+
 .article {
   .tumbnail {
     float: left;
