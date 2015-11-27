@@ -1,24 +1,31 @@
+<%
+ menu_item_params = [
+   {
+     href: '/article/new',
+     icon_name: 'pencil',
+     name: 'WRITE'
+   }, {
+     href: '/',
+     icon_name: 'home',
+     name: 'TOP'
+   }, {
+     href: '/articles',
+     icon_name: 'th-list',
+     name: 'ARTICLES'
+   }, {
+     href: '/users',
+     icon_name: 'users',
+     name: 'MEMBERS'
+   }
+ ]
+   'test hoge'
+%>
 <div id="side-bar">
   <nav>
     <ul>
-      <li>
-        <a href="/articles/new">
-          <%= fa_icon 'pencil' %>
-          <span>NEW POST</span>
-        </a>
-      </li>
-      <li>
-        <a href="/">
-          <%= fa_icon 'home' %>
-          <span>TOP</span>
-        </a>
-      </li>
-      <li>
-        <a href="/articles">
-          <%= fa_icon 'database' %>
-          <span>POSTS</span>
-        </a>
-      </li>
+      <% menu_item_params.each do |params| %>
+        <%= render 'shared/sidemenu_item', params %>
+      <% end %>
     </ul>
   </nav>
 </div>
