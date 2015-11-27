@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   resources :articles
   resources :user
   root 'home#index'
-  # get 'home/index'
 
   devise_for :users, :controllers => { :omniauth_callbacks => 'users/omniauth_callbacks' }
   devise_scope :user do
