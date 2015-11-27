@@ -62,6 +62,9 @@ $sidebar_width: 80px;
 
 body {
   margin-left: $sidebar_width;
+  > .container-fluid {
+    padding: 0 40px;
+  }
 }
 
 ul.articles, ul.users {
@@ -119,6 +122,42 @@ ul.articles, ul.users {
   }
   .article-subinfos {
     float: right;
+  }
+}
+
+.user-header {
+  .tumbnail {
+    float: left;
+    img {
+      width: 6em;
+      border-radius: 50%;
+    }
+  }
+  .infos {
+    padding-left: 10px;
+    overflow: hidden;
+    h2 {
+      margin-top: 0;
+      font-size: 50px;
+    }
+    .categories {
+      height: 1em;
+      margin: .5em;
+    }
+    .info-footer {
+      overflow: hidden;
+      .record {
+        color: gainsboro;
+        overflow: hidden;
+        .author {
+          float: left;
+        }
+        .date {
+          float: left;
+          margin-left: 1em;
+        }
+      }
+    }
   }
 }
 
