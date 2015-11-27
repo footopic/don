@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :articles
   resources :users, only: [:index, :edit, :show, :update]
   root 'home#index'
 
