@@ -3,11 +3,16 @@
 # Table name: articles
 #
 #  id         :integer          not null, primary key
-#  title      :string
-#  text       :string
-#  user_id    :integer
+#  title      :string           not null
+#  text       :text             not null
+#  user_id    :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#
+# Indexes
+#
+#  index_articles_on_title    (title)
+#  index_articles_on_user_id  (user_id)
 #
 
 class Article < ActiveRecord::Base
