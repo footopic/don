@@ -1,0 +1,10 @@
+<%= form_for(@comment) do |f| %>
+
+    <%= f.hidden_field :user_id %>
+    <%= f.hidden_field :article_id %>
+    <%= f.text_area :text %>
+
+    <div class="actions">
+      <%= f.submit class: 'btn btn-default' %>
+    </div>
+<% end %>
