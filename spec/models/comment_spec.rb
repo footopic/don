@@ -17,11 +17,10 @@
 #  index_comments_on_user_id_and_article_id  (user_id,article_id)
 #
 
-class Comment < ActiveRecord::Base
-  belongs_to :user
-  belongs_to :article
+require 'rails_helper'
 
-  validates :user, presence: true
-  validates :article, presence: true
-  validates :text, presence: true
+RSpec.describe Comment, type: :model do
+  it { is_expected.to validate_presence_of(:text) }
+  it { is_expected.to validate_presence_of(:user) }
+  it { is_expected.to validate_presence_of(:article) }
 end

@@ -3,5 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Annotate.load_tasks
 Rails.application.load_tasks
