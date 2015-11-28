@@ -14,6 +14,9 @@ class Article < ActiveRecord::Base
   belongs_to :user
   has_many :comments, dependent: :destroy
 
+  validates :title, presence: true
+  validates :text, presence: true
+
   paginates_per 20
 
   def to_date_str
