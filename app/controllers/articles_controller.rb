@@ -1,3 +1,4 @@
+# noinspection ALL
 class ArticlesController < ApplicationController
   before_action :authenticate_user!, :set_article, only: [:show, :edit, :update, :destroy]
   before_action :check_article_owner, only: [:edit, :update, :destroy]
@@ -11,6 +12,8 @@ class ArticlesController < ApplicationController
   # GET /articles/1
   # GET /articles/1.json
   def show
+    @comments = @article.comments
+    @comment  = @article.comments.build(user_id: current_user.id)
   end
 
   # GET /articles/new

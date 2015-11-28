@@ -2,6 +2,7 @@
 <div class="container-fluid article-header">
   <div class="article-titles">
     <p id="categories-preview"><%= @article.categories_text %></p>
+
     <h1 calass="title">
       <%= @article.main_title %>
       <% if current_user.is_owner(@article) %>
@@ -10,6 +11,7 @@
           end %>
       <% end %>
     </h1>
+
     <div class="record pull-left">
       TODO
     </div>
@@ -28,4 +30,24 @@
 
 <div id="text-raw" class="hide">
   <%= @article.text %>
+</div>
+
+<h3>コメント</h3>
+<div class="col-md-6">
+  <% @comments.each do |comment| %>
+      <div class="media">
+        <div class="media-left">
+          <%= image_tag 'noimg.png', class: 'media-object', size: '64x64' %>
+        </div>
+
+        <div class="media-body">
+          <h4 class="media-haading">
+            <%= comment.user.id %>
+          </h4>
+          <%= comment.text %>
+        </div>
+      </div>
+  <% end %>
+
+  <%= render 'comments/form' %>
 </div>

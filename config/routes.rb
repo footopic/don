@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  resources :users, only: [:index, :edit, :show, :update]
   root 'home#index'
 
   devise_for :users, :controllers => { :omniauth_callbacks => 'users/omniauth_callbacks' }
 
+  resources :users, only: [:index, :edit, :show, :update]
   devise_scope :user do
     get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
   end
@@ -13,4 +13,6 @@ Rails.application.routes.draw do
       match 'search' => 'articles#search', via: [:get, :post], as: :search
     end
   end
+
+  resources :comments, only: [:create, :update, :destroy]
 end
