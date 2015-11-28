@@ -11,6 +11,7 @@ bundle install
 
 # migration (sqlite3 in dev)
 ./bin/rake db:migrate
+./bin/rake db:seed_fu
 
 # npm
 npm install

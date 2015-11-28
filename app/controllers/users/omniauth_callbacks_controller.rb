@@ -1,6 +1,9 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def twitter
-    @user = User.find_or_create_by(user_params)
+    @user = User.where(user_params.slice(:provider, :uid).to_h).first
+    if @user.nil?
+      @user = User.create(user_params)
+    end
 
     if @user.persisted?
       sign_in_and_redirect @user, :event => :authentication
@@ -13,6 +16,14 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   private
   def user_params
-    request.env["omniauth.auth"].slice(:provider, :uid).to_h
+    if !@user_params.nil?
+      return @user_params
+    end
+    auth_params = request.env["omniauth.auth"]
+    params = auth_params.slice(:provider, :uid).to_h
+    @user_params = params.merge({
+      screen_name: auth_params[:info][:nickname],
+      name: auth_params[:info][:name]
+    })
   end
 end

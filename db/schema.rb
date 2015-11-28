@@ -38,10 +38,10 @@ ActiveRecord::Schema.define(version: 20151127143358) do
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
   create_table "users", force: :cascade do |t|
-    t.string  "provider",    default: "", null: false
-    t.integer "uid",                      null: false
-    t.string  "screen_name", default: "", null: false
-    t.string  "name",        default: "", null: false
+    t.string  "provider",              default: "", null: false
+    t.integer "uid",         limit: 8,              null: false
+    t.string  "screen_name",           default: "", null: false
+    t.string  "name",                  default: "", null: false
   end
 
 end
