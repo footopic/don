@@ -2,6 +2,7 @@
 <div class="container-fluid article-header">
   <div class="article-titles">
     <p id="categories-preview"><%= @article.categories_text %></p>
+
     <h1 calass="title">
       <%= @article.main_title %>
       <% if current_user.is_owner(@article) %>
@@ -10,6 +11,7 @@
           end %>
       <% end %>
     </h1>
+
     <div class="record pull-left">
       TODO
     </div>
@@ -29,3 +31,11 @@
 <div id="text-raw" class="hide">
   <%= @article.text %>
 </div>
+
+<h3>コメント</h3>
+<% @comments.each do |comment| %>
+    <div>
+      <p><%= comment.text %></p>
+    </div>
+<% end %>
+<%= render 'comments/form' %>
