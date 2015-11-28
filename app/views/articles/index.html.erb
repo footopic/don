@@ -1,9 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<div class="container-fluid">
-  <h1>記事一覧</h1>
-  <ul class="articles">
-    <%= render @articles %>
-  </ul>
+<h1>記事一覧</h1>
+<ul class="articles">
+  <%= render @articles %>
+</ul>
 
-</div>
+<%= paginate @articles %>
