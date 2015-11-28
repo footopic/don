@@ -12,6 +12,7 @@
 # Indexes
 #
 #  index_comments_on_article_id              (article_id)
+#  index_comments_on_article_id_and_user_id  (article_id,user_id)
 #  index_comments_on_user_id                 (user_id)
 #  index_comments_on_user_id_and_article_id  (user_id,article_id)
 #
