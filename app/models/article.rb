@@ -21,6 +21,7 @@ class Article < ActiveRecord::Base
 
   validates :title, presence: true
   validates :text, presence: true
+  validates :user, presence: true
 
   paginates_per 20
 
