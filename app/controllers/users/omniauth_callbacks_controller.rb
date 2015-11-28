@@ -16,7 +16,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   private
   def user_params
-    if !@user_params.nil?
+    if @user_params
       return @user_params
     end
     auth_params = request.env["omniauth.auth"]
