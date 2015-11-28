@@ -14,6 +14,8 @@ class Article < ActiveRecord::Base
   belongs_to :user
   has_many :comments, dependent: :destroy
 
+  paginates_per 20
+
   def to_date_str
     # TODO: use module
     return diff(updated_at, Time.current)
