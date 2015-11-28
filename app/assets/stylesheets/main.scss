@@ -38,6 +38,7 @@ $sidebar_width: 80px;
       height: 68px;
       text-align: center;
       width: 80px;
+      text-decoration: none;
 
       background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
       border: medium none;
@@ -60,11 +61,11 @@ $sidebar_width: 80px;
         text-align: center;
       }
 
-      &:hover {
-        text-decoration: none;
-        i, span {
-          color: white;
-        }
+    }
+
+    &:hover,&.active {
+      i, span {
+        color: white;
       }
     }
   }
@@ -192,6 +193,7 @@ ul.articles, ul.users {
   font-size: 1.4em;
   color: darkgrey;
 }
+
 #title-preview {
   margin: 0;
 }
