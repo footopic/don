@@ -11,6 +11,12 @@
     </div>
   <% end %>
   <div class="form-group">
+    <%= f.label 'image', class: 'col-xs-2' %>
+    <div class="col-xs-5">
+      <%= f.file_field :image, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
     <%= f.label 'screen_name', class: 'col-xs-2' %>
     <div class="col-xs-5">
       <%= f.text_field :screen_name, class: 'form-control' %>

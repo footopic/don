@@ -12,6 +12,7 @@
 class User < ActiveRecord::Base
   has_many :articles, dependent: :destroy
   has_many :comments, dependent: :destroy
+  mount_uploader :image, ImageUploader
 
   validates :provider, presence: true
   validates :uid, presence: true
@@ -19,7 +20,6 @@ class User < ActiveRecord::Base
   validates :name, presence: true
 
   devise :omniauthable
-  mount_uploader :image, ImageUploader
 
   def is_owner(article)
     id == article.user_id
