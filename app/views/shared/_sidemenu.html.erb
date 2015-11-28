@@ -1,31 +1,33 @@
-<%
- menu_item_params = [
-   {
-     href: '/articles/new',
-     icon_name: 'pencil',
-     name: 'WRITE'
-   }, {
-     href: '/',
-     icon_name: 'home',
-     name: 'TOP'
-   }, {
-     href: '/articles',
-     icon_name: 'th-list',
-     name: 'ARTICLES'
-   }, {
-     href: '/users',
-     icon_name: 'users',
-     name: 'MEMBERS'
-   }
- ]
-   'test hoge'
-%>
 <div id="side-bar">
   <nav>
     <ul>
-      <% menu_item_params.each do |params| %>
-        <%= render 'shared/sidemenu_item', params %>
-      <% end %>
+      <li class="<%= 'active' if params[:controller] == 'articles' && params[:action] == 'new' %>">
+        <%= link_to new_article_path do %>
+            <%= fa_icon 'pencil' %>
+            <span>WRITE</span>
+        <% end %>
+      </li>
+
+      <li class="<%= 'active' if params[:controller] == 'home' %>">
+        <%= link_to root_path do %>
+            <%= fa_icon 'home' %>
+            <span>TOP</span>
+        <% end %>
+      </li>
+
+      <li class="<%= 'active' if params[:controller] == 'articles' && params[:action] == 'index' %>">
+        <%= link_to articles_path do %>
+            <%= fa_icon 'th-list' %>
+            <span>ARTICLES</span>
+        <% end %>
+      </li>
+
+      <li class="<%= 'active' if params[:controller] == 'users' %>">
+        <%= link_to users_path do %>
+            <%= fa_icon 'users' %>
+            <span>MEMBERS</span>
+        <% end %>
+      </li>
     </ul>
   </nav>
 </div>
