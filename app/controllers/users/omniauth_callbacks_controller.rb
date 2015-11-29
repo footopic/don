@@ -1,6 +1,7 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def twitter
-    @user = User.where(user_params.slice(:provider, :uid).to_h).first
+
+    @user = User.where(provider: user_params[:provider], uid: user_params[:uid]).first
     if @user.nil?
       @user = User.create(user_params)
     end
