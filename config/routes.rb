@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   root 'home#index'
 
+  get 'uploader/index'
+  get 'uploader/form'
+  post 'uploader/upload'
+  get 'uploader/download'
+
   devise_for :users, :controllers => { :omniauth_callbacks => 'users/omniauth_callbacks' }
 
   resources :users, only: [:index, :edit, :show, :update]
