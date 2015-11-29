@@ -11,12 +11,6 @@ class UploaderController < ApplicationController
     redirect_to action: 'index'
   end
 
-  def async_upload
-    @upload_file = UploadFile.new(upload_file_params)
-    @upload_file.save
-    render json: { url: @upload_file.file.url }
-  end
-
   def download
     @upload_file = UploadFile.find(params[:id].to_i)
     filepath = @upload_file.file.current_path
