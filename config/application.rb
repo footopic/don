@@ -42,5 +42,9 @@ module Dashi
     config.assets.paths << config.root.join('node_modules')
     # add asset path emojify.js images
     config.assets.paths << config.root.join('node_modules', 'emojify.js', 'dist', 'images')
+
+    # api
+    config.paths.add File.join('app', 'apis'), glob: File.join('**', '*.rb')
+    config.autoload_paths += Dir[Rails.root.join('app', 'apis', '*')]
   end
 end
