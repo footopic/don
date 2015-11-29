@@ -1,0 +1,12 @@
+<div class="media">
+  <div class="media-left">
+    <%= image_tag comment.user.image_url, class: 'media-object', size: '64x64' %>
+  </div>
+
+  <div class="media-body">
+    <h4 class="media-haading">
+      <%= comment.user.screen_name %>
+    </h4>
+    <%= comment.text %>
+  </div>
+</div>

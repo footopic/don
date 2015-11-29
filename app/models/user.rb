@@ -7,6 +7,7 @@
 #  uid         :integer          not null
 #  screen_name :string           default(""), not null
 #  name        :string           default(""), not null
+#  image       :string
 #
 
 class User < ActiveRecord::Base
