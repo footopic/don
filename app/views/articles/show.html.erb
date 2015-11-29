@@ -36,23 +36,8 @@
 <hr>
 
 <h3>コメント</h3>
-<div class="col-md-6">
-  <% @comments.each do |comment| %>
-      <div class="media">
-        <div class="media-left">
-          <%= image_tag 'noimg.png', class: 'media-object', size: '64x64' %>
-        </div>
-
-        <div class="media-body">
-          <h4 class="media-haading">
-            <%= comment.user.id %>
-          </h4>
-          <%= comment.text %>
-        </div>
-      </div>
-  <% end %>
-
+<div class="col-md-8">
+  <%= render @comments %>
   <hr>
-
   <%= render 'comments/form' %>
 </div>

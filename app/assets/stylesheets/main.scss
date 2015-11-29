@@ -197,3 +197,20 @@ ul.articles, ul.users {
 #title-preview {
   margin: 0;
 }
+
+.media {
+  img {
+    border-radius: 50%;
+  }
+}
+
+.comment-form {
+  img {
+    width: 5em;
+    border-radius: 50%;
+  }
+  textarea {
+    width: 100%;
+    height: 5.5em;
+  }
+}
