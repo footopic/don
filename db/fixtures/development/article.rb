@@ -28,8 +28,7 @@ test.fuga({ hoge: :fuga })
 5
 
 ## 絵文字 :+1:
-:100: :abc:
-:chicken: :sob:'''
+:100: :abc: :chicken: :sob:'''
 
 30.times do |n|
   Article.seed do |s|
