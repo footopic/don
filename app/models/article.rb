@@ -23,6 +23,8 @@ class Article < ActiveRecord::Base
   validates :text, presence: true
   validates :user, presence: true
 
+  acts_as_taggable
+
   paginates_per 20
 
   def to_date_str

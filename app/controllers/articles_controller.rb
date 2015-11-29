@@ -6,7 +6,11 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = @q.result.includes(:user).order('updated_at DESC').page(params[:page])
+    if params[:tag]
+      @articles = @q.result.includes(:user).tagged_with(params[:tag]).order('updated_at DESC').page(params[:page])
+    else
+      @articles = @q.result.includes(:user).order('updated_at DESC').page(params[:page])
+    end
   end
 
   # GET /articles/1
@@ -79,7 +83,7 @@ class ArticlesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def article_params
-    params.require(:article).permit(:title, :text)
+    params.require(:article).permit(:title, :text, :tag_list)
   end
 
   def check_article_owner

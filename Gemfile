@@ -38,6 +38,7 @@ gem 'kaminari'
 # TODO: refactor
 gem 'devise'
 gem 'omniauth-twitter'
+gem 'acts-as-taggable-on', '~> 3.4'
 
 gem 'dotenv-rails'
 
