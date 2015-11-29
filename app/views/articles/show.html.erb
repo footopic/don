@@ -32,6 +32,8 @@
   <%= @article.text %>
 </div>
 
+<hr>
+
 <h3>コメント</h3>
 <div class="col-md-6">
   <% @comments.each do |comment| %>
@@ -48,6 +50,8 @@
         </div>
       </div>
   <% end %>
+
+  <hr>
 
   <%= render 'comments/form' %>
 </div>
