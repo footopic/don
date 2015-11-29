@@ -1,5 +1,4 @@
-<p id="notice"><%= notice %></p>
-<div class="container-fluid user-header">
+<div class="user-header">
   <div class="row">
     <div class="col-xs-8">
       <div class="tumbnail">
@@ -8,8 +7,8 @@
       <div class="infos">
         <h2 class="title">
           <%= link_to @user.screen_name, @user %>
-          <%=  %>
         </h2>
+
         <p class="name">
           <%= @user.name %>
         </p>
@@ -21,3 +20,7 @@
   </div>
 
 </div>
+
+<%= render @articles %>
+
+<%= paginate @articles %>

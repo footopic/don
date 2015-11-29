@@ -2,6 +2,10 @@
 
 $sidebar_width: 80px;
 
+li {
+  list-style-type: none;
+}
+
 #navbar {
   .navbar-right {
     img {
@@ -27,9 +31,8 @@ $sidebar_width: 80px;
   ul {
     padding: 0;
   }
-  li {
-    list-style-type: none;
 
+  li {
     a {
       border-bottom: 1px solid rgba(0, 0, 0, 0.05);
       color: rgba(0, 0, 0, 0.3);
