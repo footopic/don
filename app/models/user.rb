@@ -24,4 +24,8 @@ class User < ActiveRecord::Base
   def is_owner(article)
     id == article.user_id
   end
+
+  def image_url
+    image.url || 'noimg.png'
+  end
 end

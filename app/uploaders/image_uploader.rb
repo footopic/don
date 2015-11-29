@@ -23,19 +23,12 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # jpg,jpeg,gif,pngのみ受け付ける
   def extension_white_list
-    %(jpg jpeg gif png)
+    %w(jpg jpeg gif png)
   end
 
   # 拡張子が同じでないとGIFをJPGにコンバートできないのdえファイル名を変更
   def filename
-    super.chomp(File.extname(super)) + 'jpg' if original_filename.present?
-  end
-
-  # ファイル名を時刻に変換
-  def filename
-    time = Time.now
-    name = time.strftime('%Y%m%d%H%M%S' + '.jpg')
-    name.downcase
+    super.chomp(File.extname(super)) + '.jpg' if original_filename.present?
   end
 
   # Override the directory where uploaded files will be stored.

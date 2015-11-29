@@ -24,7 +24,7 @@
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
             <li>
-              <%= image_tag 'noimg.png' %>
+              <%= image_tag current_user.image.url %>
             </li>
             <li class="dropdown">
               <%= link_to '#',
