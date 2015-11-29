@@ -11,6 +11,12 @@
       <% end %>
     </h1>
 
+    <div class="pull-left">
+      <% @article.tags.each do |tag| %>
+          <%= link_to "##{tag.name}", articles_path(tag: tag.name) %>
+      <% end %>
+    </div>
+
     <div class="record pull-left">
       TODO
     </div>
