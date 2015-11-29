@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20151127143358) do
     t.integer "uid",         limit: 8,              null: false
     t.string  "screen_name",           default: "", null: false
     t.string  "name",                  default: "", null: false
+    t.string  "image"
   end
 
 end

@@ -6,6 +6,7 @@ class CreateUsers < ActiveRecord::Migration
       t.integer :uid, :limit => 8, null: false
       t.string :screen_name, null: false, default: '', unique: true
       t.string :name, null: false, default: ''
+      t.string :image
     end
 
   end

@@ -1,6 +1,6 @@
 <div id="navbar" class="navbar navbar-default">
   <!-- header -->
-  <div class="container">
+  <div class="container-fluid">
     <div class="nabar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
@@ -24,7 +24,7 @@
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
             <li>
-              <%= image_tag 'noimg.png' %>
+              <%= image_tag current_user.image.url %>
             </li>
             <li class="dropdown">
               <%= link_to '#',

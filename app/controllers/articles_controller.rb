@@ -6,7 +6,7 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = @q.result.order('updated_at DESC').page(params[:page])
+    @articles = @q.result.includes(:user).order('updated_at DESC').page(params[:page])
   end
 
   # GET /articles/1

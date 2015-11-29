@@ -70,3 +70,7 @@ node_modules/
 # Optional REPL history
 .node_repl_history
 /bower_components
+
+# uplodaer images
+public/uploads/*
+!public/uploads/.keep

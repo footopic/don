@@ -29,3 +29,7 @@ vim ./.env
 TWITTER_CONSUMER_KEY="********"
 TWITTER_CONSUMER_SECRET="********"
 ```
+
+``` setting up ImageMagic
+yum install ImageMagick ImageMagick-devel
+```

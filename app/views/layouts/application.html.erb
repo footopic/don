@@ -8,15 +8,20 @@
 </head>
 <body>
 
-<% flash.each do |name, msg| %>
-    <div class="alert alert-<%= name %>">
-      <a class="close" data-dismiss="alert">×</a> <!-- アラートダイアログに×ボタンをつける -->
-      <%= msg %>
-    </div>
-<% end %>
-
 <%= render 'shared/sidemenu' %>
 <%= render 'shared/navbar' %>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4">
+      <% flash.each do |name, msg| %>
+          <div class="alert alert-<%= name == 'notice' ? 'success' : 'error' %>">
+            <%= msg %>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>
 
 <div class="container-fluid">
   <%= yield %>
