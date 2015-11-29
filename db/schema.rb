@@ -58,11 +58,16 @@ ActiveRecord::Schema.define(version: 20151129070907) do
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true
 
   create_table "users", force: :cascade do |t|
-    t.string  "provider",              default: "", null: false
-    t.integer "uid",         limit: 8,              null: false
-    t.string  "screen_name",           default: "", null: false
-    t.string  "name",                  default: "", null: false
-    t.string  "image"
+    t.string   "provider",    default: "", null: false
+    t.string   "uid",                      null: false
+    t.string   "screen_name", default: "", null: false
+    t.string   "name",        default: "", null: false
+    t.string   "image"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
+
+  add_index "users", ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
+  add_index "users", ["screen_name"], name: "index_users_on_screen_name", unique: true
 
 end
