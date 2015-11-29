@@ -1,4 +1,9 @@
-<h1>記事一覧</h1>
+<% if params[:tag] %>
+    <h1>記事一覧 #<%= params[:tag] %></h1>
+<% else %>
+    <h1>記事一覧</h1>
+<% end %>
+
 <ul class="articles">
   <%= render @articles %>
 </ul>
