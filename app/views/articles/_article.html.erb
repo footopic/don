@@ -9,7 +9,7 @@
       </p>
       <h2 class="title">
         <%= link_to article.main_title, article %>
-        <% if current_user.is_owner(article) %>
+        <% if current_user && current_user.is_owner(article) %>
             <%= link_to edit_article_path(article) do
               fa_icon 'pencil'
             end %>
