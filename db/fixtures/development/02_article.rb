@@ -50,3 +50,8 @@ Article.seed do |s|
   s.text = '''本文'''
 end
 
+Article.seed do |s|
+  s.user_id = 2
+  s.title = 'コメント記事'
+  s.text = '''↓コメント一覧'''
+end
