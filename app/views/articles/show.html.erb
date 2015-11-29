@@ -17,8 +17,10 @@
   </div>
   <div class="article-subinfos">
     <p>
-      <strong>User:</strong>
-      <%= @article.user_id %>
+      最終編集者
+      <%= link_to(@article.user) do %>
+          <%= @article.user.name %>
+      <% end %>
     </p>
   </div>
 </div>
