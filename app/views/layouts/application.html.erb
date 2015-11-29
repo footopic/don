@@ -11,6 +11,10 @@
 <%= render 'shared/sidemenu' %>
 <%= render 'shared/navbar' %>
 
+<% if Rails.env == 'development' %>
+    <%= params %>
+<% end %>
+
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-4">
