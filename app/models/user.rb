@@ -4,10 +4,17 @@
 #
 #  id          :integer          not null, primary key
 #  provider    :string           default(""), not null
-#  uid         :integer          not null
+#  uid         :string           not null
 #  screen_name :string           default(""), not null
 #  name        :string           default(""), not null
 #  image       :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+# Indexes
+#
+#  index_users_on_provider_and_uid  (provider,uid) UNIQUE
+#  index_users_on_screen_name       (screen_name) UNIQUE
 #
 
 class User < ActiveRecord::Base
@@ -20,7 +27,7 @@ class User < ActiveRecord::Base
   validates :screen_name, presence: true
   validates :name, presence: true
 
-  devise :omniauthable
+  devise :omniauthable, :omniauth_providers => [:google_oauth2, :twitter]
 
   def is_owner(article)
     id == article.user_id
@@ -28,5 +35,20 @@ class User < ActiveRecord::Base
 
   def image_url
     image.url || 'noimg.png'
+  end
+
+  def self.from_omniauth(access_token)
+    data = access_token.info
+    user = User.where(uid: data['uid'], provider: data['provider']).first
+
+    # Uncomment the section below if you want users to be created if they don't exist
+    unless user
+      user = User.create(
+          provider: data['provider'],
+          uid:      data['uid'],
+          name:     data['name']
+      )
+    end
+    user
   end
 end
