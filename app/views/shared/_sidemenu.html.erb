@@ -1,7 +1,7 @@
 <div id="side-bar">
   <nav>
     <ul>
-      <li class="<%= 'active' if params[:controller] == 'articles' && params[:action] == 'new' %>">
+      <li class="<%= 'active' if params[:controller] == 'articles' && (params[:action] == 'new' || params[:action] == 'edit') %>">
         <%= link_to new_article_path do %>
             <%= fa_icon 'pencil' %>
             <span>WRITE</span>
@@ -15,7 +15,7 @@
         <% end %>
       </li>
 
-      <li class="<%= 'active' if params[:controller] == 'articles' && params[:action] == 'index' %>">
+      <li class="<%= 'active' if params[:controller] == 'articles' && (params[:action] != 'new' && params[:action] != 'edit') %>">
         <%= link_to articles_path do %>
             <%= fa_icon 'th-list' %>
             <span>ARTICLES</span>
