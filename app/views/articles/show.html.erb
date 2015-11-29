@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 <div class="container-fluid article-header">
   <div class="article-titles">
     <p id="categories-preview"><%= @article.categories_text %></p>
@@ -32,6 +31,8 @@
   <%= @article.text %>
 </div>
 
+<hr>
+
 <h3>コメント</h3>
 <div class="col-md-6">
   <% @comments.each do |comment| %>
@@ -48,6 +49,8 @@
         </div>
       </div>
   <% end %>
+
+  <hr>
 
   <%= render 'comments/form' %>
 </div>

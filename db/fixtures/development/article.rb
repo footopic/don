@@ -1,15 +1,4 @@
-30.times do |n|
-  Article.seed do |s|
-    s.user_id = 1
-    s.title = "記事#{n}"
-    s.text = "記事#{n} の本文"
-  end
-end
-
-Article.seed do |s|
-  s.user_id = 1
-  s.title = 'テスト記事'
-  s.text = '''test
+dummy_text = '''test
 ===
 
 ## マークダウン
@@ -40,7 +29,13 @@ test.fuga({ hoge: :fuga })
 
 ## 絵文字 :+1:
 :100: :abc: :chicken: :sob:'''
-  # s.created_at = (rand*10).days.ago
+
+30.times do |n|
+  Article.seed do |s|
+    s.user_id = 1
+    s.title = "記事#{n}"
+    s.text = dummy_text
+  end
 end
 
 Article.seed do |s|
