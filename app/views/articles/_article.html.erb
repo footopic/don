@@ -11,13 +11,15 @@
       <h2 class="title">
         <%= link_to article.main_title, article %>
         <%= link_to edit_article_path(article) do %>
-          <%= fa_icon 'pencil' %>
+            <%= fa_icon 'pencil' %>
         <% end %>
       </h2>
 
       <div class="info-footer">
         <div class="record pull-left">
-          TODO
+          <% article.tags.each do |tag| %>
+              <%= link_to "##{tag.name}", articles_path(tag: tag.name) %>
+          <% end %>
         </div>
         <div class="record pull-right">
           <div class="author">
