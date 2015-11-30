@@ -33,3 +33,13 @@ TWITTER_CONSUMER_SECRET="********"
 ``` setting up ImageMagic
 yum install ImageMagick ImageMagick-devel
 ```
+
+
+# import esa archive 2015/11/30 21:32
+```
+# unzip
+unzip ./esa_archives/articles.zip -d ./esa_archives/articles
+
+# run rake/task
+./bin/rake archive:import_esa_io
+```
