@@ -112,3 +112,18 @@ $ ->
         return
     $input_file.val('')
     return
+
+  $.ajax
+    url: '/api/v1/articles'
+    method: "GET"
+    data: 'tags=template'
+    processData: false
+    contentType: false
+    success: (json) ->
+      console.log json
+      return
+    error: (json) ->
+      alert '画像アップロードでエラーが発生しました'
+      return
+
+  return
