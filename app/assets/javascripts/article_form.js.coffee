@@ -1,13 +1,14 @@
 $ ->
   $title = $('#article_title')
   $text_edit = $('#article_text')
+  $tag_edit = $('#article_tag_list')
   $categories_preview = $('#categories-preview')
   $title_preview = $('#title-preview')
   $text_preview = $('#text-preview-area')
   $submit_btn = $('#btn-submit')
 
   $input_file = $('#async-image-data')
-
+  $dropdown_list = $('#templates-dropdown-list')
   updatePreview = ->
     # NOTE: marked で xss escape 済みで返る
     $text_preview.html marked($text_edit.val())
@@ -112,3 +113,40 @@ $ ->
         return
     $input_file.val('')
     return
+
+  # template manage
+
+  setup_template_dropdown = (articles) ->
+    $dropdown_list.empty()
+    $.each articles, ->
+      $a = $('<a/>').text(@title).click =>
+        $title.val(@title)
+        updateTitlePreview()
+        # HACK:
+        tags_tmp = []
+        $.each @tags, ->
+          if String(@) != 'template'
+            tags_tmp.push(@)
+        $tag_edit.val(tags_tmp.join(','))
+        $text_edit.val(@text)
+        updatePreview()
+        return
+      $li = $('<li/>').append($a)
+      $dropdown_list.append($li)
+      return
+    return
+
+  $.ajax
+    url: '/api/v1/articles'
+    method: "GET"
+    data: 'tags=template'
+    processData: false
+    contentType: false
+    success: (json) ->
+      setup_template_dropdown(json.articles)
+      return
+    error: (json) ->
+      alert '画像アップロードでエラーが発生しました'
+      return
+
+  return

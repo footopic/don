@@ -22,7 +22,7 @@
         <div class="record pull-right">
           <div class="author">
             Updated&nbsp;by
-            <%= link_to article.user.id, '#' %>
+            <%= link_to article.user.screen_name, user_path(id: article.user.id) %>
           </div>
           <div class="date">
             <%= article.to_date_str %>

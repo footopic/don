@@ -11,9 +11,6 @@
 <%= render 'shared/sidemenu' %>
 <%= render 'shared/navbar' %>
 
-<% if Rails.env == 'development' %>
-    <%= params %>
-<% end %>
 
 <div class="container-fluid">
   <div class="row">
@@ -35,6 +32,9 @@
     <%= link_to "Twitter ログイン", user_omniauth_authorize_path(:twitter) %>
 <% end %>
 
+<% if Rails.env == 'development' %>
+    <%= params %>
+<% end %>
 
 </body>
 </html>

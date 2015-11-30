@@ -5,6 +5,7 @@ module API
       format :json
 
       mount API::V1::UploadFiles
+      mount API::V1::Articles
     end
   end
 end
