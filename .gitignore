@@ -74,3 +74,8 @@ node_modules/
 # uplodaer images
 public/uploads/*
 !public/uploads/.keep
+
+
+
+# archives for task
+/esa_archives/articles/
