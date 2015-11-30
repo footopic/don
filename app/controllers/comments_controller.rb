@@ -9,6 +9,8 @@ class CommentsController < ApplicationController
 
     if @comment.save
       redirect_to article_path(@article), notice: 'コメントを投稿しました'
+    else
+      redirect_to article_path(@comment.article), flash: { error: 'コメントが空です' }
     end
   end
 
@@ -16,6 +18,8 @@ class CommentsController < ApplicationController
   def update
     if @comment.update(comment_params)
       redirect_to @comment, notice: 'コメントを更新しました'
+    else
+      redirect_to article_path(@comment.article), notice: { error: 'コメントが空です' }
     end
   end
 
