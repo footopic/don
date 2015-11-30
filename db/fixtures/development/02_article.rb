@@ -34,7 +34,7 @@ test.fuga({ hoge: :fuga })
   Article.seed do |s|
     s.user_id = 2
     s.title   = "テンプレート#{n}"
-    s.text    = dummy_text
+    s.text    = "テンプレート#{n} の本文です\n---"
   end
   a = Article.last
   a.tag_list << 'template'

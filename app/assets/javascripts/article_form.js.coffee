@@ -7,7 +7,7 @@ $ ->
   $submit_btn = $('#btn-submit')
 
   $input_file = $('#async-image-data')
-
+  $dropdown_list = $('#templates-dropdown-list')
   updatePreview = ->
     # NOTE: marked で xss escape 済みで返る
     $text_preview.html marked($text_edit.val())
@@ -113,6 +113,22 @@ $ ->
     $input_file.val('')
     return
 
+  # template manage
+
+  setup_template_dropdown = (articles) ->
+    console.log articles
+    $.each articles, ->
+      $a = $('<a/>').text(@title).click =>
+        $title.val(@title)
+        updateTitlePreview()
+        $text_edit.val(@text)
+        updatePreview()
+        return
+      $li = $('<li/>').append($a)
+      $dropdown_list.append($li)
+      return
+    return
+
   $.ajax
     url: '/api/v1/articles'
     method: "GET"
@@ -120,7 +136,8 @@ $ ->
     processData: false
     contentType: false
     success: (json) ->
-      console.log json
+      console.log 'hoge'
+      setup_template_dropdown(json)
       return
     error: (json) ->
       alert '画像アップロードでエラーが発生しました'
