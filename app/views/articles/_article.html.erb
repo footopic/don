@@ -7,6 +7,7 @@
       <p class="categories">
         <%= article.categories_text %>
       </p>
+
       <h2 class="title">
         <%= link_to article.main_title, article %>
         <% if current_user && current_user.is_owner(article) %>
@@ -15,6 +16,7 @@
             end %>
         <% end %>
       </h2>
+
       <div class="info-footer">
         <div class="record pull-left">
           TODO
@@ -22,7 +24,7 @@
         <div class="record pull-right">
           <div class="author">
             Updated&nbsp;by
-            <%= link_to article.user.id, '#' %>
+            <%= link_to article.user.screen_name, user_path(id: article.user.id) %>
           </div>
           <div class="date">
             <%= article.to_date_str %>
