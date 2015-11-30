@@ -8,13 +8,6 @@
         <% end %>
       </li>
 
-      <li class="<%= 'active' if params[:controller] == 'home' %>">
-        <%= link_to root_path do %>
-            <%= fa_icon 'home' %>
-            <span>TOP</span>
-        <% end %>
-      </li>
-
       <li class="<%= 'active' if params[:controller] == 'articles' && (params[:action] != 'new' && params[:action] != 'edit') %>">
         <%= link_to articles_path do %>
             <%= fa_icon 'th-list' %>
