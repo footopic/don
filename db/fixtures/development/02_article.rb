@@ -43,13 +43,21 @@ test.fuga({ hoge: :fuga })
     a.tag_list << 'にっぽっぽー'
   end
   a.save
+  History.seed do |s|
+    s.user_id = 1
+    s.article_id = n + 1
+  end
 end
-
 
 Article.seed do |s|
   s.user_id = 1
   s.title   = '*@&#(!@^$<script>alert(\'\')</script>:smile:'
   s.text    = '' '*@&#(!@^$<script>alert(\'\')</script>:smile:' ''
+end
+
+History.seed do |s|
+  s.user_id = 1
+  s.article_id = Article.last.id
 end
 
 Article.seed do |s|
@@ -62,4 +70,9 @@ Article.seed do |s|
   s.user_id = 2
   s.title   = 'コメント記事'
   s.text    = '' '↓コメント一覧' ''
+end
+
+History.seed do |s|
+  s.user_id = 2
+  s.article_id = Article.last.id
 end
