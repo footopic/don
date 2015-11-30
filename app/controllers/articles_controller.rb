@@ -1,7 +1,6 @@
 # noinspection ALL
 class ArticlesController < ApplicationController
   before_action :authenticate_user!, :set_article, only: [:show, :edit, :update, :destroy]
-  # before_action :check_article_owner, only: [:edit, :update, :destroy]
 
   # GET /articles
   # GET /articles.json

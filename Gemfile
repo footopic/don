@@ -60,6 +60,7 @@ gem 'rmagick', require: 'RMagick'
 gem 'fog'
 
 gem 'grape'
+gem 'grape-jbuilder'
 gem 'rack-cors', :require => 'rack/cors'
 
 group :development, :test do

@@ -30,18 +30,31 @@ test.fuga({ hoge: :fuga })
 ## 絵文字 :+1:
 :100: :abc: :chicken: :sob:' ''
 
+5.times do |n|
+  Article.seed do |s|
+    s.user_id = 2
+    s.title   = "テンプレート#{n}"
+    s.text    = "テンプレート#{n} の本文です\n---"
+  end
+  a = Article.last
+  a.tag_list << 'template'
+  a.tag_list << %w(hoge fuga).sample((0..2).to_a.sample)
+  a.save
+end
+
 30.times do |n|
   Article.seed do |s|
     s.user_id = 1
     s.title   = "記事#{n}"
     s.text    = dummy_text
   end
-  a = Article.find(n + 1)
+  a = Article.last
   if n % 2 == 0
     a.tag_list << '日報'
   else
     a.tag_list << 'にっぽっぽー'
   end
+  a.tag_list << %w(a b c).sample((0..3).to_a.sample)
   a.save
   History.seed do |s|
     s.user_id = 1

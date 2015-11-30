@@ -46,6 +46,9 @@ module Dashi
     # api
     config.paths.add File.join('app', 'apis'), glob: File.join('**', '*.rb')
     config.autoload_paths += Dir[Rails.root.join('app', 'apis', '*')]
+    config.middleware.use(Rack::Config) do |env|
+      env['api.tilt.root'] = Rails.root.join 'app', 'views', 'api'
+    end
 
     # config.middleware.use Rack::Cors do
     config.middleware.insert_before ActionDispatch::Static, Rack::Cors do
