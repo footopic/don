@@ -42,5 +42,17 @@ module Dashi
     config.assets.paths << config.root.join('node_modules')
     # add asset path emojify.js images
     config.assets.paths << config.root.join('node_modules', 'emojify.js', 'dist', 'images')
+
+    # api
+    config.paths.add File.join('app', 'apis'), glob: File.join('**', '*.rb')
+    config.autoload_paths += Dir[Rails.root.join('app', 'apis', '*')]
+
+    # config.middleware.use Rack::Cors do
+    config.middleware.insert_before ActionDispatch::Static, Rack::Cors do
+      allow do
+        origins '*'
+        resource '*', :headers => :any, :methods => [:get, :post, :delete, :put, :options]
+      end
+    end
   end
 end

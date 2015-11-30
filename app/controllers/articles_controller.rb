@@ -92,4 +92,5 @@ class ArticlesController < ApplicationController
       redirect_to @article, notice: '記事の作者ではありません'
     end
   end
+
 end

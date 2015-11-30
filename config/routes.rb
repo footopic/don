@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root 'home#index'
 
+  mount API::Root => '/'
+
   devise_for :users, :controllers => { :omniauth_callbacks => 'users/omniauth_callbacks' }
 
   resources :users, only: [:index, :edit, :show, :update]
@@ -15,4 +17,5 @@ Rails.application.routes.draw do
   end
 
   resources :comments, only: [:create, :update, :destroy]
+  resources :uploader, only: [:index, :form, :upload, :download]
 end
