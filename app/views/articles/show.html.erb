@@ -4,10 +4,8 @@
 
     <h1 calass="title">
       <%= @article.main_title %>
-      <% if current_user.is_owner(@article) %>
-          <%= link_to edit_article_path(@article) do
-            fa_icon 'pencil'
-          end %>
+      <%= link_to edit_article_path(@article) do %>
+        <%= fa_icon 'pencil' %>
       <% end %>
     </h1>
 
