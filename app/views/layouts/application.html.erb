@@ -13,14 +13,14 @@
 
 
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-md-4">
-      <% flash.each do |name, msg| %>
-          <div class="alert alert-<%= name == 'notice' ? 'success' : 'error' %>">
-            <%= msg %>
-          </div>
-      <% end %>
-    </div>
+  <div class="col-md-4">
+    <% flash.each do |type, message| %>
+        <div class="alert <%= alert_class_for(type) %> alert-dismissible fade in">
+          <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <%= message %>
+        </div>
+    <% end %>
   </div>
 </div>
 
