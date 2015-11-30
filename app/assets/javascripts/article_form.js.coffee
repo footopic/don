@@ -1,6 +1,7 @@
 $ ->
   $title = $('#article_title')
   $text_edit = $('#article_text')
+  $tag_edit = $('#article_tag_list')
   $categories_preview = $('#categories-preview')
   $title_preview = $('#title-preview')
   $text_preview = $('#text-preview-area')
@@ -116,11 +117,17 @@ $ ->
   # template manage
 
   setup_template_dropdown = (articles) ->
-    console.log articles
+    $dropdown_list.empty()
     $.each articles, ->
       $a = $('<a/>').text(@title).click =>
         $title.val(@title)
         updateTitlePreview()
+        # HACK:
+        tags_tmp = []
+        $.each @tags, ->
+          if String(@) != 'template'
+            tags_tmp.push(@)
+        $tag_edit.val(tags_tmp.join(','))
         $text_edit.val(@text)
         updatePreview()
         return
@@ -136,8 +143,7 @@ $ ->
     processData: false
     contentType: false
     success: (json) ->
-      console.log 'hoge'
-      setup_template_dropdown(json)
+      setup_template_dropdown(json.articles)
       return
     error: (json) ->
       alert '画像アップロードでエラーが発生しました'
