@@ -6,6 +6,8 @@ $ ->
   $text_preview = $('#text-preview-area')
   $submit_btn = $('#btn-submit')
 
+  $input_file = $('#article_image')
+
   updatePreview = ->
     # NOTE: marked で xss escape 済みで返る
     $text_preview.html marked($text_edit.val())
@@ -55,5 +57,35 @@ $ ->
     # TODO: validation check
     l.removeItem 'text'
     l.removeItem 'title'
+    return
+
+  $('#upload-btn').click ->
+    $input_file[0].click()
+    return false
+
+  $input_file.change ->
+    # fd = new FormData($('form')[0])
+    if $input_file[0].files < 1
+      return
+
+    fd = new FormData()
+    fd.append('name', 'jquery test')
+    # fd.append('file', 'hoge')
+    fd.append('file', $input_file[0].files[0])
+
+    # curl -X POST -F "name=curl_test" -F "file=@co01.png" localhost:3000/api/v1/upload_files/upload
+    $.ajax
+      url: 'localhost:3000/api/v1/upload_files/upload'
+      method: "POST"
+      data: fd
+      processData: false
+      dataType: false
+      success: (json) ->
+        console.log json
+        return
+      error: (json) ->
+        console.log json
+        alert('エラーが発生しました')
+        return
     return
   return
