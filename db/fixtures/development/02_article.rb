@@ -42,6 +42,7 @@ test.fuga({ hoge: :fuga })
   else
     a.tag_list << 'にっぽっぽー'
   end
+  a.tag_list << %w(a b c).sample((0..3).to_a.sample)
   a.save
 end
 
