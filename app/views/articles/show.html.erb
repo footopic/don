@@ -4,10 +4,8 @@
 
     <h1 calass="title">
       <%= @article.main_title %>
-      <% if current_user.is_owner(@article) %>
-          <%= link_to edit_article_path(@article) do
-            fa_icon 'pencil'
-          end %>
+      <%= link_to edit_article_path(@article) do %>
+          <%= fa_icon 'pencil' %>
       <% end %>
     </h1>
 
@@ -16,18 +14,14 @@
           <%= link_to "##{tag.name}", articles_path(tag: tag.name) %>
       <% end %>
     </div>
-
-    <div class="record pull-left">
-      TODO
-    </div>
   </div>
   <div class="article-subinfos">
-    <p>
-      最終編集者
-      <%= link_to(@article.user) do %>
-          <%= @article.user.name %>
-      <% end %>
-    </p>
+    <% @editors.each do |editor| %>
+        <%= link_to(editor) do %>
+            <%= image_tag editor.image_url, class: 'img-circle', size: '96x96' %>
+            <%= editor.screen_name %>
+        <% end %>
+    <% end %>
   </div>
 </div>
 

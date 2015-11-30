@@ -1,7 +1,7 @@
 # noinspection ALL
 class ArticlesController < ApplicationController
   before_action :authenticate_user!, :set_article, only: [:show, :edit, :update, :destroy]
-  before_action :check_article_owner, only: [:edit, :update, :destroy]
+  # before_action :check_article_owner, only: [:edit, :update, :destroy]
 
   # GET /articles
   # GET /articles.json
@@ -17,6 +17,9 @@ class ArticlesController < ApplicationController
   # GET /articles/1.json
   def show
     @comments = @article.comments.includes(:user)
+
+    user_ids = History.where(article: @article).pluck(:user_id)
+    @editors = User.find(user_ids).uniq
   end
 
   # GET /articles/new
@@ -27,12 +30,14 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1/edit
   def edit
+    History.create(user: current_user, article: @article)
   end
 
   # POST /articles
   # POST /articles.json
   def create
     @article = current_user.articles.create(article_params)
+    History.create(user: current_user, article: @article)
 
     respond_to do |format|
       if @article.save
