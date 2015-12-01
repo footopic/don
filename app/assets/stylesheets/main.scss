@@ -6,6 +6,10 @@ li {
   list-style-type: none;
 }
 
+h2 {
+  margin: 0;
+}
+
 #navbar {
   .navbar-right {
     img {
@@ -82,7 +86,7 @@ body {
   font-size: 20px;
 }
 
-.articles {
+.articles, .users {
   padding: 0;
   @extend .col-lg-8;
 }
@@ -146,6 +150,56 @@ body {
   }
 }
 
+.user-item-box {
+  display: flex;
+  padding: 5px 0;
+  border-bottom: solid 1px #ddd;
+  .user-icon {
+    img {
+      width: 60px;
+      height: 60px;
+    }
+  }
+  .info {
+    padding-left: 10px;
+    width: 100%;
+    overflow: hidden;
+    display: table;
+
+    &-title {
+      h2 {
+        display: inline;
+        font-size: 16px;
+        font-weight: bold;
+        margin: 0;
+        margin: 2px 0;
+        i {
+          font-size: .7em;
+          color: gray;
+        }
+      }
+    }
+    &-footer {
+      font-size: 14px;
+      .tags {
+        float: left;
+      }
+      .created {
+        float: right;
+        color: gainsboro;
+        overflow: hidden;
+        .author {
+          float: left;
+        }
+        .date {
+          float: left;
+          margin-left: 1em;
+        }
+      }
+    }
+  }
+}
+
 .article-header {
   overflow: hidden;
   margin: 20px;
@@ -171,7 +225,6 @@ body {
     padding-left: 10px;
     overflow: hidden;
     h2 {
-      margin-top: 0;
       font-size: 50px;
     }
     .categories {
