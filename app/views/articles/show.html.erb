@@ -9,13 +9,9 @@
       <% end %>
     </h1>
 
-    <div class="pull-left">
-      <div class="col-md-6">
-        <% @article.tags.each do |tag| %>
-            <%= link_to "##{tag.name}", articles_path(tag: tag.name) %>
-        <% end %>
-      </div>
-    </div>
+    <% @article.tags.each do |tag| %>
+        <%= link_to "##{tag.name}", articles_path(tag: tag.name) %>
+    <% end %>
   </div>
   <div class="article-subinfos">
     <% @editors.each do |editor| %>
