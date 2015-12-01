@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'home#index'
+  root 'articles#index'
 
   mount API::Root => '/'
 
