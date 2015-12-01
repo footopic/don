@@ -28,6 +28,8 @@ vim ./.env
 ```sh:.env
 TWITTER_CONSUMER_KEY="********"
 TWITTER_CONSUMER_SECRET="********"
+GOOGLE_CLIENT_ID=""
+GOOGLE_CLIENT_SECRET=""
 ```
 
 ``` setting up ImageMagic
