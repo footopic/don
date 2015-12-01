@@ -1,15 +1,22 @@
 <div class="comment-form row">
+  <div class="comment-form__header">
+    <%= image_tag @article.user.image_url, class: 'comment-form__header__img', size: '32x32' %>
+    <div class="comment-form__header__label">
+      コメントを投稿する
+    </div>
+  </div>
+
   <%= form_for(@article.comments.build(user_id: current_user.id)) do |f| %>
 
       <%= f.hidden_field :user_id %>
       <%= f.hidden_field :article_id %>
 
       <div class="form-group">
-        <%= f.text_area :text, class: 'form-control' %>
+        <%= f.text_area :text, placeholder: 'コメントを入力してください', class: 'form-control' %>
       </div>
 
-      <div class="actions">
-        <%= f.submit 'コメント', class: 'btn btn-default' %>
+      <div class="actions pull-right">
+        <%= f.submit '投稿する', class: 'btn btn-primary' %>
       </div>
   <% end %>
 </div>

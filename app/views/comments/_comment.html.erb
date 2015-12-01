@@ -1,12 +1,10 @@
-<div class="media">
-  <div class="media-left">
-    <%= image_tag comment.user.image_url, class: 'media-object img-circle', size: '64x64' %>
-  </div>
+<div class="comment">
+  <h4 class="comment__header">
+    <%= image_tag comment.user.image_url, class: 'comment__icon', size: '32x32' %>
+    <%= link_to comment.user.screen_name, comment.user %>
+  </h4>
 
-  <div class="media-body">
-    <h4 class="media-haading">
-      <%= comment.user.screen_name %>
-    </h4>
+  <div class="comment__content">
     <%= comment.text %>
   </div>
 </div>
