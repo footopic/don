@@ -4,18 +4,12 @@
   </div>
   <div class="info">
     <div class="info-head">
-      <% if !article.categories.empty? %>
-        <p class="categories">
-          <%= article.categories_text %>
-        </p>
-      <% else %>
-        <p class="categories no-category">nocategory</p>
-      <% end %>
+      <p class="someinfo">TODO</p>
     </div>
 
     <div class="info-title">
       <h2 class="title">
-        <%= link_to article.main_title, article %>
+        <%= link_to article.title, article %>
       </h2>
     </div>
 
