@@ -2,7 +2,6 @@ $ ->
   $title = $('#article_title')
   $text_edit = $('#article_text')
   $tag_edit = $('#article_tag_list')
-  $categories_preview = $('#categories-preview')
   $title_preview = $('#title-preview')
   $text_preview = $('#text-preview-area')
   $submit_btn = $('#btn-submit')
@@ -21,11 +20,7 @@ $ ->
     return
 
   updateTitlePreview = ->
-    words = $title.val().split('/')
-    title = words.pop()
-    categories_text = words.join('/')
-    $title_preview.text title
-    $categories_preview.text categories_text
+    $title_preview.text $title.val()
     # 絵文字
     emojify.run $title_preview[0]
     return

@@ -48,20 +48,4 @@ class Article < ActiveRecord::Base
       (d / 1.seconds).round.to_s + 's'
     end
   end
-
-  def categories_text
-    @categories_text ||= categories.join('/')
-  end
-
-  def categories
-    @categories ||= names[0...(names.length - 1)]
-  end
-
-  def names
-    @names ||= title.split('/')
-  end
-
-  def main_title
-    @main_title ||= names[-1]
-  end
 end
