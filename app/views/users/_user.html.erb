@@ -1,17 +1,17 @@
 <li class="article panel panel-default">
   <div class="panel-body">
     <div class="tumbnail">
-      <%= image_tag user.image_url %>
+      <%= image_tag user.image_url, class: 'img-circle', size: '64x64' %>
     </div>
     <div class="infos">
       <h2 class="title">
         <%= link_to user.screen_name, user %>
-        <%=  %>
+        <%= %>
       </h2>
+
       <p class="name">
         <%= user.name %>
       </p>
     </div>
   </div>
-
 </li>
