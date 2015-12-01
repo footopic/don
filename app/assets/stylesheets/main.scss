@@ -116,7 +116,7 @@ body {
     &-head {
       font-size: 12px;
       margin: 0;
-      .categories {
+      .someinfo {
         margin: 0;
       }
     }
@@ -234,7 +234,7 @@ body {
     h2 {
       font-size: 50px;
     }
-    .categories {
+    .someinfo {
       margin: .5em;
     }
     .info-footer {
@@ -268,12 +268,6 @@ body {
   height: 1.4em;
   display: inline-block;
   margin-bottom: 0em;
-}
-
-#categories-preview {
-  margin-bottom: .5em;
-  font-size: 1.4em;
-  color: darkgrey;
 }
 
 #title-preview {
