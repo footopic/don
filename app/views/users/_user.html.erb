@@ -1,17 +1,14 @@
-<li class="article panel panel-default">
-  <div class="panel-body">
-    <div class="tumbnail">
-      <%= image_tag user.image_url, class: 'img-circle', size: '64x64' %>
-    </div>
-    <div class="infos">
-      <h2 class="title">
-        <%= link_to user.screen_name, user %>
-        <%= %>
-      </h2>
-
-      <p class="name">
-        <%= user.name %>
-      </p>
+<li class="user-item-box">
+  <div class="user-icon">
+    <%= image_tag user.image_url, class: 'img-circle' %>
+  </div>
+  <div class="info">
+    <h2 class="info-title">
+      <%= link_to user.screen_name, user %>
+      <span class="badge"><%= user.articles.count %></span>
+    </h2>
+    <div class="info-name">
+      <%= user.name %>
     </div>
   </div>
 </li>
