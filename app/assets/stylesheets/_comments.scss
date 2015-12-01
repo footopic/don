@@ -1,0 +1,28 @@
+.comment-form {
+
+
+  textarea {
+    width: 100%;
+    height: 5.5em;
+  }
+
+  &__header {
+    margin-bottom: 10px;
+
+    &__label {
+      display: inline-block;
+      line-height: 36px;
+      font-size: 15px;
+      margin-top: 0;
+      margin-left: 10px;
+      font-weight: 900;
+    }
+
+    &__img {
+      box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+      -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+      vertical-align: top;
+    }
+  }
+}
+
