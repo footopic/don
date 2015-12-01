@@ -245,8 +245,6 @@ Devise.setup do |config|
   #   manager.intercept_401 = false
   #   manager.default_strategies(scope: :user).unshift :some_external_strategy
   # end
-  twitter_config = Rails.application.secrets.twitter
-  config.omniauth :twitter, twitter_config['consumer_key'], twitter_config['consumer_secret'], display: 'popup'
   google_config = Rails.application.secrets.google
   config.omniauth :google_oauth2, google_config['client_id'], google_config['client_secret'], { }
 
