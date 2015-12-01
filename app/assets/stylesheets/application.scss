@@ -16,7 +16,8 @@
  *= require highlightjs/styles/github.css
  */
 @import "bootstrap-sprockets";
-@import "bootstrap-custom";
+@import "bootstrap";
+// @import "bootstrap-custom";
 @import "github-markdown-origin.scss";
 @import "font-awesome";
 
