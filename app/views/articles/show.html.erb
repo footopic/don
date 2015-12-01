@@ -1,9 +1,7 @@
 <div class="article-header">
   <div class="article-titles">
-    <p id="categories-preview"><%= @article.categories_text %></p>
-
     <h1 calass="title">
-      <%= @article.main_title %>
+      <%= @article.title %>
       <%= link_to edit_article_path(@article) do %>
           <%= fa_icon 'pencil' %>
       <% end %>
