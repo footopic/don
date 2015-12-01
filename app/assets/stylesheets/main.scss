@@ -18,6 +18,10 @@ h2 {
   }
 }
 
+img {
+  display: block;
+}
+
 #side-bar {
   background: gray none repeat scroll 0 0;
   color: rgba(255, 255, 255, 0.9);
@@ -118,14 +122,16 @@ body {
     }
     &-title {
       h2 {
-        display: inline;
+        display: flex;
         font-size: 16px;
         font-weight: bold;
-        margin: 0;
         margin: 2px 0;
         i {
           font-size: .7em;
           color: gray;
+        }
+        a {
+          margin-left: 10px;
         }
       }
     }
@@ -210,6 +216,7 @@ body {
   }
   .article-subinfos {
     float: right;
+    display: flex;
   }
 }
 
