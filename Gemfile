@@ -37,7 +37,6 @@ gem 'kaminari'
 
 # TODO: refactor
 gem 'devise'
-gem 'omniauth-twitter'
 gem 'omniauth-google-oauth2'
 
 gem 'acts-as-taggable-on', '~> 3.4'

@@ -28,10 +28,6 @@
   <%= yield %>
 </div>
 
-<% unless user_signed_in? %>
-    <%= link_to "Twitter ログイン", user_omniauth_authorize_path(:twitter) %>
-<% end %>
-
 <% if Rails.env == 'development' %>
     <%= params %>
 <% end %>
