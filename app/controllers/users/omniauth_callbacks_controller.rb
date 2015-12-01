@@ -1,20 +1,4 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  def twitter
-
-    @user = User.where(provider: user_params[:provider], uid: user_params[:uid]).first
-    if @user.nil?
-      @user = User.create(user_params)
-    end
-
-    if @user.persisted?
-      sign_in_and_redirect @user, :event => :authentication
-      set_flash_message(:notice, :success, :kind => "Twitter") if is_navigational_format?
-    else
-      session["devise.twitter_data"] = request.env["omniauth.auth"]
-      redirect_to new_user_registration_url
-    end
-  end
-
   def google_oauth2
     # You need to implement the method below in your model (e.g. app/models/user.rb)
     # @user = User.from_omniauth(request.env['omniauth.auth'])

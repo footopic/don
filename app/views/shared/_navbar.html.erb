@@ -46,7 +46,6 @@
               </ul>
             </li>
         <% else %>
-            <li><%= link_to 'Twitter ログイン', user_omniauth_authorize_path(:twitter) %></li>
             <li><%= link_to 'Google ログイン', user_omniauth_authorize_path(:google_oauth2) %></li>
         <% end %>
       </ul>
