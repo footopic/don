@@ -1,11 +1,14 @@
-<% if params[:tag] %>
-    <h1>記事一覧 #<%= params[:tag] %></h1>
-<% else %>
-    <h1>記事一覧</h1>
-<% end %>
+<h1 class="page-title">
+  記事一覧
+  <% if params[:tag] %>
+      #<%= params[:tag] %>
+  <% end %>
+</h1>
 
-<ul class="articles">
-  <%= render @articles %>
-</ul>
+<div class="container">
+  <ul class="articles">
+    <%= render @articles %>
+  </ul>
+</div>
 
 <%= paginate @articles %>

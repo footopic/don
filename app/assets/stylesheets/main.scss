@@ -6,6 +6,10 @@ li {
   list-style-type: none;
 }
 
+h2 {
+  margin: 0;
+}
+
 #navbar {
   .navbar-right {
     img {
@@ -78,37 +82,110 @@ body {
   }
 }
 
-ul.articles, ul.users {
-  li {
-    list-style-type: none;
+.page-title {
+  font-size: 20px;
+}
+
+.articles, .users {
+  padding: 0;
+  @extend .col-lg-8;
+}
+
+.article-item-box {
+  display: flex;
+  padding: 5px 0;
+  border-bottom: solid 1px #ddd;
+
+  .article-icon {
+    img {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  .info {
+    padding-left: 10px;
+    width: 100%;
+    overflow: hidden;
+    display: table;
+
+    &-head {
+      font-size: 12px;
+      margin: 0;
+      .categories {
+        margin: 0;
+      }
+    }
+    &-title {
+      h2 {
+        display: inline;
+        font-size: 16px;
+        font-weight: bold;
+        margin: 0;
+        margin: 2px 0;
+        i {
+          font-size: .7em;
+          color: gray;
+        }
+      }
+    }
+    &-footer {
+      font-size: 14px;
+      .tags {
+        float: left;
+      }
+      .created {
+        float: right;
+        color: gainsboro;
+        overflow: hidden;
+        .author {
+          float: left;
+        }
+        .date {
+          float: left;
+          margin-left: 1em;
+        }
+      }
+    }
   }
 }
 
-.article {
-  .tumbnail {
-    float: left;
+.user-item-box {
+  display: flex;
+  padding: 5px 0;
+  border-bottom: solid 1px #ddd;
+  .user-icon {
     img {
-      width: 5em;
-      border-radius: 50%;
+      width: 60px;
+      height: 60px;
     }
   }
-  .infos {
+  .info {
     padding-left: 10px;
+    width: 100%;
     overflow: hidden;
-    h2 {
-      margin: 0;
-      i {
-        font-size: .7em;
-        color: gray;
+    display: table;
+
+    &-title {
+      h2 {
+        display: inline;
+        font-size: 16px;
+        font-weight: bold;
+        margin: 0;
+        margin: 2px 0;
+        i {
+          font-size: .7em;
+          color: gray;
+        }
       }
     }
-    .categories {
-      height: 1em;
-      margin: .5em;
-    }
-    .info-footer {
-      overflow: hidden;
-      .record {
+    &-footer {
+      font-size: 14px;
+      .tags {
+        float: left;
+      }
+      .created {
+        float: right;
         color: gainsboro;
         overflow: hidden;
         .author {
@@ -148,11 +225,9 @@ ul.articles, ul.users {
     padding-left: 10px;
     overflow: hidden;
     h2 {
-      margin-top: 0;
       font-size: 50px;
     }
     .categories {
-      height: 1em;
       margin: .5em;
     }
     .info-footer {
