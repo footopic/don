@@ -1,14 +1,12 @@
 <li class="article panel panel-default">
   <div class="panel-body">
-    <div class="tumbnail">
-      <%= image_tag article.user.image_url %>
-    </div>
     <div class="infos">
       <p class="categories">
         <%= article.categories_text %>
       </p>
 
       <h2 class="title">
+        <%= image_tag article.user.image_url, class: 'img-circle', size: '64x64' %>
         <%= link_to article.main_title, article %>
         <%= link_to edit_article_path(article) do %>
             <%= fa_icon 'pencil' %>
@@ -18,7 +16,7 @@
       <div class="info-footer">
         <div class="record pull-left">
           <% article.tags.each do |tag| %>
-              <%= link_to "##{tag.name}", articles_path(tag: tag.name) %>
+              <%= link_to "##{tag.name}", articles_path(tag: tag.name), class: 'img-circle', size: '64x64' %>
           <% end %>
         </div>
         <div class="record pull-right">

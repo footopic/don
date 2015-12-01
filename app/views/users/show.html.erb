@@ -1,11 +1,9 @@
 <div class="user-header">
   <div class="row">
     <div class="col-xs-8">
-      <div class="tumbnail">
-        <%= image_tag @user.image_url %>
-      </div>
       <div class="infos">
         <h2 class="title">
+          <%= image_tag @user.image_url, class: 'img-circle', size: '64x64' %>
           <%= link_to @user.screen_name, @user %>
         </h2>
 

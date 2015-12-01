@@ -10,16 +10,17 @@
     </h1>
 
     <div class="pull-left">
-      <% @article.tags.each do |tag| %>
-          <%= link_to "##{tag.name}", articles_path(tag: tag.name) %>
-      <% end %>
+      <div class="col-md-6">
+        <% @article.tags.each do |tag| %>
+            <%= link_to "##{tag.name}", articles_path(tag: tag.name) %>
+        <% end %>
+      </div>
     </div>
   </div>
   <div class="article-subinfos">
     <% @editors.each do |editor| %>
         <%= link_to(editor) do %>
-            <%= image_tag editor.image_url, class: 'img-circle', size: '96x96' %>
-            <%= editor.screen_name %>
+            <%= image_tag editor.image_url, class: 'img-circle', size: '64x64' %>
         <% end %>
     <% end %>
   </div>
@@ -36,7 +37,7 @@
 <hr>
 
 <h3>コメント</h3>
-<div class="col-md-8">
+<div class="col-md-6">
   <%= render @comments %>
   <hr>
   <%= render 'comments/form' %>
