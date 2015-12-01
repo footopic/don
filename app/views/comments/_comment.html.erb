@@ -1,8 +1,18 @@
 <div class="comment">
-  <h4 class="comment__header">
-    <%= image_tag comment.user.image_url, class: 'comment__icon', size: '32x32' %>
-    <%= link_to comment.user.screen_name, comment.user %>
-  </h4>
+  <div class="comment__header">
+    <div class="comment__userinfo">
+      <%= link_to comment.user do %>
+          <%= image_tag comment.user.image_url, class: 'comment__icon', size: '32x32' %>
+      <% end %>
+
+      <div class="comment__userinfo__name">
+        <%= link_to comment.user.screen_name, comment.user %>
+      </div>
+    </div>
+    <div class="comment__meta pull-right">
+      <%= I18n.l(comment.updated_at) %>
+    </div>
+  </div>
 
   <div class="comment__content">
     <%= comment.text %>

@@ -33,7 +33,24 @@
   }
 
   &__header {
+    position: relative;
     font-size: 14px;
+  }
+
+  &__userinfo {
+    display: inline-block;
+
+    &__name {
+      display: inline-block;
+      margin: 3px 0 10px 0;
+    }
+  }
+
+  &__meta {
+    position: absolute;
+    color: #7b7b7b;
+    right: 2px;
+    bottom: 0;
   }
 
   &__content {
