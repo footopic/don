@@ -1,6 +1,6 @@
 <div class="comment-form row">
   <div class="comment-form__header">
-    <%= image_tag @article.user.image_url, class: 'comment-form__header__img', size: '32x32' %>
+    <%= image_tag current_user.image_url, class: 'comment-form__header__img', size: '32x32' %>
     <div class="comment-form__header__label">
       コメントを投稿する
     </div>
