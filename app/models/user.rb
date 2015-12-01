@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
   validates :screen_name, presence: true
   validates :name, presence: true
 
-  devise :omniauthable, :omniauth_providers => [:google_oauth2, :twitter]
+  devise :omniauthable, :omniauth_providers => [:google_oauth2]
 
   def is_owner(article)
     id == article.user_id
