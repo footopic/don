@@ -78,37 +78,60 @@ body {
   }
 }
 
-ul.articles, ul.users {
-  li {
-    list-style-type: none;
-  }
+.page-title {
+  font-size: 20px;
 }
 
-.article {
-  .tumbnail {
-    float: left;
+.articles {
+  padding: 0;
+  @extend .col-lg-8;
+}
+
+.article-item-box {
+  display: flex;
+  padding: 5px 0;
+  border-bottom: solid 1px #ddd;
+
+  .article-icon {
     img {
-      width: 5em;
-      border-radius: 50%;
+      width: 40px;
+      height: 40px;
     }
   }
-  .infos {
+
+  .info {
     padding-left: 10px;
+    width: 100%;
     overflow: hidden;
-    h2 {
+    display: table;
+
+    &-head {
+      font-size: 12px;
       margin: 0;
-      i {
-        font-size: .7em;
-        color: gray;
+      .categories {
+        margin: 0;
       }
     }
-    .categories {
-      height: 1em;
-      margin: .5em;
+    &-title {
+      h2 {
+        display: inline;
+        font-size: 16px;
+        font-weight: bold;
+        margin: 0;
+        margin: 2px 0;
+        i {
+          font-size: .7em;
+          color: gray;
+        }
+      }
     }
-    .info-footer {
-      overflow: hidden;
-      .record {
+    &-footer {
+      font-size: 14px;
+      .tags {
+        float: left;
+      }
+      .created {
+        float: right;
         color: gainsboro;
         overflow: hidden;
         .author {
@@ -152,7 +175,6 @@ ul.articles, ul.users {
       font-size: 50px;
     }
     .categories {
-      height: 1em;
       margin: .5em;
     }
     .info-footer {
