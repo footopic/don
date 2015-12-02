@@ -53,7 +53,10 @@ $ ->
 
   if $title.val()
     # カンマ区切りのタグリストをタイトル末尾のフォーマットに
-    tags = $tag_edit.val().split(',').map((tag) -> " ##{tag}").join('')
+    tags = ''
+    tagval = $tag_edit.val()
+    if tagval
+      tags = tagval.split(',').map((tag) -> " ##{tag}").join('')
     $pre_title.val $title.val() + tags
 
   # // ローカルストレージに保存されていたら復元
