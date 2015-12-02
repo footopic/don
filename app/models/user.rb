@@ -38,6 +38,11 @@ class User < ActiveRecord::Base
     image.url || 'noimg.png'
   end
 
+  def equal_id?(user)
+    id.equal? user.id
+  end
+
+
   def self.from_omniauth(access_token)
     data = access_token.info
     user = User.where(uid: data['uid'], provider: data['provider']).first
