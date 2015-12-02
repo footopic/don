@@ -29,7 +29,15 @@ $ ->
     title = $pre_title.val()
     # タグ削除とりだし
     tags = title.match(tag_regex)
-    $tag_edit.val(if tags then tags.map((tag) -> tag.replace('#', '')).join(',') else '')
+    if tags
+      htags = tags.map((tag) -> tag.replace('#', ''))
+      $tag_edit.val(htags.join(','))
+      $tags_preview.empty()
+      $.each tags, (i, v) ->
+        $tags_preview.append($('<li/>').text(v))
+    else
+      $tag_edit.val('')
+      $tags_preview.val()
 
     # タグ削除と前後の空白削除
     title = title.replace(tag_regex, '').replace(/^\s+|\s+$/g,'')
