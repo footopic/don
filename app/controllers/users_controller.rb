@@ -5,13 +5,13 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @users = User.includes(:articles).all
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
-    @articles = Article.includes(:user).where(user: @user).page params[:page]
+    @articles = Article.includes(:user, :tags).where(user: @user).page params[:page]
   end
 
   # GET /users/new
