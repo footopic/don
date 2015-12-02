@@ -27,8 +27,8 @@
       </div><!-- /input-group -->
     </div>
 
-    <div class="field hide">
-      <%= f.text_field :tag_list, class: 'form-control' %>
+    <div class="field">
+      <%= f.text_field :tag_list, value: @article.tag_list.join(','), class: 'form-control', placeholder: ',区切りでタグを入力' %>
     </div>
 
     <div class="field">
