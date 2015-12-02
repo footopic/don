@@ -1,13 +1,19 @@
 $ ->
   $title = $('#article_title')
+  $pre_title = $('#pre_article_title')
   $text_edit = $('#article_text')
   $tag_edit = $('#article_tag_list')
+
+  $tags_preview = $('#tags-preview')
   $title_preview = $('#title-preview')
   $text_preview = $('#text-preview-area')
   $submit_btn = $('#btn-submit')
 
   $input_file = $('#async-image-data')
   $dropdown_list = $('#templates-dropdown-list')
+
+  tag_regex = /[#＃]+[A-Za-z0-9-_ぁ-ヶ亜-黑]+/g
+
   updatePreview = ->
     # NOTE: marked で xss escape 済みで返る
     $text_preview.html marked($text_edit.val())
@@ -20,21 +26,42 @@ $ ->
     return
 
   updateTitlePreview = ->
-    $title_preview.text $title.val()
+    title = $pre_title.val()
+    # タグ削除とりだし
+    tags = title.match(tag_regex)
+    if tags
+      htags = tags.map((tag) -> tag.replace('#', ''))
+      $tag_edit.val(htags.join(','))
+      $tags_preview.empty()
+      $.each tags, (i, v) ->
+        $tags_preview.append($('<li/>').text(v))
+    else
+      $tag_edit.val('')
+      $tags_preview.val()
+
+    # タグ削除と前後の空白削除
+    title = title.replace(tag_regex, '').replace(/^\s+|\s+$/g,'')
+    $title_preview.text title
+    $title.val(title)
     # 絵文字
     emojify.run $title_preview[0]
     return
 
-  if !$title.length or !$text_edit.length
+  if !$pre_title.length or !$text_edit.length
     return
   l = localStorage
+
+  if $title.val()
+    # カンマ区切りのタグリストをタイトル末尾のフォーマットに
+    tags = $tag_edit.val().split(',').map((tag) -> " ##{tag}").join('')
+    $pre_title.val $title.val() + tags
 
   # // ローカルストレージに保存されていたら復元
   if $text_edit.val() == '' and l.getItem('text') != null
     text = l.getItem('text')
     $text_edit.val text
-  if $title.val() == '' and $title.length and l.getItem('title') != null
-    $title.val l.getItem('title')
+  if $pre_title.val() == '' and $pre_title.length and l.getItem('title') != null
+    $pre_title.val l.getItem('title')
 
   updatePreview()
   updateTitlePreview()
@@ -44,7 +71,7 @@ $ ->
     l.setItem 'text', $(this).val()
     updatePreview()
     return
-  $title.keyup ->
+  $pre_title.keyup ->
     l.setItem 'title', $(this).val()
     updateTitlePreview()
     return
@@ -115,7 +142,7 @@ $ ->
     $dropdown_list.empty()
     $.each articles, ->
       $a = $('<a/>').text(@title).click =>
-        $title.val(@title)
+        $pre_title.val(@title)
         updateTitlePreview()
         # HACK:
         tags_tmp = []

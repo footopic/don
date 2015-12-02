@@ -13,7 +13,8 @@
 
     <div class="field">
       <div class="input-group">
-        <%= f.text_field :title, class: 'form-control', placeholder: 'Title #tag1 #tag2' %>
+        <input type="text" class="form-control" id="pre_article_title" placeholder="タイトル #タグ1 #タグ2" />
+        <%= f.text_field :title, class: 'hide' %>
 
         <div class="input-group-btn">
           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -27,7 +28,7 @@
     </div>
 
     <div class="field">
-      <%= f.text_field :tag_list, class: 'form-control', placeholder: ',区切りでタグを入力' %>
+      <%= f.text_field :tag_list, value: @article.tag_list.join(','), class: 'form-control', placeholder: ',区切りでタグを入力' %>
     </div>
 
     <div class="field">
