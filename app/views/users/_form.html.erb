@@ -11,21 +11,30 @@
     </div>
   <% end %>
   <div class="form-group">
-    <%= f.label 'image', class: 'col-xs-2' %>
-    <div class="col-xs-5">
-      <%= f.file_field :image, class: 'form-control' %>
+    <%= f.label 'image' %>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="img-wrap">
+          <%= image_tag current_user.image_url, id: 'img-user-icon', class: 'img-circle', size: '128x128' %>
+        </div>
+        <%= f.file_field :image, class: 'form-control' %>
+      </div>
     </div>
   </div>
   <div class="form-group">
-    <%= f.label 'screen_name', class: 'col-xs-2' %>
-    <div class="col-xs-5">
-      <%= f.text_field :screen_name, class: 'form-control' %>
+    <%= f.label 'screen_name' %>
+    <div class="row">
+      <div class="col-sm-6">
+        <%= f.text_field :screen_name, class: 'form-control' %>
+      </div>
     </div>
   </div>
   <div class="form-group">
-    <%= f.label 'name', class: 'col-xs-2' %>
-    <div class="col-xs-5">
-      <%= f.text_field :name, class: 'form-control' %>
+    <%= f.label 'name'  %>
+    <div class="row">
+      <div class="col-sm-6">
+        <%= f.text_field :name, class: 'form-control' %>
+      </div>
     </div>
   </div>
   <div class="form-group">
