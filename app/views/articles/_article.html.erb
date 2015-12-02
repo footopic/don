@@ -15,13 +15,7 @@
 
     <div class="info-footer">
       <div class="tags">
-        <ul class="tag_list">
-          <% article.tags.each do |tag| %>
-              <li>
-                <%= link_to tag.name, articles_path(tag: tag.name) %>
-              </li>
-          <% end %>
-        </ul>
+        <%= link_tags_list_for(article.tags) %>
       </div>
       <div class="created">
         <div class="author">

@@ -16,13 +16,11 @@ module ApplicationHelper
     end
   end
 
-  # def link_tags_list_for(tags)
-  #   content_tag :ul, class: 'tag_list' do
-  #     tags.each do |tag|
-  #       concat content_tag(:li) do
-  #         concat content_tag(:a, tag.name, 'hoge')
-  #       end
-  #     end
-  #   end
-  # end
+  def link_tags_list_for(tags)
+    content_tag :ul, class: 'tag_list' do
+      tags.each do |tag|
+        concat content_tag(:li, content_tag(:a, tag.name, href: articles_path(tag: tag.name)))
+      end
+    end
+  end
 end
