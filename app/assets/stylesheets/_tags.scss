@@ -4,7 +4,41 @@
   padding: 0;
   margin: 0;
   li {
-    margin-right: 1em;
-    color: #7b7b7b;
+    margin-right: .7em;
+    line-height: 1.2em;
+    background-color: #ddd;
+    padding: 0 5px;
+
+    border-bottom-right-radius: 2px;
+    border-top-right-radius: 2px;
+    display: inline-block;
+    position: relative;
+    background-color: #dfdfdf;
+    font-size: 85%;
+    line-height: 1.2em;
+    margin-left: .7em;
+    padding: 0 2px;
+    color: #555 !important;
+    margin-right: 5px;
+    background-color: #dfdfdf;
+    font-size: 85%;
+
+    &:before {
+      width: 0;
+      height: 0;
+      right: 100%;
+      content: '';
+      position: absolute;
+      pointer-events: none;
+      border: solid transparent;
+      border-color: transparent;
+      border-right-color: #dfdfdf;
+      border-width: .6em;
+      top: 50%;
+      margin-top: -.6em;
+    }
+
+    span {
+    }
   }
 }
