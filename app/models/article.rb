@@ -48,4 +48,10 @@ class Article < ActiveRecord::Base
       (d / 1.seconds).round.to_s + 's'
     end
   end
+
+  # 最新の更新は新規投稿のみである？
+  def only_created?
+    # histories.size == 1
+    updated_at == created_at
+  end
 end

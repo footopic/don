@@ -116,8 +116,14 @@ body {
     &-head {
       font-size: 12px;
       margin: 0;
-      .someinfo {
-        margin: 0;
+      .created {
+        span {
+          padding: 0 2px;
+        }
+        .author {
+        }
+        .date {
+        }
       }
     }
     &-title {
@@ -125,7 +131,7 @@ body {
         display: flex;
         font-size: 16px;
         font-weight: bold;
-        margin: 2px 0;
+        margin: 2px 0 5px;
         i {
           font-size: .7em;
           color: gray;
@@ -137,20 +143,9 @@ body {
     }
     &-footer {
       font-size: 14px;
+      height: 14px;
       .tags {
         float: left;
-      }
-      .created {
-        float: right;
-        color: gainsboro;
-        overflow: hidden;
-        .author {
-          float: left;
-        }
-        .date {
-          float: left;
-          margin-left: 1em;
-        }
       }
     }
   }

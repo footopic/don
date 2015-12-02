@@ -4,7 +4,23 @@
   </div>
   <div class="info">
     <div class="info-head">
-      <p class="someinfo">TODO</p>
+      <div class="created">
+        <span class="author">
+          <%= link_to article.user.screen_name, user_path(id: article.user.id) %>
+        </span>
+        が
+        <span class="date">
+          <%= I18n.l(article.updated_at) %>
+        </span>
+        に
+        <span>
+          <% if article.only_created? %>
+              投稿
+          <% else %>
+              編集
+          <% end %>
+        </span>
+      </div>
     </div>
 
     <div class="info-title">
@@ -16,15 +32,6 @@
     <div class="info-footer">
       <div class="tags">
         <%= link_tags_list_for(article.tags) %>
-      </div>
-      <div class="created">
-        <div class="author">
-          Updated&nbsp;by
-          <%= link_to article.user.screen_name, user_path(id: article.user.id) %>
-        </div>
-        <div class="date">
-          <%= article.to_date_str %>
-        </div>
       </div>
     </div>
   </div>
