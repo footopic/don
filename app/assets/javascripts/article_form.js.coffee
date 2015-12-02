@@ -29,7 +29,7 @@ $ ->
     title = $pre_title.val()
     # タグ削除とりだし
     tags = title.match(tag_regex)
-    $tag_edit.val(if tags then tags.join(',').replace('#', '') else '')
+    $tag_edit.val(if tags then tags.map((tag) -> tag.replace('#', '')).join(',') else '')
 
     # タグ削除と前後の空白削除
     title = title.replace(tag_regex, '').replace(/^\s+|\s+$/g,'')
@@ -44,7 +44,9 @@ $ ->
   l = localStorage
 
   if $title.val()
-    $pre_title.val $title.val()
+    # カンマ区切りのタグリストをタイトル末尾のフォーマットに
+    tags = $tag_edit.val().split(',').map((tag) -> " ##{tag}").join('')
+    $pre_title.val $title.val() + tags
 
   # // ローカルストレージに保存されていたら復元
   if $text_edit.val() == '' and l.getItem('text') != null
