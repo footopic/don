@@ -7,9 +7,9 @@ class ArticlesController < ApplicationController
   # GET /articles.json
   def index
     if params[:tag]
-      @articles = @q.result.includes(:user).tagged_with(params[:tag]).order('updated_at DESC').page(params[:page])
+      @articles = @q.result.includes(:tags, :user).tagged_with(params[:tag]).order('updated_at DESC').page(params[:page])
     else
-      @articles = @q.result.includes(:user).order('updated_at DESC').page(params[:page])
+      @articles = @q.result.includes(:tags, :user).order('updated_at DESC').page(params[:page])
     end
   end
 
