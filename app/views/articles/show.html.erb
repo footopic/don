@@ -7,9 +7,13 @@
       <% end %>
     </h1>
 
-    <% @article.tags.each do |tag| %>
-        <%= link_to "##{tag.name}", articles_path(tag: tag.name) %>
-    <% end %>
+    <ul class="tag_list">
+      <% @article.tags.each do |tag| %>
+          <li>
+            <%= link_to tag.name, articles_path(tag: tag.name) %>
+          </li>
+      <% end %>
+    </ul>
   </div>
   <div class="article-subinfos">
     <% @editors.each do |editor| %>
