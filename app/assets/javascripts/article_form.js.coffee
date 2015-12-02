@@ -33,8 +33,8 @@ $ ->
       htags = tags.map((tag) -> tag.replace('#', ''))
       $tag_edit.val(htags.join(','))
       $tags_preview.empty()
-      $.each tags, (i, v) ->
-        $tags_preview.append($('<li/>').text(v))
+      $.each htags, (i, v) ->
+        $tags_preview.append($('<li/>').append($('<span/>').text(v)))
     else
       $tag_edit.val('')
       $tags_preview.val()
