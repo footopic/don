@@ -11,7 +11,6 @@ module API
           requires :name, type: String
         end
         get '/', jbuilder: 'article/template' do
-          binding.pry
           Compare.compare_patterns({
             'me' => params.me,
             'name' => params.name
