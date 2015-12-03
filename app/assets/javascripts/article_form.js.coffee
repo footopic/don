@@ -12,7 +12,7 @@ $ ->
   $input_file = $('#async-image-data')
   $dropdown_list = $('#templates-dropdown-list')
 
-  tag_regex = /[#＃]+[A-Za-z0-9-_ぁ-ヶ亜-黑]+/g
+  tag_regex = /[#＃]+[A-Za-z0-9-_ぁ-ヶ亜-黑%{}]+/g
 
   updatePreview = ->
     # NOTE: marked で xss escape 済みで返る
@@ -51,13 +51,16 @@ $ ->
     return
   l = localStorage
 
-  if $title.val()
+  syncFromForm = ->
     # カンマ区切りのタグリストをタイトル末尾のフォーマットに
     tags = ''
     tagval = $tag_edit.val()
     if tagval
       tags = tagval.split(',').map((tag) -> " ##{tag}").join('')
-    $pre_title.val $title.val() + tags
+    $pre_title.val $pre_title.val() + tags
+
+  if $title.val()
+    syncFromForm()
 
   # // ローカルストレージに保存されていたら復元
   if $text_edit.val() == '' and l.getItem('text') != null
@@ -146,13 +149,10 @@ $ ->
     $.each articles, ->
       $a = $('<a/>').text(@title).click =>
         $pre_title.val(@title)
+        # console.log @tags
+        $tag_edit.val(@tags.join(','))
+        syncFromForm()
         updateTitlePreview()
-        # HACK:
-        tags_tmp = []
-        $.each @tags, ->
-          if String(@) != 'template'
-            tags_tmp.push(@)
-        $tag_edit.val(tags_tmp.join(','))
         $text_edit.val(@text)
         updatePreview()
         return
@@ -162,9 +162,10 @@ $ ->
     return
 
   $.ajax
-    url: '/api/v1/articles'
+    url: '/api/v1/templates'
     method: "GET"
-    data: 'tags=template'
+    data: 'me=' + $('#current-user-info').attr('screen_name') +
+          '&name=' + $('#current-user-info').attr('name')
     processData: false
     contentType: false
     success: (json) ->
