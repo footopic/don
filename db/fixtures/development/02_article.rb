@@ -89,3 +89,17 @@ History.seed do |s|
   s.user_id = 2
   s.article_id = Article.last.id
 end
+
+
+Article.seed do |s|
+  s.user_id = 2
+  s.title   = 'テンプレート変数 %{me} %{name}'
+  s.text    = '''
+%{Year}年%{month}月%{day}日
+%{me}
+'''
+end
+a = Article.last
+a.tag_list << 'template'
+a.tag_list << '週報%{cWeek}'
+a.save
