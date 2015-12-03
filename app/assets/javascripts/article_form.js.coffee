@@ -57,7 +57,7 @@ $ ->
     tagval = $tag_edit.val()
     if tagval
       tags = tagval.split(',').map((tag) -> " ##{tag}").join('')
-    $pre_title.val $title.val() + tags
+    $pre_title.val $pre_title.val() + tags
 
   if $title.val()
     syncFromForm()
