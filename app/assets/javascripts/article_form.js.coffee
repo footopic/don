@@ -12,7 +12,7 @@ $ ->
   $input_file = $('#async-image-data')
   $dropdown_list = $('#templates-dropdown-list')
 
-  tag_regex = /[#＃]+[A-Za-z0-9-_ぁ-ヶ亜-黑]+/g
+  tag_regex = /[#＃]+[A-Za-z0-9-_ぁ-ヶ亜-黑%{}]+/g
 
   updatePreview = ->
     # NOTE: marked で xss escape 済みで返る
