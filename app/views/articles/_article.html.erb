@@ -1,34 +1,38 @@
-<div class="article panel panel-default">
-  <div class="panel-body">
-    <div class="tumbnail">
-      <%= image_tag 'noimg.png' %>
+<li class="article-item-box">
+  <div class="article-icon">
+    <%= image_tag article.user.image_url, class: 'img-circle', size: '64x64' %>
+  </div>
+  <div class="info">
+    <div class="info-head">
+      <div class="created">
+        <span class="author">
+          <%= link_to article.user.screen_name, user_path(id: article.user.id) %>
+        </span>
+        が
+        <span class="date">
+          <%= I18n.l(article.updated_at) %>
+        </span>
+        に
+        <span>
+          <% if article.only_created? %>
+              投稿
+          <% else %>
+              編集
+          <% end %>
+        </span>
+      </div>
     </div>
-    <div class="infos">
-      <p class="categories">
-        TODO / TODO
-      </p>
+
+    <div class="info-title">
       <h2 class="title">
         <%= link_to article.title, article %>
-        <% if current_user.is_owner(article) %>
-            <%= link_to edit_article_path(article) do
-              fa_icon 'pencil'
-            end %>
-        <% end %>
       </h2>
-      <div class="info-footer">
-        <div class="record pull-left">
-          TODO
-        </div>
-        <div class="record pull-right">
-          <div class="author">
-            Updated&nbsp;by
-            <%= link_to article.user.id, '#' %>
-          </div>
-          <div class="date">
-            <%= article.to_date_str %>
-          </div>
-        </div>
+    </div>
+
+    <div class="info-footer">
+      <div class="tags">
+        <%= link_tags_list_for(article.tags) %>
       </div>
     </div>
   </div>
-</div>
+</li>

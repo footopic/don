@@ -28,6 +28,7 @@ module Dashi
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+    config.i18n.default_locale = :ja
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
@@ -41,5 +42,20 @@ module Dashi
     config.assets.paths << config.root.join('node_modules')
     # add asset path emojify.js images
     config.assets.paths << config.root.join('node_modules', 'emojify.js', 'dist', 'images')
+
+    # api
+    config.paths.add File.join('app', 'apis'), glob: File.join('**', '*.rb')
+    config.autoload_paths += Dir[Rails.root.join('app', 'apis', '*')]
+    config.middleware.use(Rack::Config) do |env|
+      env['api.tilt.root'] = Rails.root.join 'app', 'views', 'api'
+    end
+
+    # config.middleware.use Rack::Cors do
+    config.middleware.insert_before ActionDispatch::Static, Rack::Cors do
+      allow do
+        origins '*'
+        resource '*', :headers => :any, :methods => [:get, :post, :delete, :put, :options]
+      end
+    end
   end
 end

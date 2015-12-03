@@ -1,0 +1,14 @@
+<li class="user-item-box">
+  <div class="user-icon">
+    <%= image_tag user.image_url, class: 'img-circle' %>
+  </div>
+  <div class="info">
+    <h2 class="info-title">
+      <%= link_to user.screen_name, user %>
+      <span class="badge"><%= user.articles.size %></span>
+    </h2>
+    <div class="info-name">
+      <%= user.name %>
+    </div>
+  </div>
+</li>

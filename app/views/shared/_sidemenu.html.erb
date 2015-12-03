@@ -1,23 +1,25 @@
 <div id="side-bar">
   <nav>
     <ul>
-      <li>
-        <a href="/articles/new">
-          <%= fa_icon 'pencil' %>
-          <span>NEW POST</span>
-        </a>
+      <li class="<%= 'active' if params[:controller] == 'articles' && (params[:action] == 'new' || params[:action] == 'edit') %>">
+        <%= link_to new_article_path do %>
+            <%= fa_icon 'pencil' %>
+            <span>WRITE</span>
+        <% end %>
       </li>
-      <li>
-        <a href="/">
-          <%= fa_icon 'home' %>
-          <span>TOP</span>
-        </a>
+
+      <li class="<%= 'active' if params[:controller] == 'articles' && (params[:action] != 'new' && params[:action] != 'edit') %>">
+        <%= link_to articles_path do %>
+            <%= fa_icon 'th-list' %>
+            <span>ARTICLES</span>
+        <% end %>
       </li>
-      <li>
-        <a href="/articles">
-          <%= fa_icon 'database' %>
-          <span>POSTS</span>
-        </a>
+
+      <li class="<%= 'active' if params[:controller] == 'users' %>">
+        <%= link_to users_path do %>
+            <%= fa_icon 'users' %>
+            <span>MEMBERS</span>
+        <% end %>
       </li>
     </ul>
   </nav>

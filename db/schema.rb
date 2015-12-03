@@ -11,21 +11,81 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151105214640) do
+ActiveRecord::Schema.define(version: 20151130092357) do
 
   create_table "articles", force: :cascade do |t|
-    t.string   "title"
-    t.string   "text"
+    t.string   "title",      null: false
+    t.text     "text",       null: false
+    t.integer  "user_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "articles", ["title"], name: "index_articles_on_title"
+  add_index "articles", ["user_id"], name: "index_articles_on_user_id"
+
+  create_table "comments", force: :cascade do |t|
+    t.integer  "user_id",    null: false
+    t.integer  "article_id", null: false
+    t.text     "text",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "comments", ["article_id", "user_id"], name: "index_comments_on_article_id_and_user_id"
+  add_index "comments", ["article_id"], name: "index_comments_on_article_id"
+  add_index "comments", ["user_id", "article_id"], name: "index_comments_on_user_id_and_article_id"
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+
+  create_table "histories", force: :cascade do |t|
     t.integer  "user_id"
+    t.integer  "article_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "histories", ["article_id"], name: "index_histories_on_article_id"
+  add_index "histories", ["user_id", "article_id"], name: "index_histories_on_user_id_and_article_id"
+  add_index "histories", ["user_id"], name: "index_histories_on_user_id"
+
+  create_table "taggings", force: :cascade do |t|
+    t.integer  "tag_id"
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
+    t.integer  "tagger_id"
+    t.string   "tagger_type"
+    t.string   "context",       limit: 128
+    t.datetime "created_at"
+  end
+
+  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context"
+
+  create_table "tags", force: :cascade do |t|
+    t.string  "name"
+    t.integer "taggings_count", default: 0
+  end
+
+  add_index "tags", ["name"], name: "index_tags_on_name", unique: true
+
+  create_table "upload_files", force: :cascade do |t|
+    t.string   "name"
+    t.string   "file"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "provider"
-    t.string   "uid"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "provider",    default: "", null: false
+    t.string   "uid",                      null: false
+    t.string   "screen_name", default: "", null: false
+    t.string   "name",        default: "", null: false
+    t.string   "image"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
+
+  add_index "users", ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
+  add_index "users", ["screen_name"], name: "index_users_on_screen_name", unique: true
 
 end

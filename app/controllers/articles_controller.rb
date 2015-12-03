@@ -1,36 +1,47 @@
+# noinspection ALL
 class ArticlesController < ApplicationController
-  before_action :authenticate_user!, :set_article, only: [:show, :edit, :update, :destroy]
-  before_action :check_article_owner, only: [:edit, :update, :destroy]
+  skip_before_action :authenticate_user!, only: [:index]
+  before_action :set_article, only: [:show, :edit, :update, :destroy]
 
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.order('updated_at DESC')
-    p @articles
+    if params[:tag]
+      @articles = @q.result.includes(:tags, :user).tagged_with(params[:tag]).order('updated_at DESC').page(params[:page])
+    else
+      @articles = @q.result.includes(:tags, :user).order('updated_at DESC').page(params[:page])
+    end
   end
 
   # GET /articles/1
   # GET /articles/1.json
   def show
+    @comments = @article.comments.includes(:user)
+
+    user_ids = History.where(article: @article).pluck(:user_id)
+    @editors = User.find(user_ids).uniq
   end
 
   # GET /articles/new
   def new
     @article = Article.new
+    render :edit
   end
 
   # GET /articles/1/edit
   def edit
+    History.create(user: current_user, article: @article)
   end
 
   # POST /articles
   # POST /articles.json
   def create
     @article = current_user.articles.create(article_params)
+    History.create(user: current_user, article: @article)
 
     respond_to do |format|
       if @article.save
-        format.html { redirect_to @article, flash: { success: 'Article was successfully created.'} }
+        format.html { redirect_to @article, flash: { success: '記事を作成しました' } }
         format.json { render :show, status: :created, location: @article }
       else
         format.html { render :new }
@@ -44,7 +55,7 @@ class ArticlesController < ApplicationController
   def update
     respond_to do |format|
       if @article.update(article_params)
-        format.html { redirect_to @article, flash: { success: 'Article was successfully updated.'} }
+        format.html { redirect_to @article, flash: { success: '記事を更新しました' } }
         format.json { render :show, status: :ok, location: @article }
       else
         format.html { render :edit }
@@ -58,26 +69,33 @@ class ArticlesController < ApplicationController
   def destroy
     @article.destroy
     respond_to do |format|
-      format.html { redirect_to articles_url, flash: { success: 'Article was successfully deleted.'} }
+      format.html { redirect_to articles_url, flash: { success: '記事を削除しました' } }
       format.json { head :no_content }
     end
   end
 
+  def search
+    index
+    render :index
+  end
+
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_article
-      @article = Article.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def article_params
-      params.require(:article).permit(:title, :text)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_article
+    @article = Article.find(params[:id])
+  end
 
-    def check_article_owner
-      unless current_user.is_owner(@article)
-        # TODO: セキュリティ上メッセージは消す
-        redirect_to @article, notice: '記事の作者ではありません'
-      end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def article_params
+    params.require(:article).permit(:title, :text, :tag_list)
+  end
+
+  def check_article_owner
+    unless current_user.is_owner(@article)
+      # TODO: セキュリティ上メッセージは消す
+      redirect_to @article, notice: '記事の作者ではありません'
     end
+  end
+
 end

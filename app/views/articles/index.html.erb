@@ -1,9 +1,14 @@
-<p id="notice"><%= notice %></p>
+<h1 class="page-title">
+  記事一覧
+  <% if params[:tag] %>
+      #<%= params[:tag] %>
+  <% end %>
+</h1>
 
-<div class="container-fluid">
-  <h1>Articles</h1>
+<div class="container">
   <ul class="articles">
     <%= render @articles %>
   </ul>
-
 </div>
+
+<%= paginate @articles %>

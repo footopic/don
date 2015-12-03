@@ -2,6 +2,26 @@
 
 $sidebar_width: 80px;
 
+li {
+  list-style-type: none;
+}
+
+h2 {
+  margin: 0;
+}
+
+#navbar {
+  .navbar-right {
+    img {
+      margin-top: 10px;
+    }
+  }
+}
+
+img {
+  display: block;
+}
+
 #side-bar {
   background: gray none repeat scroll 0 0;
   color: rgba(255, 255, 255, 0.9);
@@ -17,9 +37,8 @@ $sidebar_width: 80px;
   ul {
     padding: 0;
   }
-  li {
-    list-style-type: none;
 
+  li {
     a {
       border-bottom: 1px solid rgba(0, 0, 0, 0.05);
       color: rgba(0, 0, 0, 0.3);
@@ -28,6 +47,7 @@ $sidebar_width: 80px;
       height: 68px;
       text-align: center;
       width: 80px;
+      text-decoration: none;
 
       background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
       border: medium none;
@@ -49,12 +69,11 @@ $sidebar_width: 80px;
         font-size: 11px;
         text-align: center;
       }
+    }
 
-      &:hover {
-        text-decoration: none;
-        i, span {
-          color: white;
-        }
+    &:hover, &.active {
+      i, span {
+        color: white;
       }
     }
   }
@@ -62,32 +81,112 @@ $sidebar_width: 80px;
 
 body {
   margin-left: $sidebar_width;
+  > .container-fluid {
+    padding: 0 40px;
+  }
 }
 
-.article {
-  .tumbnail {
-    float: left;
+.page-title {
+  font-size: 20px;
+}
+
+.articles, .users {
+  padding: 0;
+  @extend .col-lg-8;
+}
+
+.article-item-box {
+  display: flex;
+  padding: 5px 0;
+  border-bottom: solid 1px #ddd;
+
+  .article-icon {
     img {
-      width: 5em;
-      border-radius: 50%;
+      width: 40px;
+      height: 40px;
     }
   }
-  .infos {
+
+  .info {
     padding-left: 10px;
+    width: 100%;
     overflow: hidden;
-    p {
+    display: table;
+
+    &-head {
+      font-size: 12px;
       margin: 0;
-    }
-    h2 {
-      margin: 0;
-      i {
-        font-size: .7em;
-        color: gray;
+      .created {
+        span {
+          padding: 0 2px;
+        }
+        .author {
+        }
+        .date {
+        }
       }
     }
-    .info-footer {
-      overflow: hidden;
-      .record {
+    &-title {
+      h2 {
+        display: flex;
+        font-size: 16px;
+        font-weight: bold;
+        margin: 2px 0 5px;
+        i {
+          font-size: .7em;
+          color: gray;
+        }
+        a {
+          margin-left: 10px;
+        }
+      }
+    }
+    &-footer {
+      font-size: 14px;
+      height: 14px;
+      .tags {
+        float: left;
+      }
+    }
+  }
+}
+
+.user-item-box {
+  display: flex;
+  padding: 5px 0;
+  border-bottom: solid 1px #ddd;
+  .user-icon {
+    img {
+      width: 60px;
+      height: 60px;
+    }
+  }
+  .info {
+    padding-left: 10px;
+    width: 100%;
+    overflow: hidden;
+    display: table;
+
+    &-title {
+      h2 {
+        display: inline;
+        font-size: 16px;
+        font-weight: bold;
+        margin: 0;
+        margin: 2px 0;
+        i {
+          font-size: .7em;
+          color: gray;
+        }
+      }
+    }
+    &-footer {
+      font-size: 14px;
+      .tags {
+        float: left;
+      }
+      .created {
+        float: right;
         color: gainsboro;
         overflow: hidden;
         .author {
@@ -112,6 +211,41 @@ body {
   }
   .article-subinfos {
     float: right;
+    display: flex;
+  }
+}
+
+.user-header {
+  .tumbnail {
+    float: left;
+    img {
+      width: 6em;
+      border-radius: 50%;
+    }
+  }
+  .infos {
+    padding-left: 10px;
+    overflow: hidden;
+    h2 {
+      font-size: 50px;
+    }
+    .someinfo {
+      margin: .5em;
+    }
+    .info-footer {
+      overflow: hidden;
+      .record {
+        color: gainsboro;
+        overflow: hidden;
+        .author {
+          float: left;
+        }
+        .date {
+          float: left;
+          margin-left: 1em;
+        }
+      }
+    }
   }
 }
 
@@ -120,9 +254,28 @@ body {
   overflow-y: scroll;
 }
 
+.emoji {
+  margin-bottom: 0em;
+}
+
 .emoji-suggest {
   width: 1.4em;
   height: 1.4em;
   display: inline-block;
   margin-bottom: 0em;
+}
+
+#title-preview {
+  margin: 0;
+}
+
+
+.edit_article {
+  .field {
+    margin-bottom: 10px;
+  }
+}
+
+.img-wrap {
+  margin: 20px;
 }
