@@ -164,6 +164,8 @@ $ ->
   $.ajax
     url: '/api/v1/templates'
     method: "GET"
+    data: 'me=' + $('#current-user-info').attr('screen_name') +
+          '&name=' + $('#current-user-info').attr('name')
     processData: false
     contentType: false
     success: (json) ->
