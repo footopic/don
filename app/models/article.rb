@@ -54,4 +54,18 @@ class Article < ActiveRecord::Base
     # histories.size == 1
     updated_at == created_at
   end
+
+  # variable を変換して返す
+  def title_vr
+    Compare.template_variable(title)
+  end
+
+  def text_vr
+    Compare.template_variable(text)
+  end
+
+  def tag_list_vr
+    Compare.template_variable(tag_list)
+  end
+
 end

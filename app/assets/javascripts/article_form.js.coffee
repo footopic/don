@@ -51,13 +51,16 @@ $ ->
     return
   l = localStorage
 
-  if $title.val()
+  syncFromForm = ->
     # カンマ区切りのタグリストをタイトル末尾のフォーマットに
     tags = ''
     tagval = $tag_edit.val()
     if tagval
       tags = tagval.split(',').map((tag) -> " ##{tag}").join('')
     $pre_title.val $title.val() + tags
+
+  if $title.val()
+    syncFromForm()
 
   # // ローカルストレージに保存されていたら復元
   if $text_edit.val() == '' and l.getItem('text') != null
@@ -146,13 +149,10 @@ $ ->
     $.each articles, ->
       $a = $('<a/>').text(@title).click =>
         $pre_title.val(@title)
+        # console.log @tags
+        $tag_edit.val(@tags.join(','))
+        syncFromForm()
         updateTitlePreview()
-        # HACK:
-        tags_tmp = []
-        $.each @tags, ->
-          if String(@) != 'template'
-            tags_tmp.push(@)
-        $tag_edit.val(tags_tmp.join(','))
         $text_edit.val(@text)
         updatePreview()
         return
@@ -162,9 +162,8 @@ $ ->
     return
 
   $.ajax
-    url: '/api/v1/articles'
+    url: '/api/v1/templates'
     method: "GET"
-    data: 'tags=template'
     processData: false
     contentType: false
     success: (json) ->
