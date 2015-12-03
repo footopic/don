@@ -7,26 +7,27 @@ class Compare
       val_regex = /%{(.*?)}/x
       text.gsub(val_regex) do |w|
         key = w[2..-2]
-        c = Compare.compare_patterns
+        c = Compare.compare_patterns()
         if c.has_key? key
           c[key]
         else
-          # w
-          '____'
+          w
         end
       end
     end
   end
 
-  def self.compare_patterns
-    {
-        'Year' => 2015,
-        'month' => 12,
-        'day' => 31,
-        'cWeek' => 48,
-        'me' => 'abcdefghijklm',
-        'name' => '魔王'
-    }
+  def self.compare_patterns(options=nil)
+    now = Time.now
+    @@compare_patterns ||= {
+        'Year' => now.strftime('%Y'),
+        'year' => now.strftime('%y'),
+        'month' => now.strftime('%m'),
+        'day' => now.strftime('%d'),
+        'cWeek' => now.strftime('%W'),
+        'week' => now.strftime('%w'),
+        'cDay' => now.strftime('%j')
+    }.merge(options)
   end
 
 end
