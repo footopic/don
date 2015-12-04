@@ -8,7 +8,7 @@
   </tr>
   <tr>
     <td><tt>node['ruby_user']</tt></td>
-    <td><tt>root</tt></td>
+    <td><tt>footopic</tt></td>
   </tr>
   <tr>
     <td><tt>node['ruby_version']</tt></td>
