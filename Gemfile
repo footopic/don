@@ -80,7 +80,5 @@ group :development do
   gem 'spring'
   gem 'annotate'
   gem 'pry-rails'
-
-  gem 'itamae'
 end
 
