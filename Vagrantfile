@@ -10,6 +10,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.provision :itamae do |config|
     config.sudo = true
+    config.shell = '/bin/sh'
     config.recipes = './recipes/roles/footopic/default.rb'
   end
 end
