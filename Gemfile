@@ -29,9 +29,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Unicorn as the app server
 # gem 'unicorn'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
 gem 'ransack'
 gem 'kaminari'
 
@@ -80,5 +77,9 @@ group :development do
   gem 'spring'
   gem 'annotate'
   gem 'pry-rails'
+
+  # Use Capistrano
+  gem 'capistrano-rails'
+
 end
 
