@@ -9,13 +9,9 @@
 
         <span class="author">
           <%= link_to @article.user.screen_name, user_path(@article.user.id) %>
-        </span>
-    が
-        <span class="date">
+        </span>が<span class="date">
           <%= l(@article.updated_at) %>
-        </span>
-    に
-        <span>
+        </span>に<span>
           <% if @article.only_created? %>
               投稿
           <% else %>
@@ -25,6 +21,7 @@
 
     <%= link_tags_list_for(@article.tags) %>
   </div>
+
   <div class="article-subinfos">
     <% @editors.each do |editor| %>
         <%= link_to(editor) do %>
@@ -35,7 +32,7 @@
 </div>
 
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-8">
     <div class="article-text">
       <div id="text-preview" class="markdown-body"></div>
     </div>
@@ -43,14 +40,24 @@
     <div id="text-raw" class="hide">
       <%= @article.text %>
     </div>
-  </div>
-</div>
 
-<hr>
+    <hr>
 
-<div class="col-md-6">
-  <div class="row">
     <%= render @comments %>
+    <%= render 'comments/form' %>
   </div>
-  <%= render 'comments/form' %>
+
+  <div class="col-md-4">
+    <%= image_tag @user.image_url, class: 'img-circle', size: '64x64' %>
+    <%= link_to @user.screen_name, @user %>
+
+    <div class="article__show">
+      <h4>新着の投稿</h4>
+      <% @user.articles.order('updated_at DESC').take(5).each do |article| %>
+          <li>
+            <%= link_to article.title, article_path(article) %>
+          </li>
+      <% end %>
+    </div>
+  </div>
 </div>
