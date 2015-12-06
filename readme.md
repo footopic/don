@@ -30,6 +30,25 @@ GOOGLE_CLIENT_ID=""
 GOOGLE_CLIENT_SECRET=""
 ```
 
+# Deploy
+## staging
+
+```sh
+# vagrant
+vagrant plugin install vagrant-vbguest
+vagrant plugin install vagrant-itamae
+vagrant up
+
+# itamae
+itamae ssh --vagrant ./recipes/roles/footopic/default.rb
+
+# capistrano
+cap staging deploy
+
+```
+
+
+
 # Task
 
 ## import esa archive 2015/11/30 21:32
