@@ -83,7 +83,8 @@ group :development do
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
   gem 'capistrano-bundler'
-  gem 'capistrano-unicorn-nginx', '~> 3.2.0'
+  gem 'capistrano-nginx'
+  gem 'capistrano3-unicorn'
   gem 'capistrano-safe-deploy-to', '~> 1.1.1'
 
 end

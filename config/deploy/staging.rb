@@ -61,9 +61,9 @@
 #   }
 
 set :stage, :staging
-set :rails_env, 'development'
+set :rails_env, 'production'
 
-# set :branch, 'develop'
+set :branch, 'develop'
 
 role :app, 'footopic@192.168.1.251'
 
