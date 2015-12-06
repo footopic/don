@@ -1,3 +1,70 @@
-// Place all the styles related to the Articles controller here.
-// They will automatically be included in application.scss.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.articles, .users {
+  padding: 0;
+}
+
+.article-item-box {
+  display: flex;
+  padding: 15px 0 13px;
+  border-bottom: solid 1px #ddd;
+
+  .article-icon {
+    img {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  .info {
+    padding-left: 10px;
+    width: 100%;
+    overflow: hidden;
+    display: table;
+
+    &-head {
+      font-size: 12px;
+      margin: 0;
+      .created {
+        span {
+          padding: 0 2px;
+        }
+      }
+    }
+
+    &-title {
+      display: inline-block;
+
+      h2 {
+        padding-left: 0;
+        display: inline-block;
+        font-size: 16px;
+        font-weight: bold;
+        margin: 2px 0 5px;
+
+        i {
+          font-size: .7em;
+          color: gray;
+        }
+      }
+
+    }
+  }
+
+  &__tag-list {
+    display: inline-block;
+  }
+}
+
+.article-header {
+  overflow: hidden;
+  margin: 20px;
+  padding-bottom: 10px;
+  border-bottom: solid;
+  .article-titles {
+    float: left;
+  }
+  .article-subinfos {
+    float: right;
+    display: flex;
+  }
+}
+

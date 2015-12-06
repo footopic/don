@@ -7,6 +7,22 @@
       <% end %>
     </h1>
 
+        <span class="author">
+          <%= link_to @article.user.screen_name, user_path(@article.user.id) %>
+        </span>
+    が
+        <span class="date">
+          <%= l(@article.updated_at) %>
+        </span>
+    に
+        <span>
+          <% if @article.only_created? %>
+              投稿
+          <% else %>
+              編集
+          <% end %>
+        </span>
+
     <%= link_tags_list_for(@article.tags) %>
   </div>
   <div class="article-subinfos">
