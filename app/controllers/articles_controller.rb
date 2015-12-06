@@ -19,6 +19,7 @@ class ArticlesController < ApplicationController
     @comments = @article.comments.includes(:user)
 
     user_ids = History.where(article: @article).pluck(:user_id)
+    @user    = @article.user
     @editors = User.find(user_ids).uniq
   end
 
