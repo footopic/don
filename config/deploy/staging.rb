@@ -64,8 +64,9 @@ set :stage, :staging
 set :rails_env, 'production'
 
 role :app, 'footopic@192.168.1.251'
+role :web, 'footopic@192.168.1.251'
 
-server '192.168.1.251', user: 'footopic', roles: %w{app}
+server '192.168.1.251', user: 'footopic', roles: %w{app web}
 # server 'staging.don.cps-lab.private', user: 'footopic', roles: %w{app}
 
 set :ssh_options, {

@@ -84,6 +84,7 @@ group :development do
   gem 'capistrano-rbenv'
   gem 'capistrano-bundler'
   gem 'capistrano-nginx'
+  gem 'capistrano-npm'
   gem 'capistrano3-unicorn'
   gem 'capistrano-safe-deploy-to', '~> 1.1.1'
 
