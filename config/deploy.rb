@@ -16,6 +16,7 @@ set :deploy_user, 'footopic'
 set :keep_releases, 5
 
 set :unicorn_pid, "#{shared_path}/tmp/pids/unicorn.pid"
+set :unicorn_works, 4
 
 set :bundle_jobs, 4
 

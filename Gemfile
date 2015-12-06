@@ -27,7 +27,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 
 gem 'ransack'
 gem 'kaminari'
@@ -83,7 +83,7 @@ group :development do
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
   gem 'capistrano-bundler'
-  gem 'capistrano3-unicorn' # unicornを使っている場合のみ
+  gem 'capistrano-unicorn-nginx', '~> 3.2.0'
   gem 'capistrano-safe-deploy-to', '~> 1.1.1'
 
 end
