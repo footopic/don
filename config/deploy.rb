@@ -3,10 +3,12 @@ lock '3.4.0'
 set :application, 'footopic'
 set :repo_url, 'http://github.com/footopic/web-prototype.git'
 # set :repo_url, 'git@github.com:footopic/web-prototype.git'
-set :deploy_to, "/var/www/footopic"
+set :deploy_to, '/var/www/footopic'
 set :scm, :git
 set :log_level, :debug
-set :linked_dirs, %w{bin log tmp/backup tmp/pids tmp/cache tmp/sockets vendor/bundle .env}
+set :linked_dirs, %w{bin log tmp/backup tmp/pids tmp/cache tmp/sockets vendor/bundle}
+set :linked_files, %w{.env}
+
 set :default_stage, 'staging'
 
 
