@@ -63,8 +63,6 @@
 set :stage, :staging
 set :rails_env, 'production'
 
-set :branch, 'develop'
-
 role :app, 'footopic@192.168.1.251'
 
 server '192.168.1.251', user: 'footopic', roles: %w{app}
