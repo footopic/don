@@ -52,7 +52,7 @@ gem 'seed-fu'
 
 
 gem 'carrierwave'
-gem 'rmagick', require: 'rmagick'
+gem 'rmagick', require: false
 gem 'fog'
 
 gem 'grape'

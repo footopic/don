@@ -19,7 +19,7 @@ set :keep_releases, 5
 
 set :bundle_jobs, 4
 
-set :branch, 'develop'
+set :branch, 'cap'
 
 set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
 
