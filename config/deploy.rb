@@ -3,10 +3,12 @@ lock '3.4.0'
 set :application, 'footopic'
 set :repo_url, 'http://github.com/footopic/web-prototype.git'
 # set :repo_url, 'git@github.com:footopic/web-prototype.git'
-set :deploy_to, "/var/www/footopic"
+set :deploy_to, '/var/www/footopic'
 set :scm, :git
 set :log_level, :debug
-set :linked_dirs, %w{bin log tmp/backup tmp/pids tmp/cache tmp/sockets vendor/bundle .env}
+set :linked_dirs, %w{bin log tmp/backup tmp/pids tmp/cache tmp/sockets vendor/bundle}
+set :linked_files, %w{.env}
+
 set :default_stage, 'staging'
 
 
@@ -30,6 +32,15 @@ set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rben
 set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 set :rbenv_roles, :all # default value
 
+set :default_env, {
+    path: '/usr/local/bin:$PATH'
+}
+
+# npm
+set :npm_target_path, -> { release_path.join('node_modules') }
+set :npm_flags, '--production --silent --no-spin'
+set :npm_roles, :all
+set :npm_env_variables, {}
 
 after 'deploy:publishing', 'deploy:restart'
 namespace :deploy do
