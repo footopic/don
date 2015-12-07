@@ -63,12 +63,11 @@
 set :stage, :staging
 set :rails_env, 'production'
 
-role :app, 'footopic@staging.don.cps-lab.private'
-role :web, 'footopic@staging.don.cps-lab.private'
-role :db, 'staging.don.cps-lab.private', :primary => true
+role :app, 'footopic@staging.don.cps.im.dendai.ac.jp'
+role :web, 'footopic@staging.don.cps.im.dendai.ac.jp'
+role :db, 'staging.don.cps.im.dendai.ac.jp', :primary => true
 
-server 'staging.don.cps-lab.private', user: 'footopic', roles: %w{app web}
-# server 'staging.don.cps-lab.private', user: 'footopic', roles: %w{app}
+server 'staging.don.cps.im.dendai.ac.jp', user: 'footopic', roles: %w{app web db}
 
 set :ssh_options, {
     keys: [File.expand_path('~/.ssh/footopic')],
