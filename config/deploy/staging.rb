@@ -67,7 +67,7 @@ role :app, 'footopic@staging.don.cps-lab.private'
 role :web, 'footopic@staging.don.cps-lab.private'
 role :db, 'staging.don.cps-lab.private', :primary => true
 
-server '192.168.1.251', user: 'footopic', roles: %w{app web}
+server 'staging.don.cps-lab.private', user: 'footopic', roles: %w{app web}
 # server 'staging.don.cps-lab.private', user: 'footopic', roles: %w{app}
 
 set :ssh_options, {
