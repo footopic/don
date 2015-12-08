@@ -50,13 +50,10 @@ cap staging deploy
 
 
 # Task
-
-## import esa archive 2015/11/30 21:32
+## archive:import_esa_io
+/import に md ファイルを設置
 
 ```
-# unzip
-unzip ./esa_archives/articles.zip -d ./esa_archives/articles
-
 # run rake/task
 ./bin/rake archive:import_esa_io
 ```

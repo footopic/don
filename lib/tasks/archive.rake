@@ -2,7 +2,7 @@ namespace :archive do
 
   desc 'esa.io のエクスポートをインポートする'
   task :import_esa_io => :environment do
-    archive_root = Rails.root.join('esa_archives', 'articles')
+    archive_root = Rails.root.join('import', 'articles')
     user_esa = User.find_or_create_by!(uid: 0, provider: 'esa', screen_name: 'esa', name: 'esa.io')
     dirs = Dir.glob(archive_root + '**/*.md')
     dirs.each do |filename|
@@ -19,11 +19,13 @@ namespace :archive do
         next
       end
       article = user_esa.articles.build
-      article.title = metas['category'] + '/' + metas['title'][1..(-2)]
+      article.title = metas['title'][1..(-2)]
       article.text = text
       article.created_at = metas['created_at']
       article.updated_at = metas['updated_at']
-      article.tag_list << header['tags'].split(',')
+      article.tag_list << metas['tags'].split(',')
+      categories = metas['category'].split('/')
+      article.tag_list << categories[0]
       article.save
     end
     puts "successfly #{dirs.length} archives imported"
