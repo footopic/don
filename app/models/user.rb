@@ -59,4 +59,9 @@ class User < ActiveRecord::Base
     end
     user
   end
+
+  def save_icon(file)
+    image.store!(file)
+    save()
+  end
 end
