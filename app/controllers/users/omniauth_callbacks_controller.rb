@@ -4,7 +4,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     # @user = User.from_omniauth(request.env['omniauth.auth'])
 
     auth_params = request.env['omniauth.auth']
-
+    filter_mail_domain = 'cps.im.dendai.ac.jp'
+    unless auth_params.info.email.split('@')[1] == filter_mail_domain
+      return redirect_to articles_url, flash: { error: 'CPS メールアドレスのアカウントが必要です' }
+    end
     @user = User.where(provider: auth_params[:provider], uid: auth_params[:uid]).first
 
     if @user.nil?
