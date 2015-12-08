@@ -6,7 +6,7 @@ set :repo_url, 'http://github.com/footopic/web-prototype.git'
 set :deploy_to, '/var/www/footopic'
 set :scm, :git
 set :log_level, :debug
-set :linked_dirs, %w{bin log tmp/backup tmp/pids tmp/cache tmp/sockets vendor/bundle public/uploads}
+set :linked_dirs, %w{bin log tmp/backup tmp/pids tmp/cache tmp/sockets vendor/bundle public/uploads import}
 set :linked_files, %w{.env}
 
 set :default_stage, 'staging'
@@ -54,5 +54,28 @@ namespace :deploy do
 
   task :restart do
     invoke 'unicorn:restart'
+  end
+
+end
+
+namespace :files do
+
+  task :secrets do
+    # esa archive
+    on roles(:app) do
+      upload! '.env', "#{fetch(:shared_dir)}/.env"
+    end
+
+  end
+
+  task :esa_import do
+    on roles(:all) do
+      within current_path do
+        with rails_env: fetch(:rails_env) do
+          # upload! 'import/articles', "#{fetch(:shared_dir)}/import/", recursive: true
+          execute :rake, 'archive:import_esa_io'
+        end
+      end
+    end
   end
 end
