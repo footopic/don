@@ -3,7 +3,7 @@
     display: inline-flex;
     margin: 2px;
     text-decoration: none !important;
-    color: gold !important;
+    color: gold;
 
     &hover {
       text-decoration: none !important;
@@ -12,17 +12,20 @@
   }
 
   &__button {
-    color: gold;
-    background: white;
-    border: #2b2b2b 1px solid;
+    color: white;
+    background: orange;
     border-radius: 5px;
-    padding: 10px;
     margin: 5px;
+    height: 28px;
+    padding: 6px 1em;
+    i {
+      font-size: 1.3em;
+      color: white;
+    }
 
     &:hover {
-      box-shadow: #2b2b2b 2px 3px;
       text-decoration: none !important;
-      color: gold !important;
+      background: #E09600;
     }
   }
 
