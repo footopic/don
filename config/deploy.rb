@@ -6,7 +6,7 @@ set :repo_url, 'http://github.com/footopic/web-prototype.git'
 set :deploy_to, '/var/www/footopic'
 set :scm, :git
 set :log_level, :debug
-set :linked_dirs, %w{bin log tmp/backup tmp/pids tmp/cache tmp/sockets vendor/bundle}
+set :linked_dirs, %w{bin log tmp/backup tmp/pids tmp/cache tmp/sockets vendor/bundle public/uploads}
 set :linked_files, %w{.env}
 
 set :default_stage, 'staging'
@@ -42,8 +42,16 @@ set :npm_flags, '--production --silent --no-spin'
 set :npm_roles, :all
 set :npm_env_variables, {}
 
+before 'deploy:migrate', 'deploy:copy_sqlite'
 after 'deploy:publishing', 'deploy:restart'
+
 namespace :deploy do
+  task :copy_sqlite do
+    on roles(:app) do
+      execute "cp #{current_path}/db/production.sqlite3 #{release_path}/db/"
+    end
+  end
+
   task :restart do
     invoke 'unicorn:restart'
   end
