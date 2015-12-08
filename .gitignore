@@ -79,7 +79,7 @@ public/uploads/*
 
 
 # archives for task
-/esa_archives/articles/
+/import/articles/
 
 # vagrant
 .vagrant/
