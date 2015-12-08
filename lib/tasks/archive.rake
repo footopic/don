@@ -4,6 +4,7 @@ namespace :archive do
   task :import_esa_io => :environment do
     archive_root = Rails.root.join('import', 'articles')
     user_esa = User.find_or_create_by!(uid: 0, provider: 'esa', screen_name: 'esa', name: 'esa.io')
+    user_esa.save_icon(File.open(Rails.root.join('import', 'images', 'esa_icon.png')))
     dirs = Dir.glob(archive_root + '**/*.md')
     dirs.each do |filename|
       # cout
@@ -29,5 +30,11 @@ namespace :archive do
       article.save
     end
     puts "successfly #{dirs.length} archives imported"
+  end
+
+  desc 'esa user 作成'
+  task :create_esa_user => :environment do
+    user_esa = User.find_or_create_by!(uid: 0, provider: 'esa', screen_name: 'esa', name: 'esa.io')
+    user_esa.save_icon(File.open(Rails.root.join('import', 'images', 'esa_icon.png')))
   end
 end
