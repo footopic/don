@@ -43,6 +43,19 @@
 
     <hr>
 
+    <div class="star">
+      <%= link_to stars_path(star: { article_id: @article, user_id: current_user }), class: 'star__button', method: :post, remote: true do %>
+          <%= fa_icon 'plus 3x' %>
+          <%= fa_icon 'star 3x' %>
+      <% end %>
+
+      <div id="star__list">
+        <%= render @stars %>
+      </div>
+    </div>
+
+    <hr>
+
     <%= render @comments %>
     <%= render 'comments/form' %>
   </div>

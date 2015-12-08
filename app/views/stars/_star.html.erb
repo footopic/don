@@ -1,0 +1,6 @@
+<%= link_to user_path(star.user) do %>
+    <%= image_tag(star.user.image.thumb, size: '28x28') %>
+    <span class="star__box">
+        <%= fa_icon 'star', class: 'star__box__star' %>
+    </span>
+<% end %>

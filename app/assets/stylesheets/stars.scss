@@ -1,0 +1,46 @@
+.star {
+  a {
+    display: inline-flex;
+    margin: 2px;
+    text-decoration: none !important;
+    color: gold !important;
+
+    &hover {
+      text-decoration: none !important;
+      color: gold !important;
+    }
+  }
+
+  &__button {
+    color: gold;
+    background: white;
+    border: #2b2b2b 1px solid;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px;
+
+    &:hover {
+      box-shadow: #2b2b2b 2px 3px;
+      text-decoration: none !important;
+      color: gold !important;
+    }
+  }
+
+  &__box {
+    position: relative;
+    color: gold;
+
+    &__star {
+      position: absolute;
+      bottom: 0px;
+      left: -28px;
+      margin-bottom: 0px;
+      margin-left: 0px;
+      z-index: 11;
+    }
+  }
+}
+
+#star__list {
+  display: block;
+}

@@ -21,6 +21,7 @@ class ArticlesController < ApplicationController
     user_ids = History.where(article: @article).pluck(:user_id)
     @user    = @article.user
     @editors = User.find(user_ids).uniq
+    @stars = @article.stars.includes(:user)
   end
 
   # GET /articles/new
