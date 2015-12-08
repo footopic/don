@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :stars, only: [:create, :destroy]
   resources :comments, only: [:create, :update, :destroy]
   resources :uploader, only: [:index, :form, :upload, :download]
 end
