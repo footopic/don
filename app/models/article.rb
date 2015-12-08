@@ -25,6 +25,7 @@ class Article < ActiveRecord::Base
   validates :text, presence: true
   validates :user, presence: true
 
+  scope :sorted_by_recently, -> { reorder('updated_at DESC') }
   scope :recently_edit, -> { reorder('updated_at DESC').take(5) }
 
   acts_as_taggable
