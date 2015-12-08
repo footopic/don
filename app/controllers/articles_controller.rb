@@ -18,10 +18,10 @@ class ArticlesController < ApplicationController
   def show
     @comments = @article.comments.includes(:user)
 
-    user_ids = History.where(article: @article).pluck(:user_id)
-    @user    = @article.user
-    @editors = User.find(user_ids).uniq
-    @stars = @article.stars.includes(:user)
+    user_ids           = History.where(article: @article).pluck(:user_id)
+    @user              = @article.user
+    @editors           = User.find(user_ids).uniq
+    @stars             = @article.stars.includes(:user)
     @recently_articles = @user.articles.recently_edit
   end
 
@@ -44,6 +44,8 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       if @article.save
+        SlackHook.new.post(@article)
+
         format.html { redirect_to @article, flash: { success: '記事を作成しました' } }
         format.json { render :show, status: :created, location: @article }
       else
