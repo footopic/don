@@ -25,6 +25,8 @@ class Article < ActiveRecord::Base
   validates :text, presence: true
   validates :user, presence: true
 
+  scope :recently_edit, -> { reorder('updated_at DESC').take(5) }
+
   acts_as_taggable
 
   paginates_per 20

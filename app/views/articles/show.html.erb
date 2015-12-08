@@ -66,9 +66,7 @@
 
     <div class="article__show">
       <h4>新着の投稿</h4>
-      <% @user.articles.order('updated_at DESC').take(5).each do |article| %>
-          <%= render partial: 'article', locals: { article: article } %>
-      <% end %>
+      <%= render partial: 'article', collection: @recently_articles %>
     </div>
   </div>
 </div>
