@@ -22,6 +22,7 @@ class ArticlesController < ApplicationController
     @user    = @article.user
     @editors = User.find(user_ids).uniq
     @stars = @article.stars.includes(:user)
+    @recently_articles = @user.articles.recently_edit
   end
 
   # GET /articles/new
