@@ -33,20 +33,18 @@ GOOGLE_CLIENT_SECRET=""
 # Deploy
 ## staging
 
+setup sshkey ~/.ssh/footopic
+
 ```sh
-# vagrant
-vagrant plugin install vagrant-vbguest
-vagrant plugin install vagrant-itamae
-vagrant up
-
-# itamae
-itamae ssh --vagrant ./recipes/roles/footopic/default.rb
-
-# capistrano
+# deploy
 cap staging deploy
 
-```
+# rollback
+cap staging deploy
 
+# run task (hoge:fuga)
+cap staging remote_rake:invoke task=hoge:fuga
+```
 
 
 # Task
