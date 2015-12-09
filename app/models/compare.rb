@@ -24,9 +24,9 @@ class Compare
         'year' => now.strftime('%y'),
         'month' => now.strftime('%m'),
         'day' => now.strftime('%d'),
-        'cWeek' => now.strftime('%W'),
-        'week' => now.strftime('%w'),
-        'cDay' => now.strftime('%j')
+        'week' => now.strftime('%a'),
+        'cDay' => now.strftime('%j'),
+        'cWeek' => now.strftime('%V')
     }.merge(options)
   end
 
