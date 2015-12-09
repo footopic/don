@@ -5,7 +5,7 @@ module API
     class UploadFiles < Grape::API
       resource :upload_files do
 
-        # GET /api/upload_files/upload
+        # GET /api/v1/upload_files/upload
         desc 'Upload image file'
         params do
           requires :name, type: String, desc: 'File name.'

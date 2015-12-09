@@ -4,7 +4,8 @@ module API
       resource :articles do
         formatter :json, Grape::Formatter::Jbuilder
 
-        # GET /api/articles
+
+        # GET /api/v1/articles
         desc 'Get articles'
         params do
           optional :tags, type: String, desc: 'Tags splited with ,(comma)'
