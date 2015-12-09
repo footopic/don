@@ -23,6 +23,15 @@ class ArticlesController < ApplicationController
     @editors           = User.find(user_ids).uniq
     @stars             = @article.stars.includes(:user)
     @recently_articles = @user.articles.recently_edit
+    if @user.screen_name == 'esa'
+      message = '''この記事は esa.io から復元したものです
+「画像のリンクが無効」
+「作成者が esa ユーザになっている」
+「コメントは復元されていない」
+等に気をつけてください
+'''
+      flash[:notice] = message
+    end
   end
 
   # GET /articles/new
