@@ -25,7 +25,7 @@
   <div class="article-subinfos">
     <% @editors.each do |editor| %>
         <%= link_to(editor) do %>
-            <%= image_tag editor.image_url, class: 'img-circle', size: '64x64' %>
+            <%= image_tag editor.image_url, class: 'img-circle', size: '32x32' %>
         <% end %>
     <% end %>
   </div>
@@ -64,6 +64,22 @@
     <div class="article__show">
       <h4>新着の投稿</h4>
       <%= render partial: 'article', collection: @recently_articles %>
+    </div>
+
+    <div class="article-subinfos">
+      <h4>編集履歴</h4>
+
+      <% @histories.each do |history| %>
+          <div class="history">
+            <%= link_to(history.user) do %>
+                <%= image_tag history.user.image_url, class: 'img-circle', size: '32x32' %>
+                <%= history.user.screen_name %>
+            <% end %>
+            <%= l history.created_at %>に編集
+            <!--<span class="pull-right"><%= l history.created_at %>に編集</span>-->
+            <hr>
+          </div>
+      <% end %>
     </div>
   </div>
 </div>
