@@ -11,7 +11,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # storage :fog
   
   # 画像の上限を700pxにする
-  process :resize_to_limit => [700, 700]
+  process :resize_to_limit => [2000, 2000]
 
   # 保存形式をJPGにする
   process :convert => 'jpg'
