@@ -12,7 +12,7 @@ $ ->
   $input_file = $('#async-image-data')
   $dropdown_list = $('#templates-dropdown-list')
 
-  tag_regex = /[#＃]+[A-Za-z0-9-_ぁ-ヶ亜-黑%{}]+/g
+  tag_regex = /[#＃]+[A-Za-z0-9-_ぁ-ヶ亜-黑ー%{}]+/g
 
   updatePreview = ->
     # NOTE: marked で xss escape 済みで返る
@@ -57,7 +57,7 @@ $ ->
     tagval = $tag_edit.val()
     if tagval
       tags = tagval.split(',').map((tag) -> " ##{tag}").join('')
-    $pre_title.val $pre_title.val() + tags
+    $pre_title.val $title.val() + tags
 
   if $title.val()
     syncFromForm()
