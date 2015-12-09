@@ -124,11 +124,15 @@ $ ->
     # fd = new FormData($('form')[0])
     if $(@).files < 1
       return
+    file = $(@)[0].files[0]
+    if file.clientHeight > 2000 or file.clientWidth > 2000
+      alert '画像アップロードでエラーが発生しました 画像サイズが大きいです'
+      return
 
     fd = new FormData()
     fd.append('name', 'jquery test')
     # fd.append('file', 'hoge')
-    fd.append('file', $(@)[0].files[0])
+    fd.append('file', file)
 
     # curl -X POST -F "name=curl_test" -F "file=@co01.png" localhost:3000/api/v1/upload_files/upload
     $.ajax
