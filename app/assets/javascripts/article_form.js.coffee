@@ -20,10 +20,8 @@ $ ->
     # code hilighting
     $('pre code').each (i, block) ->
       hljs.highlightBlock block
-      return
     # 絵文字
     emojify.run $text_preview[0]
-    return
 
   updateTitlePreview = ->
     title = $pre_title.val()
@@ -45,7 +43,6 @@ $ ->
     $title.val(title)
     # 絵文字
     emojify.run $title_preview[0]
-    return
 
   if !$pre_title.length or !$text_edit.length
     return
@@ -88,12 +85,10 @@ $ ->
     $(window).on 'beforeunload', nosave_check
     l.setItem 'text', $(this).val()
     updatePreview()
-    return
   $pre_title.keyup ->
     $(window).on 'beforeunload', nosave_check
     l.setItem 'title', $(this).val()
     updateTitlePreview()
-    return
 
   insertAtCaret = (target, str) ->
     target.focus()
@@ -101,14 +96,12 @@ $ ->
       r = document.selection.createRange()
       r.text = str
       r.select()
-      return
     else
       s = target.val()
       p = target.get(0).selectionStart
       np = p + str.length
       target.val(s.substr(0, p) + str + s.substr(p))
       target.get(0).setSelectionRange(np, np)
-      return
 
   insertImgMd = (url) ->
     target = $text_edit
@@ -121,7 +114,6 @@ $ ->
     $(window).off('beforeunload')
     l.removeItem 'text'
     l.removeItem 'title'
-    return
 
   $('#upload-btn').click ->
     # NOTE: なんで二回呼ばれることがあるの, mac, chrome
@@ -148,13 +140,10 @@ $ ->
       success: (json) ->
         url = json.file.url
         insertImgMd(url)
-        return
       error: (json) ->
         # TODO: エラー
         alert '画像アップロードでエラーが発生しました'
-        return
     $input_file.val('')
-    return
 
   # template manage
 
@@ -169,11 +158,8 @@ $ ->
         updateTitlePreview()
         $text_edit.val(@text)
         updatePreview()
-        return
       $li = $('<li/>').append($a)
       $dropdown_list.append($li)
-      return
-    return
 
   $.ajax
     url: '/api/v1/templates'
@@ -184,9 +170,5 @@ $ ->
     contentType: false
     success: (json) ->
       setup_template_dropdown(json.articles)
-      return
     error: (json) ->
       alert '画像アップロードでエラーが発生しました'
-      return
-
-
