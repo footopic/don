@@ -162,7 +162,7 @@ $ ->
     $dropdown_list.empty()
     $.each articles, ->
       $a = $('<a/>').text(@title).click =>
-        $pre_title.val(@title)
+        $title.val(@title)
         # console.log @tags
         $tag_edit.val(@tags.join(','))
         syncFromForm()
