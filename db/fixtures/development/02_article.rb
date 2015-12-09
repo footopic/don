@@ -95,8 +95,18 @@ Article.seed do |s|
   s.user_id = 2
   s.title   = 'テンプレート変数 %{me} %{name}'
   s.text    = '''
-%{Year}年%{month}月%{day}日
-%{me}
+| 変数     | val      |
+|----------|----------|
+| year     | %{year}  |
+| Year     | %{Year}  |
+| month    | %{month} |
+| day      | %{day}   |
+| week     | %{week}  |
+| cDay     | %{cDay}  |
+| cWeek    | %{cWeek} |
+| me       | %{me}    |
+| name     | %{name}  |
+
 '''
 end
 a = Article.last
