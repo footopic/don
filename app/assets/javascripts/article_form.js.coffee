@@ -12,7 +12,7 @@ $ ->
   $input_file = $('#async-image-data')
   $dropdown_list = $('#templates-dropdown-list')
 
-  tag_regex = /[#＃]+[A-Za-z0-9-_ぁ-ヶ亜-黑%{}]+/g
+  tag_regex = /[#＃]+[A-Za-z0-9-_ぁ-ヶ亜-黑ー%{}]+/g
 
   updatePreview = ->
     # NOTE: marked で xss escape 済みで返る
@@ -57,7 +57,7 @@ $ ->
     tagval = $tag_edit.val()
     if tagval
       tags = tagval.split(',').map((tag) -> " ##{tag}").join('')
-    $pre_title.val $pre_title.val() + tags
+    $pre_title.val $title.val() + tags
 
   if $title.val()
     syncFromForm()
@@ -72,12 +72,25 @@ $ ->
   updatePreview()
   updateTitlePreview()
 
+  nosave_check = ->
+    # 移動した時は消す
+    l.removeItem 'text'
+    l.removeItem 'title'
+    # 移動しなかった場合は戻す
+    setTimeout =>
+      l.setItem 'text', $(this).val()
+      l.setItem 'title', $(this).val()
+    , 1000
+    '編集内容が保存されていません。このまま移動しますか？'
+
   # 変更をマークダウンにしプレビューに反映する
   $text_edit.keyup ->
+    $(window).on 'beforeunload', nosave_check
     l.setItem 'text', $(this).val()
     updatePreview()
     return
   $pre_title.keyup ->
+    $(window).on 'beforeunload', nosave_check
     l.setItem 'title', $(this).val()
     updateTitlePreview()
     return
@@ -105,6 +118,7 @@ $ ->
 
   $submit_btn.click ->
     # TODO: validation check
+    $(window).off('beforeunload')
     l.removeItem 'text'
     l.removeItem 'title'
     return
@@ -175,4 +189,4 @@ $ ->
       alert '画像アップロードでエラーが発生しました'
       return
 
-  return
+
