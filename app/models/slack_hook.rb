@@ -17,8 +17,6 @@ class SlackHook
         text: article.text
     }
 
-    unless Rails.env.development
-      @notifier.ping msg, icon_url: icon_url, username: article.user.screen_name + '@丼', attachments: [text]
-    end
+    @notifier.ping msg, icon_url: icon_url, username: article.user.screen_name + '@丼', attachments: [text]
   end
 end
