@@ -21,7 +21,7 @@ set :bundle_jobs, 4
 
 set :branch, 'develop'
 
-set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
+set :whenever_identifier, -> { "#{fetch(:application)}_#{fetch(:stage)}" }
 
 # rbenvs
 set :rbenv_ruby_version, '2.2.3'
@@ -42,6 +42,9 @@ set :npm_flags, '--production --silent --no-spin'
 set :npm_roles, :all
 set :npm_env_variables, {}
 
+# SSHKit.conifg
+SSHKit.config.command_map[:rake] = 'bundle exec rake'
+
 before 'deploy:migrate', 'deploy:copy_sqlite'
 after 'deploy:publishing', 'deploy:restart'
 
@@ -56,6 +59,16 @@ namespace :deploy do
     invoke 'unicorn:restart'
   end
 
+  desc 'db_seed must be run only one time right after the first deploy'
+  task :db_seed do
+    on roles(:db) do |host|
+      within current_path do
+        with rails_env: fetch(:rails_env) do
+          execute :rake, 'db:seed'
+        end
+      end
+    end
+  end
 end
 
 namespace :files do

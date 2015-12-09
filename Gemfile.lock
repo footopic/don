@@ -21,6 +21,19 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
+    activeadmin (1.0.0.pre2)
+      arbre (~> 1.0, >= 1.0.2)
+      bourbon
+      coffee-rails
+      formtastic (~> 3.1)
+      formtastic_i18n
+      inherited_resources (~> 1.6)
+      jquery-rails
+      jquery-ui-rails
+      kaminari (~> 0.15)
+      rails (>= 3.2, < 5.0)
+      ransack (~> 1.3)
+      sass-rails
     activejob (4.2.4)
       activesupport (= 4.2.4)
       globalid (>= 0.3.0)
@@ -43,6 +56,8 @@ GEM
     annotate (2.6.10)
       activerecord (>= 3.2, <= 4.3)
       rake (~> 10.4)
+    arbre (1.0.3)
+      activesupport (>= 3.0.0)
     arel (6.0.3)
     autoprefixer-rails (6.1.1)
       execjs
@@ -57,6 +72,9 @@ GEM
     bootstrap-sass (3.3.6)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
+    bourbon (4.2.6)
+      sass (~> 3.4)
+      thor (~> 0.19)
     builder (3.2.2)
     byebug (8.2.1)
     capistrano (3.4.0)
@@ -226,6 +244,9 @@ GEM
     font-awesome-rails (4.5.0.0)
       railties (>= 3.2, < 5.0)
     formatador (0.2.5)
+    formtastic (3.1.3)
+      actionpack (>= 3.2.13)
+    formtastic_i18n (0.4.1)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     grape (0.13.0)
@@ -244,10 +265,18 @@ GEM
       jbuilder
       tilt
       tilt-jbuilder (>= 0.4.0)
+    has_scope (0.6.0)
+      actionpack (>= 3.2, < 5)
+      activesupport (>= 3.2, < 5)
     hashie (3.4.3)
     i18n (0.7.0)
     ice_nine (0.11.1)
     inflecto (0.0.2)
+    inherited_resources (1.6.0)
+      actionpack (>= 3.2, < 5)
+      has_scope (~> 0.6.0.rc)
+      railties (>= 3.2, < 5)
+      responders
     ipaddress (0.8.0)
     jbuilder (2.3.2)
       activesupport (>= 3.0.0, < 5)
@@ -256,6 +285,8 @@ GEM
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
+    jquery-ui-rails (5.0.5)
+      railties (>= 3.2.16)
     json (1.8.3)
     jwt (1.5.2)
     kaminari (0.16.3)
@@ -432,6 +463,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activeadmin (~> 1.0.0.pre2)
   acts-as-taggable-on (~> 3.4)
   annotate
   autoprefixer-rails
