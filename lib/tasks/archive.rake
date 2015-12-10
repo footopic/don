@@ -37,4 +37,15 @@ namespace :archive do
     user_esa = User.find_or_create_by!(uid: 0, provider: 'esa', screen_name: 'esa', name: 'esa.io')
     user_esa.save_icon(File.open(Rails.root.join('import', 'images', 'esa_icon.png')))
   end
+
+  desc 'tag の templates -> template'
+  task :fix_template_tag => :environment do
+    articles = Article.tagged_with('templates')
+    articles.each do |article|
+      article.tag_list.delete('templates')
+      article.tag_list << 'template'
+      article.save
+    end
+    puts "template tag replaced #{articles.count} articles"
+  end
 end
