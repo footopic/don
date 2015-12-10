@@ -215,3 +215,6 @@ ja:
       slack_message: "%{user}が[%{title}](%{url})を投稿しました"
     update:
       slack_message: "%{user}が[%{title}](%{url})を更新しました"
+  comments:
+    create:
+      slack_message: "%{user}が[%{title}](%{url})にコメントしました"
