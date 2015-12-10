@@ -1,7 +1,6 @@
 module Entity
   module V1
-    class ArticleEntity < BaseEntity
-      expose :title
+    class CommentEntity < BaseEntity
       expose :text
       expose :user, using: UserEntity
     end

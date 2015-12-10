@@ -1,7 +1,6 @@
 module Entity
   module V1
-    class UserEntity < Grape::Entity
-      expose :id
+    class UserEntity < BaseEntity
       expose :screen_name
       expose :provider
       expose :uid
