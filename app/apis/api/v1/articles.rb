@@ -17,6 +17,17 @@ module API
           end
           present Article.all, with: with
         end
+
+        # GET /api/v1/articles/show
+        desc 'Get article'
+        params do
+          requires :id, type: Integer, desc: 'Article id.'
+        end
+        get '/show' do
+          with = Entity::V1::ArticleDetailEntity
+          present Article.find(params[:id]), with: with
+        end
+
       end
     end
   end

@@ -6,15 +6,13 @@ module Entity
       expose :provider
       expose :uid
       expose :name
-      expose :image
+      expose :image do
+        expose :url do |user| user.image.url end
+        expose :thumb_url do |user| user.image.thumb.url end
+      end
+
       expose :article_count do |user|
         user.articles.count
-      end
-    end
-
-    class UserDetailEntity < UserEntity
-      expose :recent_articles, using: Entity::V1::ArticleEntity do |user|
-        user.recent_articles
       end
     end
   end
