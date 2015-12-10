@@ -4,13 +4,16 @@ class CommentsController < ApplicationController
   # POST /comments
   def create
 
-    @comment = Comment.new(comment_params)
-    @article = @comment.article
+    @comment  = Comment.new(comment_params)
+    @article  = @comment.article
+    @comments = @article.comments
 
-    if @comment.save
-      redirect_to article_path(@article), notice: 'コメントを投稿しました'
-    else
-      redirect_to article_path(@comment.article), flash: { error: 'コメントが空です' }
+    respond_to do |format|
+      if @comment.save
+        format.js { render 'comments/create' }
+      else
+        redirect_to article_path(@comment.article), flash: { error: 'コメントが空です' }
+      end
     end
   end
 
