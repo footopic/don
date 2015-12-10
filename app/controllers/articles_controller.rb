@@ -16,7 +16,7 @@ class ArticlesController < ApplicationController
   # GET /articles/1
   # GET /articles/1.json
   def show
-    @comments = @article.comments.includes(:user)
+    @comments = @article.comments.order('created_at').includes(:user)
 
     user_ids           = History.where(article: @article).pluck(:user_id)
     @user              = @article.user
