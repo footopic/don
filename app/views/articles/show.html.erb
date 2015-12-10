@@ -6,20 +6,23 @@
           <%= fa_icon 'pencil' %>
       <% end %>
     </h1>
-
-        <span class="author">
-          <%= link_to @article.user.screen_name, user_path(@article.user.id) %>
-        </span>が<span class="date">
-          <%= l(@article.updated_at) %>
-        </span>に<span>
-          <% if @article.only_created? %>
-              投稿
-          <% else %>
-              編集
-          <% end %>
-        </span>
-
+    <span class="author">
+        <%= link_to @article.user.screen_name, user_path(@article.user.id) %>
+    </span>
+    が
+    <span class="date"><%= l(@article.updated_at) %></span>
+    に
+    <span>
+      <% if @article.only_created? %>
+          投稿
+      <% else %>
+          編集
+      <% end %>
+    </span>
     <%= link_tags_list_for(@article.tags) %>
+    <% if current_user.owner?(@article) %>
+      <%= link_to '削除', @article, method: :delete, data: { confirm: '本当に削除しますか？' } %>
+    <% end %>
   </div>
 
   <div class="article-subinfos">
