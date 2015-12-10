@@ -10,6 +10,12 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
+        SlackHook.new.post(@article, t('.slack_message', {
+            user:  @comment.user.screen_name,
+            title: @article.title,
+            url:   full_path(article_path(@article))
+        }), @comment.text)
+
         format.js { render 'comments/create' }
       else
         redirect_to article_path(@comment.article), flash: { error: 'コメントが空です' }
