@@ -48,8 +48,11 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       if @article.save
-        SlackHook.new.post(@article)
-
+        SlackHook.new.post(@article, t('.slack_message', {
+            user:  @article.user.screen_name,
+            title: @article.title,
+            url:   full_path(article_path(@article))
+        }), @article.text)
         format.html { redirect_to @article, flash: { success: '記事を作成しました' } }
         format.json { render :show, status: :created, location: @article }
       else
@@ -64,6 +67,12 @@ class ArticlesController < ApplicationController
   def update
     respond_to do |format|
       if @article.update(article_params)
+        SlackHook.new.post(@article, t('.slack_message', {
+            user:  @article.user.screen_name,
+            title: @article.title,
+            url:   full_path(article_path(@article))
+        }), @article.text)
+
         format.html { redirect_to @article, flash: { success: '記事を更新しました' } }
         format.json { render :show, status: :ok, location: @article }
       else

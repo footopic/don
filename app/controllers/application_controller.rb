@@ -8,4 +8,9 @@ class ApplicationController < ActionController::Base
   def set_global_search_variable
     @q = Article.ransack(params[:q])
   end
+
+  def full_path(path)
+    url = 'http://staging.don.cps.im.dendai.ac.jp'
+    File.join(url, path)
+  end
 end

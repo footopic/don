@@ -211,3 +211,7 @@ ja:
   articles:
     show:
       esa_message: この記事は esa.io から復元したものです。「画像のリンクが無効」「作成者が esa ユーザになっている」「コメントは復元されていない」等に気をつけてください。
+    create:
+      slack_message: "%{user}が[%{title}](%{url})を投稿しました"
+    update:
+      slack_message: "%{user}が[%{title}](%{url})を更新しました"
