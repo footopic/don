@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
 
     @comment  = Comment.new(comment_params)
     @article  = @comment.article
-    @comments = @article.comments
+    @comments = @article.comments.order('created_at')
 
     respond_to do |format|
       if @comment.save
