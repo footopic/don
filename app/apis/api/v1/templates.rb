@@ -10,12 +10,13 @@ module API
           requires :me, type: String
           requires :name, type: String
         end
-        get '/', jbuilder: 'article/template' do
+        get '/' do
+          with = Entity::V1::TemplateArticleEntity
           Compare.compare_patterns({
-            'me' => params.me,
-            'name' => params.name
-          })
-          @articles = Article.tagged_with('template')
+                                       'me' => params.me,
+                                       'name' => params.name
+                                   })
+          present Article.tagged_with('template'), with: with
         end
       end
     end

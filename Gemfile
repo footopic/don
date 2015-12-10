@@ -30,6 +30,11 @@ gem 'rmagick', require: false
 gem 'fog'
 gem 'grape'
 gem 'grape-jbuilder'
+gem 'grape-entity'
+gem 'grape-swagger'
+gem 'grape-swagger-ui'
+gem 'grape-swagger-rails'
+
 gem 'rack-cors', :require => 'rack/cors'
 gem 'slack-notifier'
 gem 'activeadmin', '~> 1.0.0.pre2'
