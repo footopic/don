@@ -4,6 +4,9 @@ module Entity
       expose :title
       expose :text
       expose :user, using: UserEntity
+      expose :tags do |article|
+        article.tag_list
+      end
     end
   end
 end

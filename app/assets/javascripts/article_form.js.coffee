@@ -173,6 +173,6 @@ $ ->
     processData: false
     contentType: false
     success: (json) ->
-      setup_template_dropdown(json.articles)
+      setup_template_dropdown(json)
     error: (json) ->
       alert '画像アップロードでエラーが発生しました'
