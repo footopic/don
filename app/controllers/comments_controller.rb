@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
-        SlackHook.new.post(@article, t('.slack_message', {
+        SlackHook.new.post(t('.slack_message', {
             user:  @comment.user.screen_name,
             title: @article.title,
             url:   full_path(article_path(@article))

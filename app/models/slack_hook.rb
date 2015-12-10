@@ -7,9 +7,9 @@ class SlackHook
     @notifier = Slack::Notifier.new HOOK_URL
   end
 
-  def post(article, msg, text)
-    icon_url    = File.join(BASE_URL, article.user.image_url)
+  def post(msg, text)
+    icon_url = File.join(BASE_URL, current_user.image_url)
 
-    @notifier.ping msg, icon_url: icon_url, username: article.user.screen_name + '@丼', attachments: [{text: text}]
+    @notifier.ping msg, icon_url: icon_url, username: current_user.screen_name + '@丼', attachments: [{ text: text }]
   end
 end

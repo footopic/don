@@ -48,7 +48,7 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       if @article.save
-        SlackHook.new.post(@article, t('.slack_message', {
+        SlackHook.new.post(t('.slack_message', {
             user:  @article.user.screen_name,
             title: @article.title,
             url:   full_path(article_path(@article))
@@ -67,7 +67,7 @@ class ArticlesController < ApplicationController
   def update
     respond_to do |format|
       if @article.update(article_params)
-        SlackHook.new.post(@article, t('.slack_message', {
+        SlackHook.new.post(t('.slack_message', {
             user:  @article.user.screen_name,
             title: @article.title,
             url:   full_path(article_path(@article))
