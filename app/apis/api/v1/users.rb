@@ -10,9 +10,9 @@ module API
           optional :include_details, type: Boolean, default: false, desc: 'Include user details info.'
         end
         get '/' do
-          with = API::Entities::User
+          with = Entity::V1::UserEntity
           if params[:include_details]
-            with = API::Entities::UserDetail
+            with = Entity::V1::UserDetailEntity
           end
           present User.all, with: with
         end
@@ -25,7 +25,7 @@ module API
           exactly_one_of :user_id, :uid
         end
         get '/show' do
-          with = API::Entities::UserDetail
+          with = Entity::V1::UserDetailEntity
           if params[:user_id]
             present User.find(params[:user_id]), with: with
           else
@@ -33,22 +33,6 @@ module API
           end
         end
       end
-    end
-  end
-
-  module Entities
-    class User < Grape::Entity
-      expose :id
-      expose :screen_name
-      expose :provider
-      expose :uid
-      expose :name
-      expose :image
-      expose :article_count do |user| user.articles.count end
-    end
-
-    class UserDetail < User
-      expose :recent_articles do |user| user.recent_articles end
     end
   end
 end

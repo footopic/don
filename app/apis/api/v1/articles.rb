@@ -8,13 +8,14 @@ module API
         # GET /api/v1/articles
         desc 'Get articles'
         params do
-          optional :tags, type: String, desc: 'Tags splited with ,(comma)'
+          optional :include_details, type: Boolean, default: false, desc: 'Include article details info.'
         end
-        get '/', jbuilder: 'article/index' do
-          if params.tags
-            tags = params.tags.split(',')
-            @articles = Article.tagged_with(tags)
+        get '/' do
+          with = Entity::V1::ArticleEntity
+          if params[:include_details]
+            with = Entity::V1::ArticleDetailEntity
           end
+          present Article.all, with: with
         end
       end
     end
