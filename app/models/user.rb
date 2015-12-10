@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
 
   devise :omniauthable, :omniauth_providers => [:google_oauth2]
 
-  def is_owner(article)
+  def owner?(article)
     id == article.user_id
   end
 

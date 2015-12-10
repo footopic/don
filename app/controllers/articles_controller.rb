@@ -2,6 +2,7 @@
 class ArticlesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
   before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :check_article_owner, only: [:destroy]
 
   # GET /articles
   # GET /articles.json
@@ -110,7 +111,7 @@ class ArticlesController < ApplicationController
   end
 
   def check_article_owner
-    unless current_user.is_owner(@article)
+    unless current_user.owner?(@article)
       # TODO: セキュリティ上メッセージは消す
       redirect_to @article, notice: '記事の作者ではありません'
     end
