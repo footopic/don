@@ -17,7 +17,7 @@ $ ->
       )
       return
     template: (value) ->
-      path = "<%= asset_path '/assets/basic/#{emojies_alias(value)}.png' %>"
+      path = "<%= image_path '/assets/basic/#{emojies_alias(value)}.png' %>"
       '<img class="emoji-suggest" src="' + path + '"></img> ' + value
     replace: (value) ->
       ':' + value + ': '
