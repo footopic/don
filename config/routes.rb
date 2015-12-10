@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root 'articles#index'
 
   mount API::Root => '/'
+  mount GrapeSwaggerRails::Engine => '/docs'
 
   devise_for :users, :controllers => { :omniauth_callbacks => 'users/omniauth_callbacks' }
 
