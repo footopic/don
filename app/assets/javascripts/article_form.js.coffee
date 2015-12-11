@@ -143,7 +143,7 @@ $ ->
       contentType: false
       success: (json) ->
         url = json.file.url
-        insertImgMd(url)
+        insertImgMd('http://' + window.location.host + url)
       error: (json) ->
         # TODO: エラー
         alert '画像アップロードでエラーが発生しました'
