@@ -14,7 +14,9 @@
     </div>
     <div class="comment__meta pull-right">
       <%= l(comment.updated_at) %>
-      <%= link_to '削除', comment_path(comment), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+      <% if comment.posted_by?(current_user) %>
+          <%= link_to '削除', comment_path(comment), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+      <% end %>
     </div>
   </div>
 
