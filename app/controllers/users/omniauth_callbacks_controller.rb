@@ -11,12 +11,14 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @user = User.where(provider: auth_params[:provider], uid: auth_params[:uid]).first
 
     if @user.nil?
-      @user = User.create(
+      User.create(
           uid:         auth_params[:uid],
           provider:    auth_params[:provider],
           name:        auth_params[:info][:name],
           screen_name: auth_params[:info][:email].gsub(/@.*/, '')
       )
+      @user = User.last
+      @user.save_icon(File.open(Rails.root.join('app', 'assets', 'images', 'noimg.png')))
     end
 
     if @user.persisted?
