@@ -269,6 +269,9 @@ GEM
       jbuilder
       tilt
       tilt-jbuilder (>= 0.4.0)
+    grape-kaminari (0.1.8)
+      grape
+      kaminari
     grape-swagger (0.10.4)
       grape (>= 0.8.0)
       grape-entity (< 0.5.0)
@@ -499,6 +502,7 @@ DEPENDENCIES
   grape
   grape-entity
   grape-jbuilder
+  grape-kaminari
   grape-swagger
   grape-swagger-rails
   grape-swagger-ui

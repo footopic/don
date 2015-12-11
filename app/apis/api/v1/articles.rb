@@ -1,10 +1,12 @@
 module API
   module V1
     class Articles < Grape::API
+      include Grape::Kaminari
+
       resource :articles do
+        paginate per_page: 10, max_per_page: 20, offset: 0
+
         formatter :json, Grape::Formatter::Jbuilder
-
-
         # GET /api/v1/articles
         desc 'Get articles'
         params do
@@ -15,7 +17,7 @@ module API
           if params[:include_details]
             with = Entity::V1::ArticleDetailEntity
           end
-          present Article.all, with: with
+          present paginate(Article.all), with: with
         end
 
         # GET /api/v1/articles/show
