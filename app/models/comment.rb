@@ -24,4 +24,8 @@ class Comment < ActiveRecord::Base
   validates :user, presence: true
   validates :article, presence: true
   validates :text, presence: true
+
+  def posted_by?(user)
+    user == self.user
+  end
 end
