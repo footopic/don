@@ -2,13 +2,13 @@
   <!-- header -->
   <div class="container-fluid">
     <div class="nabar-header">
+      <a class="navbar-brand" href="#">丼</a>
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-bs" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">丼</a>
     </div>
 
 
@@ -23,6 +23,27 @@
       <!-- right content -->
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
+            <li class="visible-xs <%= 'active' if params[:controller] == 'articles' && (params[:action] == 'new' || params[:action] == 'edit') %>">
+              <%= link_to new_article_path do %>
+                  <%= fa_icon 'pencil' %>
+                  <span>WRITE</span>
+              <% end %>
+            </li>
+
+            <li class="visible-xs <%= 'active' if params[:controller] == 'articles' && (params[:action] != 'new' && params[:action] != 'edit') %>">
+              <%= link_to articles_path do %>
+                  <%= fa_icon 'th-list' %>
+                  <span>ARTICLES</span>
+              <% end %>
+            </li>
+
+            <li class="visible-xs <%= 'active' if params[:controller] == 'users' %>">
+              <%= link_to users_path do %>
+                  <%= fa_icon 'users' %>
+                  <span>MEMBERS</span>
+              <% end %>
+            </li>
+
             <li>
               <%= image_tag current_user.image_url, class: 'img-circle', size: '36x36' %>
             </li>
