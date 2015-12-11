@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151209114544) do
+ActiveRecord::Schema.define(version: 20151211202349) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -81,6 +81,13 @@ ActiveRecord::Schema.define(version: 20151209114544) do
   add_index "histories", ["user_id", "article_id"], name: "index_histories_on_user_id_and_article_id"
   add_index "histories", ["user_id"], name: "index_histories_on_user_id"
 
+  create_table "images", force: :cascade do |t|
+    t.string   "name"
+    t.string   "file"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "stars", force: :cascade do |t|
     t.integer  "article_id", null: false
     t.integer  "user_id",    null: false
@@ -110,13 +117,6 @@ ActiveRecord::Schema.define(version: 20151209114544) do
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true
-
-  create_table "upload_files", force: :cascade do |t|
-    t.string   "name"
-    t.string   "file"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "users", force: :cascade do |t|
     t.string   "provider",    default: "", null: false

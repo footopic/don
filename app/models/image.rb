@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: upload_files
+# Table name: images
 #
 #  id         :integer          not null, primary key
 #  name       :string
@@ -9,6 +9,6 @@
 #  updated_at :datetime         not null
 #
 
-class UploadFile < ActiveRecord::Base
+class Image < ActiveRecord::Base
   mount_uploader :file, ImageUploader
 end

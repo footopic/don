@@ -57,7 +57,7 @@ class ArticlesController < ApplicationController
         format.html { redirect_to @article, flash: { success: '記事を作成しました' } }
         format.json { render :show, status: :created, location: @article }
       else
-        format.html { render :new }
+        format.html { render :edit }
         format.json { render json: @article.errors, status: :unprocessable_entity }
       end
     end

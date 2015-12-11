@@ -4,7 +4,7 @@ module API
       version :v1
       format :json
 
-      mount API::V1::UploadFiles
+      mount API::V1::Images
       mount API::V1::Articles
       mount API::V1::Users
       mount API::V1::Templates
