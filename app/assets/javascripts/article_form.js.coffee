@@ -136,7 +136,7 @@ $ ->
 
     # curl -X POST -F "name=curl_test" -F "file=@co01.png" localhost:3000/api/v1/upload_files/upload
     $.ajax
-      url: '/api/v1/upload_files/upload'
+      url: '/api/v1/images/upload'
       method: "POST"
       data: fd
       processData: false

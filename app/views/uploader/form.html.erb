@@ -1,4 +1,4 @@
-<% @upload = UploadFile.new %>
+<% @upload = Image.new %>
 <%= form_for @upload, :html => {:multipart => true}, :url => {:action => :upload} do |f| %>
     <%= f.label :name, "name" %>
     <%= f.text_field :name %>
