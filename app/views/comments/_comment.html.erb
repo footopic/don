@@ -5,12 +5,16 @@
           <%= image_tag comment.user.image_url, class: 'comment__icon', size: '32x32' %>
       <% end %>
 
+
       <div class="comment__userinfo__name">
         <%= link_to comment.user.screen_name, comment.user %>
       </div>
+
+
     </div>
     <div class="comment__meta pull-right">
       <%= l(comment.updated_at) %>
+      <%= link_to '削除', comment_path(comment), method: :delete, data: { confirm: '本当に削除しますか？' } %>
     </div>
   </div>
 
