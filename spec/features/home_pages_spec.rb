@@ -14,7 +14,15 @@ RSpec.describe 'トップページ', type: :feather do
     end
 
     it '自分のスクリーンネームが表示されること' do
-      expect(page).to have_content(user.screen_name)
+      expect(page).to have_link(user.screen_name)
+    end
+
+    context 'スクリーンネームをクリックしたとき' do
+      subject{ page }
+
+      it { is_expected.to have_link('マイページ') }
+      it { is_expected.to have_link('ログアウト') }
+      it { is_expected.to have_link('設定変更') }
     end
 
     it 'ログインしてくださいとメッセージが表示されないこと' do
