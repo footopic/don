@@ -59,17 +59,22 @@ class Article < ActiveRecord::Base
     updated_at == created_at
   end
 
+  # TODO: template STL
+  def set_compare(compare)
+    @compare = compare
+  end
+
   # variable を変換して返す
   def title_vr
-    Compare.template_variable(title)
+    @compare.template_variable(title)
   end
 
   def text_vr
-    Compare.template_variable(text)
+    @compare.template_variable(text)
   end
 
   def tag_list_vr
-    Compare.template_variable(tag_list)
+    @compare.template_variable(tag_list)
   end
 
 end
