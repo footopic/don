@@ -41,7 +41,7 @@ RSpec.configure do |config|
 
   config.include Capybara::DSL
 
-  config.include LoginHelpers, :type => :feather
+  config.include LoginHelpers, :type => :feature
   config.include LoginHelpers, :type => :request
 
   config.include Rails.application.routes.url_helpers

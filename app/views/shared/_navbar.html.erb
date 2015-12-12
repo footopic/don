@@ -2,7 +2,7 @@
   <!-- header -->
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">丼</a>
+      <%= link_to '丼', root_path, class: 'navbar-brand' %>
       <ul class="visible-xs menus">
         <li class="<%= 'active' if params[:controller] == 'articles' && (params[:action] == 'new' || params[:action] == 'edit') %>">
           <%= link_to new_article_path do %>
@@ -77,6 +77,5 @@
         <% end %>
       </ul>
     </div>
-
   </div>
 </div>
