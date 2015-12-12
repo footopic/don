@@ -165,14 +165,12 @@ $ ->
       $li = $('<li/>').append($a)
       $dropdown_list.append($li)
 
-  $.ajax
-    url: '/api/v1/templates'
-    method: "GET"
-    data: 'me=' + $('#current-user-info').attr('screen_name') +
-          '&name=' + $('#current-user-info').attr('name')
-    processData: false
-    contentType: false
-    success: (json) ->
+  # console.log $('#current-user-info').attr('screen_name')
+  # console.log $('#current-user-info').attr('name')
+  $.get '/api/v1/templates', {
+      me: $('#current-user-info').attr('screen_name')
+      name: $('#current-user-info').attr('name')
+    }, (json) ->
       setup_template_dropdown(json)
-    error: (json) ->
-      alert '画像アップロードでエラーが発生しました'
+    .fail ->
+      alert 'テンプレートリクエスト失敗'
