@@ -12,11 +12,10 @@ module API
         end
         get '/' do
           with = Entity::V1::TemplateArticleEntity
-          Compare.compare_patterns({
-                                       'me' => params.me,
-                                       'name' => params.name
-                                   })
-          present Article.tagged_with('template'), with: with
+          compare = Compare.new({ 'me' => params.me, 'name' => params.name })
+          articles = Article.tagged_with('template')
+          articles = articles.each { |article| article.set_compare(compare) }
+          present articles, with: with
         end
       end
     end
