@@ -36,107 +36,25 @@ RSpec.describe StarsController, type: :controller do
   # StarsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  describe "GET #index" do
-    it "assigns all stars as @stars" do
-      star = Star.create! valid_attributes
-      get :index, {}, valid_session
-      expect(assigns(:stars)).to eq([star])
-    end
-  end
-
-  describe "GET #show" do
-    it "assigns the requested star as @star" do
-      star = Star.create! valid_attributes
-      get :show, {:id => star.to_param}, valid_session
-      expect(assigns(:star)).to eq(star)
-    end
-  end
-
-  describe "GET #new" do
-    it "assigns a new star as @star" do
-      get :new, {}, valid_session
-      expect(assigns(:star)).to be_a_new(Star)
-    end
-  end
-
-  describe "GET #edit" do
-    it "assigns the requested star as @star" do
-      star = Star.create! valid_attributes
-      get :edit, {:id => star.to_param}, valid_session
-      expect(assigns(:star)).to eq(star)
-    end
-  end
-
   describe "POST #create" do
     context "with valid params" do
       it "creates a new Star" do
         expect {
-          post :create, {:star => valid_attributes}, valid_session
+          post :create, { :star => valid_attributes }, valid_session
         }.to change(Star, :count).by(1)
       end
 
       it "assigns a newly created star as @star" do
-        post :create, {:star => valid_attributes}, valid_session
+        post :create, { :star => valid_attributes }, valid_session
         expect(assigns(:star)).to be_a(Star)
         expect(assigns(:star)).to be_persisted
-      end
-
-      it "redirects to the created star" do
-        post :create, {:star => valid_attributes}, valid_session
-        expect(response).to redirect_to(Star.last)
       end
     end
 
     context "with invalid params" do
       it "assigns a newly created but unsaved star as @star" do
-        post :create, {:star => invalid_attributes}, valid_session
+        post :create, { :star => invalid_attributes }, valid_session
         expect(assigns(:star)).to be_a_new(Star)
-      end
-
-      it "re-renders the 'new' template" do
-        post :create, {:star => invalid_attributes}, valid_session
-        expect(response).to render_template("new")
-      end
-    end
-  end
-
-  describe "PUT #update" do
-    context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
-
-      it "updates the requested star" do
-        star = Star.create! valid_attributes
-        put :update, {:id => star.to_param, :star => new_attributes}, valid_session
-        star.reload
-        skip("Add assertions for updated state")
-      end
-
-      it "assigns the requested star as @star" do
-        star = Star.create! valid_attributes
-        put :update, {:id => star.to_param, :star => valid_attributes}, valid_session
-        expect(assigns(:star)).to eq(star)
-      end
-
-      it "redirects to the star" do
-        star = Star.create! valid_attributes
-        put :update, {:id => star.to_param, :star => valid_attributes}, valid_session
-        expect(response).to redirect_to(star)
-      end
-    end
-
-    context "with invalid params" do
-      it "assigns the star as @star" do
-        star = Star.create! valid_attributes
-        put :update, {:id => star.to_param, :star => invalid_attributes}, valid_session
-        expect(assigns(:star)).to eq(star)
-      end
-
-      it "re-renders the 'edit' template" do
-        star = Star.create! valid_attributes
-        put :update, {:id => star.to_param, :star => invalid_attributes}, valid_session
-        expect(response).to render_template("edit")
       end
     end
   end
@@ -145,15 +63,8 @@ RSpec.describe StarsController, type: :controller do
     it "destroys the requested star" do
       star = Star.create! valid_attributes
       expect {
-        delete :destroy, {:id => star.to_param}, valid_session
+        delete :destroy, { :id => star.to_param }, valid_session
       }.to change(Star, :count).by(-1)
     end
-
-    it "redirects to the stars list" do
-      star = Star.create! valid_attributes
-      delete :destroy, {:id => star.to_param}, valid_session
-      expect(response).to redirect_to(stars_url)
-    end
   end
-
 end
