@@ -1,4 +1,4 @@
 require 'rails_helper'
 
-RSpec.describe "Stars", type: :request do
+RSpec.describe 'Stars', type: :request do
 end
