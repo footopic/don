@@ -6,6 +6,9 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'spec_helper'
 require 'rspec/rails'
 require 'shoulda/matchers'
+require 'capybara/rails'
+require 'capybara/rspec'
+
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
     with.test_framework :rspec
@@ -36,9 +39,13 @@ RSpec.configure do |config|
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
 
-  config.include RequestHelpers, :type => :request
+  config.include Capybara::DSL
 
-  include FactoryGirl::Syntax::Methods
+  config.include LoginHelpers, :type => :feather
+  config.include LoginHelpers, :type => :request
+
+  config.include Rails.application.routes.url_helpers
+  config.include FactoryGirl::Syntax::Methods
 
   # Filter lines from Rails gems in backtraces.
   config.filter_rails_from_backtrace!
