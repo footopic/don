@@ -45,6 +45,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0'
   gem 'guard-rspec', require: false
   gem 'terminal-notifier-guard', '~> 1.6.1'
+  gem 'factory_girl_rails'
+  gem 'capybara'
 end
 
 group :test do

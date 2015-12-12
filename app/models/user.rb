@@ -62,7 +62,7 @@ class User < ActiveRecord::Base
 
   def save_icon(file)
     image.store!(file)
-    save()
+    save
   end
 
   def recent_articles

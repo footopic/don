@@ -1,14 +1,14 @@
 class Compare
 
   def initialize(options)
-    now = Time.now
+    now               = Time.current
     @compare_patterns = {
-        'Year' => now.strftime('%Y'),
-        'year' => now.strftime('%y'),
+        'Year'  => now.strftime('%Y'),
+        'year'  => now.strftime('%y'),
         'month' => now.strftime('%m'),
-        'day' => now.strftime('%d'),
-        'week' => now.strftime('%a'),
-        'cDay' => now.strftime('%j'),
+        'day'   => now.strftime('%d'),
+        'week'  => now.strftime('%a'),
+        'cDay'  => now.strftime('%j'),
         'cWeek' => now.strftime('%V')
     }.merge(options)
   end
@@ -20,7 +20,7 @@ class Compare
       val_regex = /%{(.*?)}/x
       text.gsub(val_regex) do |w|
         key = w[2..-2]
-        c = @compare_patterns
+        c   = @compare_patterns
         if c.has_key? key
           c[key]
         else
