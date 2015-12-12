@@ -5,7 +5,6 @@ module API
 
       resource :articles do
 
-        formatter :json, Grape::Formatter::Jbuilder
         # GET /api/v1/articles
         desc 'Get articles'
         paginate per_page: 10, max_per_page: 20, offset: 0

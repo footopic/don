@@ -6,8 +6,6 @@ module API
       resource :users do
         paginate per_page: 30, max_per_page: 50, offset: 0
 
-        formatter :json, Grape::Formatter::Jbuilder
-
         # GET /api/v1/users
         desc 'Get users'
         params do
