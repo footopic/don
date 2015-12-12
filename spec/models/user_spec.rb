@@ -20,8 +20,17 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  it { is_expected.to validate_presence_of(:provider) }
-  it { is_expected.to validate_presence_of(:uid) }
-  it { is_expected.to validate_presence_of(:screen_name) }
-  it { is_expected.to validate_presence_of(:name) }
+  describe 'associations' do
+    it { is_expected.to have_many(:articles).dependent(:destroy) }
+    it { is_expected.to have_many(:comments).dependent(:destroy) }
+    it { is_expected.to have_many(:stars).dependent(:destroy) }
+    it { is_expected.to have_many(:histories).dependent(:destroy) }
+  end
+
+  describe 'validations' do
+    it { is_expected.to validate_presence_of(:provider) }
+    it { is_expected.to validate_presence_of(:uid) }
+    it { is_expected.to validate_presence_of(:screen_name) }
+    it { is_expected.to validate_presence_of(:name) }
+  end
 end
