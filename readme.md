@@ -1,6 +1,8 @@
 footopic web prototype
 ===
 
+[![Build Status](https://travis-ci.org/footopic/web-prototype.svg)](https://travis-ci.org/footopic/web-prototype)
+
 # Installation
 
 install
