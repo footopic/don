@@ -20,8 +20,8 @@
 class User < ActiveRecord::Base
   has_many :articles, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :histories
-  has_many :stars
+  has_many :histories, dependent: :destroy
+  has_many :stars, dependent: :destroy
 
   mount_uploader :image, ImageUploader
 

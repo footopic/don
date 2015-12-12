@@ -43,6 +43,8 @@ gem 'activeadmin', '~> 1.0.0.pre2'
 group :development, :test do
   gem 'byebug'
   gem 'rspec-rails', '~> 3.0'
+  gem 'guard-rspec', require: false
+  gem 'terminal-notifier-guard', '~> 1.6.1'
 end
 
 group :test do
