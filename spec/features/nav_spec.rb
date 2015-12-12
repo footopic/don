@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'ナビゲーションバー', type: :feather do
+RSpec.describe 'ナビゲーションバー', type: :feature do
   context 'ログインしている場合' do
     let(:user) { create(:user) }
 
