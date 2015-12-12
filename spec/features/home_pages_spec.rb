@@ -6,11 +6,15 @@ RSpec.describe 'トップページ', type: :feather do
 
     before do
       login(user)
+      visit root_path
     end
 
     it 'ログインリンクが表示されないこと' do
-      visit root_path
       expect(page).not_to have_content('ログイン')
+    end
+
+    it '自分のスクリーンネームが表示されること' do
+      expect(page).to have_content(user.screen_name)
     end
 
     it 'ログインしてくださいとメッセージが表示されないこと' do
