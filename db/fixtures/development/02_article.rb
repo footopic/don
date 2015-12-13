@@ -115,3 +115,14 @@ a = Article.last
 a.tag_list << 'template'
 a.tag_list << '週報%{cWeek}'
 a.save
+
+Article.seed do |s|
+  s.user_id = user2.id
+  s.title   = 'お気に入り記事'
+  s.text    = '''不思議な力でお気に入りがたくさんつく記事です'''
+end
+a = Article.last
+# user1: 6fav, user2: 5fav
+11.times do |n|
+  a.add_star([user1, user2][n % 2])
+end

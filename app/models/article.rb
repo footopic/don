@@ -77,4 +77,8 @@ class Article < ActiveRecord::Base
     @compare.template_variable(tag_list)
   end
 
+  def add_star(user)
+    stars.create(user_id: user.id)
+  end
+
 end
