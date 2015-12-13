@@ -29,8 +29,17 @@ FactoryGirl.define do
     text
     user
     after(:create) do |article|
+      # add tag
       tags = 3.times.map { FFaker::Lorem.word }
       article.update_attributes(tag_list: tags)
+      # add comment
+      4.times do
+        article.comments.create(user_id: article.user.id, text: FFaker::Lorem.sentence)
+      end
+      # add star
+      4.times do
+        article.add_star(article.user)
+      end
     end
   end
 

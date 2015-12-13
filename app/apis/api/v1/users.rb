@@ -4,8 +4,6 @@ module API
       include Grape::Kaminari
 
       resource :users do
-        paginate per_page: 30, max_per_page: 50, offset: 0
-
         # GET /api/v1/users
         desc 'Get users'
         params do
@@ -16,7 +14,8 @@ module API
           if params[:include_details]
             with = Entity::V1::UserDetailEntity
           end
-          present User.all, with: with
+          users = User.all
+          present users, with: with
         end
 
         # GET /api/v1/users/show

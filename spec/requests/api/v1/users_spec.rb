@@ -24,7 +24,7 @@ RSpec.describe 'Users', type: :request do
       expect(@json['provider']).to eq @user.provider
       expect(@json['uid']).to eq @user.uid
       expect(@json['name']).to eq @user.name
-      expect(@json['article_count']).to eq @user.recent_articles.count
+      expect(@json['article_count']).to eq @user.articles.recently_create.count
     end
 
     it 'user_id, uid での取得が出来る' do

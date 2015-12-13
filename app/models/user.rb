@@ -64,8 +64,4 @@ class User < ActiveRecord::Base
     image.store!(file)
     save
   end
-
-  def recent_articles
-    articles.order('created_at DESC').limit(5)
-  end
 end
