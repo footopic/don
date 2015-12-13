@@ -8,8 +8,5 @@ FactoryGirl.define do
     uid
     name
     screen_name
-    after(:create) do |user|
-      3.times { create(:article, user: user) }
-    end
   end
 end

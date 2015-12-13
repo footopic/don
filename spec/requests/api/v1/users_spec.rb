@@ -1,10 +1,12 @@
 require 'rails_helper'
+# require 'pry-rails'
 
 RSpec.describe 'Users', type: :request do
   describe 'GET /api/v1/users/show:' do
     let(:path) { '/api/v1/users/show' }
     before do
       @user = create(:user)
+      create_list(:article, 5, user: @user)
       get path, user_id: @user.id
     end
 
@@ -36,7 +38,7 @@ RSpec.describe 'Users', type: :request do
   describe 'GET /api/v1/users' do
     let(:path) { '/api/v1/users' }
     before do
-      @users = 3.times.map { create(:user) }
+      @users = create_list(:user, 3)
       get path
     end
 

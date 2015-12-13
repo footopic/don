@@ -1,5 +1,5 @@
 require 'rails_helper'
-require 'pry-rails'
+# require 'pry-rails'
 
 RSpec.describe 'Articles', type: :request do
   describe 'GET /api/v1/articles/show' do
@@ -7,7 +7,6 @@ RSpec.describe 'Articles', type: :request do
     before do
       @article = create(:article)
       get path, id: @article.id
-      @json = JSON.parse(response.body)
     end
 
     it '200が返ってくる' do
@@ -16,6 +15,7 @@ RSpec.describe 'Articles', type: :request do
     end
 
     it '取得データの構造は正しいこと' do
+      @json = JSON.parse(response.body)
       expect(@json['id']).to eq @article.id
       expect(@json['created_at']).to eq @article.created_at.as_json
       expect(@json['updated_at']).to eq @article.updated_at.as_json
@@ -32,10 +32,10 @@ RSpec.describe 'Articles', type: :request do
       get path
     end
 
-
     it '一覧の取得' do
       @json = JSON.parse(response.body)
-      # TODO
+      expect(@json.size).to eq @articles.count
+      expect(@json[0]['id']).to eq @articles[0].id
     end
   end
 end
