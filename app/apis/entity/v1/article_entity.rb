@@ -4,9 +4,7 @@ module Entity
       expose :title
       expose :text
       expose :user, using: UserEntity
-      expose :tags do |article|
-        article.tag_list
-      end
+      expose :tags, as: :tag_list
       expose :star_counts do |article|
         article.stars.count
       end
