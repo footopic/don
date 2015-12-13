@@ -22,6 +22,24 @@ RSpec.describe 'Articles', type: :request do
 
       expect(@json['title']).to eq @article.title
       expect(@json['text']).to eq @article.text
+      expect(@json['comment_count']).to eq @article.comments.count
+      expect(@json['history_count']).to eq @article.histories.count
+      expect(@json['star_count']).to eq @article.stars.count
+    end
+
+    it 'コメントの構造は正しいこと' do
+      @json = JSON.parse(response.body)
+      comment = @json['comments'][0]
+      expect(comment['id']).to eq @article.comments[0].id
+      expect(comment['text']).to eq @article.comments[0].text
+      expect(comment['user']['id']).to eq @article.comments[0].user.id
+    end
+
+    it 'スターの構造は正しいこと' do
+      @json = JSON.parse(response.body)
+      star = @json['star_count_list'][0]
+      expect(star['count']).to eq @article.star_count_list[0][:count]
+      expect(star['user']['id']).to eq @article.star_count_list[0][:user].id
     end
   end
 
