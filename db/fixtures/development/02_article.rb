@@ -126,3 +126,14 @@ a = Article.last
 11.times do |n|
   a.add_star([user1, user2][n % 2])
 end
+
+Article.seed do |s|
+  s.user_id = user2.id
+  s.title   = '編集履歴記事'
+  s.text    = '''がんがん編集てしまう〜'''
+end
+a = Article.last
+# user1: 6fav, user2: 5fav
+11.times do |n|
+  a.add_star([user1, user2][n % 2])
+end

@@ -1,7 +1,6 @@
 module Entity
   module V1
-    class CommentEntity < BaseEntity
-      expose :text
+    class HistoryEntity < BaseEntity
       expose :user, using: UserSimpleEntity
     end
   end

@@ -5,9 +5,9 @@ module Entity
       expose :text
       expose :user, using: UserEntity
       expose :tags, as: :tag_list
-      expose :star_counts do |article|
-        article.stars.count
-      end
+      expose :history_counts do |a| a.histories.count end
+      expose :comment_counts do |a| a.comments.count end
+      expose :star_counts do |a| a.stars.count end
     end
   end
 end
