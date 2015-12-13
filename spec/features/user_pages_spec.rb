@@ -27,6 +27,25 @@ RSpec.feature 'ユーザページ', type: :feature do
       end
     end
 
+    it '投稿数が0であること' do
+      within('.users') do
+        expect(page).to have_content(0)
+      end
+    end
+
+    context '記事を作成したとき' do
+      let!(:article) { create(:article, user: user) }
+      before do
+        visit users_path
+      end
+
+      it '投稿数が1になること' do
+        within('.users') do
+          expect(page).to have_content(1.to_s)
+        end
+      end
+    end
+
     context '別のユーザがいるとき' do
       let!(:other) { create(:other_user) }
       before do
