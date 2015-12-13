@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe "Users", type: :request do
+RSpec.describe 'Users', type: :request do
   describe 'GET /api/v1/users/show: uid' do
     before do
-      @user = FactoryGirl.create(:user)
+      @user = create(:user)
       get '/api/v1/users/show', user_id: @user.id
       @json = JSON.parse(response.body)
     end
