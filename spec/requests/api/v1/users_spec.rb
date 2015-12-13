@@ -1,5 +1,5 @@
 require 'rails_helper'
-# require 'pry-rails'
+require 'pry-rails'
 
 RSpec.describe 'Users', type: :request do
   describe 'GET /api/v1/users/show:' do
