@@ -28,5 +28,10 @@ FactoryGirl.define do
     title
     text
     user
+    after(:create) do |article|
+      tags = 3.times.map { FFaker::Lorem.word }
+      article.update_attributes(tag_list: tags)
+    end
   end
+
 end
