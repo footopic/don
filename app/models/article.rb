@@ -27,6 +27,7 @@ class Article < ActiveRecord::Base
 
   scope :sorted_by_recently, -> { reorder('updated_at DESC') }
   scope :recently_edit, -> { reorder('updated_at DESC').take(5) }
+  scope :recently_create, -> { reorder('created_at DESC').take(5) }
 
   acts_as_taggable
 
