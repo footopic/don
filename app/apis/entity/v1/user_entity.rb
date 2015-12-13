@@ -6,7 +6,9 @@ module Entity
       expose :uid
       expose :name
       expose :image do
-        expose :url do |user| user.image.url end
+        expose :url do |user|
+          user.image.url
+        end
         expose :thumb_url do |user| user.image.thumb.url end
       end
 

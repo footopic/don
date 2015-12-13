@@ -77,6 +77,15 @@ class Article < ActiveRecord::Base
     @compare.template_variable(tag_list)
   end
 
+  def star_count_list
+    stars = self.stars.includes(:user)
+    count_list = Hash.new(0)
+    stars.map do |star|
+      count_list[star.user] += 1
+    end
+    count_list.map { |user, c| { user: user, count: c }}
+  end
+
   def add_star(user)
     stars.create(user_id: user.id)
   end

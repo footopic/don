@@ -4,6 +4,7 @@ module Entity
       expose :comments, using: CommentEntity do |article|
         article.comments
       end
+      expose :star_count_list, using: StarValueEntity
     end
   end
 end

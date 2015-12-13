@@ -7,6 +7,9 @@ module Entity
       expose :tags do |article|
         article.tag_list
       end
+      expose :star_counts do |article|
+        article.stars.count
+      end
     end
   end
 end
