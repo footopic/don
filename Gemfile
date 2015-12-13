@@ -47,6 +47,7 @@ group :development, :test do
   gem 'terminal-notifier-guard', '~> 1.6.1'
   gem 'factory_girl_rails'
   gem 'capybara'
+  gem 'ffaker'
 end
 
 group :test do
