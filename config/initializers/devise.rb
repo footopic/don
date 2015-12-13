@@ -246,7 +246,7 @@ Devise.setup do |config|
   #   manager.default_strategies(scope: :user).unshift :some_external_strategy
   # end
   google_config = Rails.application.secrets.google
-  config.omniauth :google_oauth2, google_config['client_id'], google_config['client_secret'], { }
+  config.omniauth :google_oauth2, google_config['client_id'], google_config['client_secret'], skip_jwt: true
 
 
   # ==> Mountable engine configurations
