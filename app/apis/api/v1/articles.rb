@@ -7,7 +7,7 @@ module API
 
         # GET /api/v1/articles
         desc 'Get articles'
-        paginate per_page: 10, max_per_page: 20, offset: 0
+        paginate per_page: 10, max_per_page: 50, offset: 0
         params do
           optional :include_details, type: Boolean, default: false, desc: 'Include article details info.'
         end
@@ -16,7 +16,8 @@ module API
           if params[:include_details]
             with = Entity::V1::ArticleDetailEntity
           end
-          present paginate(Article.all), with: with
+          articles = paginate(Article.all)
+          present articles, with: with
         end
 
         # GET /api/v1/articles/recent
@@ -30,7 +31,8 @@ module API
           if params[:include_details]
             with = Entity::V1::ArticleDetailEntity
           end
-          present paginate(Article.order('id DESC')), with: with
+          articls = paginate(Article.order('id DESC'))
+          present articls, with: with
         end
 
         # GET /api/v1/articles/show
@@ -38,9 +40,11 @@ module API
         params do
           requires :id, type: Integer, desc: 'Article id.'
         end
+
         get :show do
           with = Entity::V1::ArticleDetailEntity
-          present Article.find(params[:id]), with: with
+          article = Article.find(params[:id])
+          present article, with: with
         end
 
       end
