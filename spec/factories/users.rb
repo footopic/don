@@ -19,6 +19,9 @@
 
 FactoryGirl.define do
 
+  sequence :uid do
+    10.times.map { Random.rand(10) } .join
+  end
   sequence :name do
     FFaker::Name.name
   end
@@ -28,10 +31,26 @@ FactoryGirl.define do
   end
 
   factory :user do
+    uid
+    provider 'google_oauth2'
+    screen_name
+    name
+    image File.open(File.join(Rails.root, 'spec/factories/sample.jpg'))
+  end
+
+  factory :user_eri do
     uid '12345678'
     provider 'google_oauth2'
     screen_name 'eri'
     name 'エリザベート・バートリー'
+    image File.open(File.join(Rails.root, 'spec/factories/sample.jpg'))
+  end
+
+  factory :user_toshino do
+    uid '123456789'
+    provider 'google_oauth2'
+    screen_name 'toshino'
+    name '歳納京子'
     image File.open(File.join(Rails.root, 'spec/factories/sample.jpg'))
   end
 
