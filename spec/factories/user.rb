@@ -4,7 +4,7 @@ FactoryGirl.define do
   sequence(:screen_name) { |n| "name_id_#{n}" }
 
   factory :user do
-    provider 'test'
+    provider 'google_oauth2'
     uid
     name
     screen_name

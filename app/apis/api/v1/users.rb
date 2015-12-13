@@ -31,7 +31,8 @@ module API
           if params[:user_id]
             present User.find(params[:user_id]), with: with
           else
-            present User.find_by(uid: params[:uid], provider: 'google_oauth2'), with: with
+            user = User.find_by(uid: params[:uid], provider: 'google_oauth2')
+            present user, with: with
           end
         end
       end
