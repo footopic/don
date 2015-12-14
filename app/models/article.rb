@@ -79,12 +79,12 @@ class Article < ActiveRecord::Base
   end
 
   def star_count_list
-    stars = self.stars.includes(:user)
+    stars      = self.stars.includes(:user)
     count_list = Hash.new(0)
     stars.map do |star|
       count_list[star.user] += 1
     end
-    count_list.map { |user, c| { user: user, count: c }}
+    count_list.map { |user, c| { user: user, count: c } }
   end
 
   def add_star(user)
