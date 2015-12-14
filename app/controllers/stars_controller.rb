@@ -10,7 +10,7 @@ class StarsController < ApplicationController
 
     respond_to do |format|
       if @star.save
-        format.js { render 'stars/create' }
+        format.js { render 'stars/stars' }
       else
         format.json { render json: @star.errors, status: :unprocessable_entity }
       end
@@ -20,10 +20,11 @@ class StarsController < ApplicationController
   # DELETE /stars/1
   # DELETE /stars/1.json
   def destroy
+    article = @star.article
     @star.destroy
+    @stars = article.stars.includes(:user)
     respond_to do |format|
-      format.html { redirect_to stars_url, notice: 'Star was successfully destroyed.' }
-      format.json { head :no_content }
+      format.js { render 'stars/stars' }
     end
   end
 
