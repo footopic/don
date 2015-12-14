@@ -38,17 +38,16 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1/edit
   def edit
-    History.create(user: current_user, article: @article)
   end
 
   # POST /articles
   # POST /articles.json
   def create
     @article = current_user.articles.create(article_params)
-    History.create(user: current_user, article: @article)
 
     respond_to do |format|
       if @article.save
+        History.create(user: current_user, article: @article)
         SlackHook.new.post(current_user, t('.slack_message', {
             user:  @article.user.screen_name,
             title: @article.title,
@@ -68,6 +67,8 @@ class ArticlesController < ApplicationController
   def update
     respond_to do |format|
       if @article.update(article_params)
+        History.create(user: current_user, article: @article)
+
         SlackHook.new.post(current_user, t('.slack_message', {
             user:  @article.user.screen_name,
             title: @article.title,
