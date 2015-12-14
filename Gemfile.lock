@@ -134,6 +134,8 @@ GEM
     dotenv-rails (2.0.2)
       dotenv (= 2.0.2)
       railties (~> 4.0)
+    enumerize (1.1.0)
+      activesupport (>= 3.2)
     equalizer (0.0.11)
     erubis (2.7.0)
     excon (0.45.4)
@@ -544,6 +546,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   devise
   dotenv-rails
+  enumerize
   factory_girl_rails
   ffaker
   fog
