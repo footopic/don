@@ -10,6 +10,8 @@ class SlackHook
   def post(user, msg, text)
     icon_url = File.join(BASE_URL, user.image_url)
 
-    @notifier.ping msg, icon_url: icon_url, username: user.screen_name + '@丼', attachments: [{ text: text }]
+    if Rails.env == 'production'
+      @notifier.ping msg, icon_url: icon_url, username: user.screen_name + '@丼', attachments: [{ text: text }]
+    end
   end
 end
