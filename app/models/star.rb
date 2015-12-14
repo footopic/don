@@ -17,4 +17,7 @@
 class Star < ActiveRecord::Base
   belongs_to :article
   belongs_to :user
+
+  validates :user, presence: true
+  validates :article, presence: true
 end

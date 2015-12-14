@@ -91,5 +91,4 @@ class Article < ActiveRecord::Base
   def add_star(user)
     stars.create(user_id: user.id)
   end
-
 end
