@@ -13,8 +13,8 @@
       </div>
     </div>
     <div class="col-xs-4 pull-right">
-      <% if current_user.equal_id? @user %>
-        <%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-default' %>
+      <% if current_user == @user %>
+          <%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-default' %>
       <% end %>
     </div>
   </div>

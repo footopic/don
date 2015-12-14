@@ -27,8 +27,9 @@ class User < ActiveRecord::Base
 
   validates :provider, presence: true
   validates :uid, presence: true
-  validates :screen_name, presence: true
+  validates :screen_name, presence: true, uniqueness: { case_sensitive: false }
   validates :name, presence: true
+
 
   devise :omniauthable, :omniauth_providers => [:google_oauth2]
 
@@ -40,10 +41,9 @@ class User < ActiveRecord::Base
     image.url || 'noimg.png'
   end
 
-  def equal_id?(user)
-    id.equal? user.id
+  def to_param
+    screen_name
   end
-
 
   def self.from_omniauth(access_token)
     data = access_token.info

@@ -6,7 +6,7 @@
     <div class="info-head">
       <div class="created">
         <span class="author">
-          <%= link_to article.user.screen_name, user_path(id: article.user.id) %>
+          <%= link_to article.user.screen_name, user_path(article.user) %>
         </span>
         が
         <span class="date">

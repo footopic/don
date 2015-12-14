@@ -27,7 +27,7 @@ FactoryGirl.define do
   end
 
   sequence :screen_name do
-    FFaker::Internet.user_name
+    FFaker::InternetSE.login_user_name
   end
 
   factory :user do
