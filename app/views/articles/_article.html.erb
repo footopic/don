@@ -29,6 +29,12 @@
       </h2>
 
       <%= link_tags_list_for(article.tags) %>
+      
+      <div class="star">
+        <% article.stars.each do |star| %>
+            <%= render partial: 'stars/article_star', locals: { star: star } %>
+        <% end %>
+      </div>
     </div>
 
   </div>
