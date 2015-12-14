@@ -32,7 +32,7 @@
       
       <div class="star">
         <% article.stars.each do |star| %>
-            <%= render partial: 'stars/star', locals: { star: star } %>
+            <%= render partial: 'stars/article_star', locals: { star: star } %>
         <% end %>
       </div>
     </div>
