@@ -48,6 +48,16 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'ffaker'
+
+  # Use Capistrano
+  gem 'capistrano', '~> 3.4.0'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-bundler'
+  gem 'capistrano-nginx'
+  gem 'capistrano-npm'
+  gem 'capistrano3-unicorn'
+  gem 'capistrano-safe-deploy-to', '~> 1.1.1'
 end
 
 group :test do
@@ -59,15 +69,5 @@ group :development do
   gem 'spring'
   gem 'annotate'
   gem 'pry-rails'
-
-  # Use Capistrano
-  gem 'capistrano', '~> 3.4.0'
-  gem 'capistrano-rails'
-  gem 'capistrano-rbenv'
-  gem 'capistrano-bundler'
-  gem 'capistrano-nginx'
-  gem 'capistrano-npm'
-  gem 'capistrano3-unicorn'
-  gem 'capistrano-safe-deploy-to', '~> 1.1.1'
 end
 
