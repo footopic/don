@@ -31,7 +31,7 @@
       <%= link_tags_list_for(article.tags) %>
 
       <div class="star">
-        <% article.stars.group(:user_id).includes(:article).each do |star| %>
+        <% article.stars.group(:user_id).each do |star| %>
             <%= render partial: 'stars/article_star', locals: { star: star } %>
         <% end %>
       </div>
