@@ -75,4 +75,28 @@ RSpec.feature 'ユーザページ', type: :feature do
       end
     end
   end
+
+  describe 'ユーザページに遷移したとき' do
+    let(:user) { create(:user) }
+    before do
+      login(user)
+      visit user_path(user)
+    end
+
+    it 'タイトルが正しいこと' do
+      expect(page).to have_title("#{user.screen_name} - 丼")
+    end
+  end
+
+  describe 'ユーザ設定ページに遷移したとき' do
+    let(:user) { create(:user) }
+    before do
+      login(user)
+      visit edit_user_path(user)
+    end
+
+    it 'タイトルが正しいこと' do
+      expect(page).to have_title('ユーザ設定 - 丼')
+    end
+  end
 end
