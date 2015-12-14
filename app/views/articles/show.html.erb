@@ -7,7 +7,7 @@
       <% end %>
     </h1>
     <span class="author">
-        <%= link_to @article.user.screen_name, user_path(@article.user.id) %>
+        <%= link_to @article.user.screen_name, user_path(@article.user) %>
     </span>
     が
     <span class="date"><%= l(@article.updated_at) %></span>
@@ -45,7 +45,7 @@
     <hr>
 
     <div class="star">
-      <%= link_to stars_path(star: { article_id: @article, user_id: current_user }), class: 'star__button', method: :post, remote: true do %>
+      <%= link_to stars_path(star: { article_id: @article, user_id: current_user.id }), class: 'star__button', method: :post, remote: true do %>
           <%= fa_icon 'thumbs-o-up' %>
       <% end %>
 
