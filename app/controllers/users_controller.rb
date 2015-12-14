@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @articles = Article.sorted_by_recently.includes(:user, :tags).where(user: @user).page params[:page]
+    @articles = Article.sorted_by_recently.includes(:user, :tags, :stars => :user).where(user: @user).page params[:page]
   end
 
   # GET /users/new
