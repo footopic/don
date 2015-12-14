@@ -9,7 +9,6 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { :omniauth_callbacks => 'users/omniauth_callbacks' }
 
-  resources :users, only: [:index, :edit, :show, :update]
   devise_scope :user do
     get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
   end
@@ -23,4 +22,6 @@ Rails.application.routes.draw do
   resources :stars, only: [:create, :destroy]
   resources :comments, only: [:create, :update, :destroy]
   resources :uploader, only: [:index, :form, :upload, :download]
+  resources :users, only: [:index]
+  resources :users, path: '/', only: [:edit, :show, :update]
 end
