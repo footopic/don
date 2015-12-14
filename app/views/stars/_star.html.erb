@@ -1,4 +1,4 @@
-<% if current_user.id == star.user.id %>
+<% if current_user == star.user %>
     <%= link_to star_path(star), method: :delete, remote: true do %>
         <%= image_tag(star.user.image.thumb, size: '25x25') %>
         <span class="star__box">
