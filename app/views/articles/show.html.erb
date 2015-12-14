@@ -7,7 +7,7 @@
       <% end %>
     </h1>
     <span class="author">
-        <%= link_to @article.user.screen_name, user_path(@article.user.id) %>
+        <%= link_to @article.user.screen_name, user_path(@article.user) %>
     </span>
     が
     <span class="date"><%= l(@article.updated_at) %></span>
