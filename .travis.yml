@@ -6,7 +6,10 @@ rvm:
 bundler_args: --jobs=2
 script: bundle exec rspec
 after_success:
-    - openssl aes-256-cbc -K $encrypted_d939f3711a53_key -iv $encrypted_d939f3711a53_iv -in footopic.enc -out ~\/.ssh/footopic -d
-    - gem install capistrano-rails
-    - bundle exec cap staging deploy
+    - "openssl aes-256-cbc -K $encrypted_d939f3711a53_key -iv $encrypted_d939f3711a53_iv -in footopic.enc -out ~/.ssh/footopic -d"
+    - "eval $(ssh-agent)"
+    - "chmod 600 ~/.ssh/footopic"
+    - "ssh-add ~/.ssh/footopic"
+    - "gem install capistrano-rails"
+    - "bundle exec cap staging deploy"
 cache: bundler
