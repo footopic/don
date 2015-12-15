@@ -26,7 +26,7 @@ $ ->
       (json) =>
         $li = $('<li />').attr('tag_name', tag)
         $li.append $('<a />').attr('href', '/articles?tag=' + tag).html(tag)
-        $li.append $('<a />').attr('href', '#').html('x')
+        $li.append $('<a />').attr('href', '#').addClass('delete-tag').html('x')
         $('.tag_list').append($li)
 
   # タグ削除ボタン
