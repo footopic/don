@@ -34,7 +34,7 @@
             <li>
               <!-- search form -->
               <%= search_form_for @q, url: search_articles_path, class: 'form-group', html: {class: 'navbar-form navbar-left'} do |f| %>
-                  <%= f.search_field :title_cont, placeholder: '検索', class: 'form-control' %>
+                  <%= f.search_field :title_or_user_screen_name_or_tags_name_cont, placeholder: '検索', class: 'form-control' %>
                   <%= f.submit '検索', class: 'btn btn-default' %>
               <% end %>
             </li>
