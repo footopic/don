@@ -142,3 +142,19 @@ a = Article.last
 11.times do |n|
   a.add_star([user1, user2][n % 2])
 end
+
+Article.seed do |s|
+  s.user_id = user2.id
+  s.title   = 'ロックされてる他人の記事(タグ付き)'
+  s.text    = '''タグ編集させないぞ'''
+  s.status   = 'publish'
+  s.lock    = true
+end
+a = Article.last
+a.tag_list << 'hoge'
+a.tag_list << 'fuga'
+# user1: 6fav, user2: 5fav
+11.times do |n|
+  a.add_star([user1, user2][n % 2])
+end
+a.save
