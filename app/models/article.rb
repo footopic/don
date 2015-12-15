@@ -8,6 +8,7 @@
 #  user_id    :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  status     :string
 #
 # Indexes
 #
@@ -16,6 +17,9 @@
 #
 
 class Article < ActiveRecord::Base
+  extend Enumerize
+  enumerize :status, in: [:publish, :limit, :wip], default: :limit
+
   belongs_to :user
   has_many :comments, dependent: :destroy
   has_many :histories
