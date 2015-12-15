@@ -19,15 +19,16 @@
 
 FactoryGirl.define do
 
-  sequence :uid do
-    10.times.map { Random.rand(10) } .join
+  sequence :uid do |n|
+    "#{n}"
   end
+
   sequence :name do
     FFaker::Name.name
   end
 
-  sequence :screen_name do
-    FFaker::InternetSE.login_user_name
+  sequence :screen_name do |n|
+    "screen_name_#{n}"
   end
 
   factory :user do
