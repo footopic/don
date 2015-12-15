@@ -1,3 +1,31 @@
+#edit_tag {
+}
+
+.tag_list_block {
+  .add_tag_form {
+    display: inline;
+  }
+  #add_tag_text {
+    color: black;
+    border: none;
+    line-height: 1em;
+  }
+  a.delete-tag {
+    padding: 0px 5px;
+    background: gray;
+    margin: 0px 1px 0 4px;
+    color: white !important;
+  }
+  #add_tag_btn {
+    background: #D0D0D0;
+    color: black;
+    padding: 0px 9px 2px;
+    font-weight: bold;
+    &:hover {
+      background: #777777;
+    }
+  }
+}
 
 .tag_list {
   display: inline-flex;

@@ -9,6 +9,7 @@ module API
       mount API::V1::Users
       mount API::V1::Comments
       mount API::V1::Templates
+      mount API::V1::Tags
 
       add_swagger_documentation base_path: '/api',
                                 api_version: 'v1',
