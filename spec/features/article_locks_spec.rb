@@ -17,6 +17,10 @@ RSpec.feature '記事の保護', type: :feature do
         end
       end
 
+      it 'タグ編集ボタンが表示されること' do
+        expect(page).to have_css('#edit_tag')
+      end
+
       it { expect(page).to have_link('記事の保護を解除する') }
 
       context '解除リンクをクリックしたとき' do
@@ -41,6 +45,10 @@ RSpec.feature '記事の保護', type: :feature do
         within('.article-titles') do
           expect(page).to have_css('.fa-pencil')
         end
+      end
+
+      it 'タグ編集ボタンが表示されること' do
+        expect(page).to have_css('#edit_tag')
       end
 
       it { expect(page).to have_link('記事を保護する') }
@@ -75,6 +83,10 @@ RSpec.feature '記事の保護', type: :feature do
         end
       end
 
+      it 'タグ編集ボタンが表示されること' do
+        expect(page).to have_css('#edit_tag')
+      end
+
       it '編集画面に遷移すること' do
         within('.article-titles') do
           find('.title a').click
@@ -97,6 +109,10 @@ RSpec.feature '記事の保護', type: :feature do
         within('.article-titles') do
           expect(page).not_to have_css('.fa-pencil')
         end
+      end
+
+      it 'タグ編集ボタンが表示されないこと' do
+        expect(page).not_to have_css('#edit_tag')
       end
 
       it '編集ボタンが表示されないこと' do
