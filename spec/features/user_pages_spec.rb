@@ -76,6 +76,9 @@ RSpec.feature 'ユーザページ', type: :feature do
     end
   end
 
+  context '編集画面に遷移したとき' do
+  end
+
   describe 'ユーザページに遷移したとき' do
     let(:user) { create(:user) }
     before do

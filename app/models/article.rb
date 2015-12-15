@@ -9,6 +9,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  status     :string
+#  lock       :boolean          default(FALSE)
 #
 # Indexes
 #
@@ -37,6 +38,14 @@ class Article < ActiveRecord::Base
   acts_as_taggable
 
   paginates_per 20
+
+  def written_by?(user)
+    user == self.user
+  end
+
+  def unlock?
+    !self.lock
+  end
 
   def to_date_str
     # TODO: use module
