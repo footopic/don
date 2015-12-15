@@ -32,7 +32,10 @@
     </span>
 
 
-    <%= link_tags_list_for(@article.tags) %>
+    <div class="tag_list_block">
+      <%= link_tags_list_for(@article.tags) %>
+      <a id="edit_tag" href="#" article-id="<%= @article.id %>">タグ編集</a>
+    </div>
 
     <% if user_signed_in? && current_user.owner?(@article) %>
         <% if @article.unlock? %>
