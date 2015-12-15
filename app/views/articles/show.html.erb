@@ -20,9 +20,16 @@
           編集
       <% end %>
     </span>
+
+    <% unless @article.status.publish? %>
+        <%= fa_icon 'lock' %>
+    <% end %>
+
     <%= link_tags_list_for(@article.tags) %>
-    <% if current_user.owner?(@article) %>
-        <%= link_to '削除', @article, method: :delete, data: { confirm: '本当に削除しますか？' } %>
+    <% if user_signed_in? %>
+        <% if current_user.owner?(@article) %>
+            <%= link_to '削除', @article, method: :delete, data: { confirm: '本当に削除しますか？' } %>
+        <% end %>
     <% end %>
   </div>
 
@@ -46,8 +53,10 @@
     <hr>
 
     <div class="star">
-      <%= link_to stars_path(star: { article_id: @article, user_id: current_user.id }), class: 'star__button', method: :post, remote: true do %>
-          <%= fa_icon 'thumbs-o-up' %>
+      <% if user_signed_in? %>
+          <%= link_to stars_path(star: { article_id: @article, user_id: current_user.id }), class: 'star__button', method: :post, remote: true do %>
+              <%= fa_icon 'thumbs-o-up' %>
+          <% end %>
       <% end %>
 
       <div id="star__list">
@@ -60,7 +69,9 @@
     <div id="comment">
       <%= render @comments %>
     </div>
-    <%= render 'comments/form' %>
+    <% if user_signed_in? %>
+        <%= render 'comments/form' %>
+    <% end %>
   </div>
 
   <div class="col-md-4">

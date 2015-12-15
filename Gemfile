@@ -39,6 +39,8 @@ gem 'grape-kaminari'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'slack-notifier'
 gem 'activeadmin', '~> 1.0.0.pre2'
+gem 'enumerize'
+gem 'simple_form'
 
 group :development, :test do
   gem 'byebug'

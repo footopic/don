@@ -1,7 +1,8 @@
 # noinspection ALL
 class ArticlesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index]
+  skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :published?, only: [:show]
   before_action :check_article_owner, only: [:destroy]
 
   # GET /articles
@@ -101,6 +102,12 @@ class ArticlesController < ApplicationController
 
   private
 
+  def published?
+    unless @article.status.publish?
+      authenticate_user!
+    end
+  end
+
   # Use callbacks to share common setup or constraints between actions.
   def set_article
     @article = Article.find(params[:id])
@@ -108,7 +115,7 @@ class ArticlesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def article_params
-    params.require(:article).permit(:title, :text, :tag_list, :user_id)
+    params.require(:article).permit(:title, :text, :status, :tag_list, :user_id)
   end
 
   def check_article_owner

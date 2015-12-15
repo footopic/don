@@ -20,6 +20,10 @@
               編集
           <% end %>
         </span>
+
+        <% unless article.status.publish? %>
+            <%= fa_icon 'lock' %>
+        <% end %>
       </div>
     </div>
 

@@ -10,6 +10,7 @@ ja:
     attributes:
       article:
         title: タイトル
+        status: "公開"
     attributes:
       user:
         image: アイコン
@@ -218,3 +219,9 @@ ja:
   comments:
     create:
       slack_message: "%{user}が[%{title}](%{url})にコメントしました"
+  enumerize:
+    defaults:
+      status:
+        publish: "公開"
+        limit: "限定公開"
+        wip: "WIP"

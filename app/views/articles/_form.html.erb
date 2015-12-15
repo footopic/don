@@ -1,19 +1,7 @@
-<%= form_for(@article) do |f| %>
-    <% if @article.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved:</h2>
-
-          <ul>
-            <% @article.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
-
+<%= simple_form_for(@article) do |f| %>
     <div class="field">
       <div class="input-group">
-        <input type="text" class="form-control" id="pre_article_title" placeholder="タイトル #タグ1 #タグ2" />
+        <input type="text" class="form-control" id="pre_article_title" placeholder="タイトル #タグ1 #タグ2"/>
         <%= f.text_field :title, class: 'hide' %>
 
         <div class="input-group-btn">
@@ -36,12 +24,16 @@
     </div>
 
     <hr>
+
     <div class="field actions">
       <div class="row">
         <div class="col-sm-4">
           <a id="upload-btn" class="btn btn-default"><%= fa_icon 'file-image-o' %></a>
         </div>
-        <div class="col-sm-offset-4 col-sm-4">
+        <div class="col-sm-4">
+          <%= f.input :status, label: false %>
+        </div>
+        <div class="col-sm-4">
           <%= f.submit id: 'btn-submit', class: 'form-control' %>
         </div>
       </div>
