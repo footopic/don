@@ -4,11 +4,30 @@ $ ->
     if not $(this).hasClass('on')
       $(this).addClass('on')
       $(this).text('完了')
+      $('.add_tag_form').removeClass('hide');
       $('.delete-tag').removeClass('hide')
     else
       $(this).removeClass('on')
       $(this).text('タグ編集')
+      $('.add_tag_form').addClass('hide');
       $('.delete-tag').addClass('hide')
+
+  $('#add_tag_btn').click ->
+    tag = $('#add_tag_text').val()
+    if tag == "" or $('.tag_list').children("li[tag_name=#{tag}]").length > 0
+      return
+
+    $('#add_tag_text').val('')
+    data =
+      article_id: $('#edit_tag').attr('article-id')
+      tag: tag
+    $.post '/api/v1/tags',
+      data,
+      (json) =>
+        $li = $('<li />').attr('tag_name', tag)
+        $li.append $('<a />').attr('href', '/articles?tag=' + tag).html(tag)
+        $li.append $('<a />').attr('href', '#').html('x')
+        $('.tag_list').append($li)
 
   # タグ削除ボタン
   $('.delete-tag').click ->
@@ -19,11 +38,5 @@ $ ->
       url: '/api/v1/tags'
       type: 'DELETE'
       data: data
-      success: (json) ->
-        for val in json
-          console.log val
-          $li = $('<a />').attr()
-          # concat content_tag(:a, tag.name, href: articles_path(tag: tag.name))
-          # concat content_tag(:a, 'x', href: '#', class: 'delete-tag hide', tag_text: tag.name)
-          $('.tag_list').append()
-    $(this).parent().remove()
+      success: (json) =>
+        $(this).parent().remove()

@@ -34,8 +34,14 @@
 
     <div class="tag_list_block">
       <%= link_tags_list_for(@article.tags) %>
+
+      <div class="add_tag_form hide">
+        <input type="text" id="add_tag_text">
+        <a id="add_tag_btn" href="#" article-id="<%= @article.id %>">+</a>
+      </div>
       <a id="edit_tag" href="#" article-id="<%= @article.id %>">タグ編集</a>
-    </div>
+
+      </div>
 
     <% if user_signed_in? && current_user.owner?(@article) %>
         <% if @article.unlock? %>
