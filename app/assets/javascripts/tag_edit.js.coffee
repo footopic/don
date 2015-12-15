@@ -1,4 +1,15 @@
 $ ->
+  del_clicked = ->
+    data =
+      article_id: $('#edit_tag').attr('article-id')
+      tag: $(this).attr('tag_text')
+    $.ajax
+      url: '/api/v1/tags'
+      type: 'DELETE'
+      data: data
+      success: (json) =>
+        $(this).parent().remove()
+
   # タグ編集モードトグル
   $('#edit_tag').click ->
     if not $(this).hasClass('on')
@@ -26,17 +37,8 @@ $ ->
       (json) =>
         $li = $('<li />').attr('tag_name', tag)
         $li.append $('<a />').attr('href', '/articles?tag=' + tag).html(tag)
-        $li.append $('<a />').attr('href', '#').addClass('delete-tag').html('x')
+        $li.append $('<a />').attr('href', '#').attr('tag_text', tag).addClass('delete-tag').html('x').click del_clicked
         $('.tag_list').append($li)
 
   # タグ削除ボタン
-  $('.delete-tag').click ->
-    data =
-      article_id: $('#edit_tag').attr('article-id')
-      tag: $(this).attr('tag_text')
-    $.ajax
-      url: '/api/v1/tags'
-      type: 'DELETE'
-      data: data
-      success: (json) =>
-        $(this).parent().remove()
+  $('.delete-tag').click del_clicked
