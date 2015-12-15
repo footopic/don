@@ -1,4 +1,4 @@
-dummy_text = '' 'test
+dummy_text = '''test
 ===
 
 ## マークダウン
@@ -28,7 +28,7 @@ test.fuga({ hoge: :fuga })
 5
 
 ## 絵文字 :+1:
-:100: :abc: :chicken: :sob:' ''
+:100: :abc: :chicken: :sob:'''
 
 user1 = User.first
 user2 = User.find(2)
@@ -70,7 +70,7 @@ end
 Article.seed do |s|
   s.user_id = user1.id
   s.title   = '*@&#(!@^$<script>alert(\'\')</script>:smile:'
-  s.text    = '' '*@&#(!@^$<script>alert(\'\')</script>:smile:' ''
+  s.text    = '''*@&#(!@^$<script>alert(\'\')</script>:smile:'''
 end
 
 History.seed do |s|
@@ -81,14 +81,14 @@ end
 Article.seed do |s|
   s.user_id = user1.id
   s.title   = 'カテゴリ1/タイトル #tag1 #tag2'
-  s.text    = '' '本文' ''
+  s.text    = '''本文'''
   s.lock    = true
 end
 
 Article.seed do |s|
   s.user_id = user2.id
   s.title   = 'コメント記事'
-  s.text    = '' '↓コメント一覧' ''
+  s.text    = '''↓コメント一覧'''
 end
 
 History.seed do |s|
@@ -100,7 +100,7 @@ end
 Article.seed do |s|
   s.user_id = user2.id
   s.title   = 'テンプレート変数 %{me} %{name}'
-  s.text    = '' '
+  s.text    = '''
 | 変数     | val      |
 |----------|----------|
 | year     | %{year}  |
@@ -112,7 +112,7 @@ Article.seed do |s|
 | cWeek    | %{cWeek} |
 | me       | %{me}    |
 | name     | %{name}  |
-' ''
+'''
 end
 a = Article.last
 a.tag_list << 'template'
@@ -122,7 +122,7 @@ a.save
 Article.seed do |s|
   s.user_id = user2.id
   s.title   = 'お気に入り記事'
-  s.text    = '' '不思議な力でお気に入りがたくさんつく記事です' ''
+  s.text    = '''不思議な力でお気に入りがたくさんつく記事です'''
 end
 a = Article.last
 # user1: 6fav, user2: 5fav
@@ -133,7 +133,7 @@ end
 Article.seed do |s|
   s.user_id = user2.id
   s.title   = '編集履歴記事'
-  s.text    = '' 'がんがん編集てしまう〜' ''
+  s.text    = '''がんがん編集てしまう〜'''
   s.status   = 'publish'
   s.lock    = true
 end
