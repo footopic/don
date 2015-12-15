@@ -3,23 +3,20 @@ module API
     class Articles < Grape::API
       include Grape::Kaminari
 
-      params do
-        optional :include_details, type: Boolean, default: false, desc: 'Include article details info.'
-      end
-      paginate per_page: 10, max_per_page: 20, offset: 0
       resource :articles do
 
         before_validation do
-          if params.key? :include_details
-            if params[:include_details]
-              @with = Entity::V1::ArticleDetailEntity
-            else
-              @with = Entity::V1::ArticleEntity
-            end
+          @with = Entity::V1::ArticleEntity
+          if params.key? :include_details and params[:include_details] == "true"
+            @with = Entity::V1::ArticleDetailEntity
           end
         end
         # GET /api/v1/articles
         desc 'Get articles'
+        paginate per_page: 10, max_per_page: 20, offset: 0
+        params do
+          optional :include_details, type: Boolean, default: false, desc: 'Include article details info.'
+        end
         get do
           articles = paginate(Article.all)
           present articles, with: @with
@@ -30,6 +27,10 @@ module API
         end
         # GET /api/v1/articles/recent
         desc 'Get articles'
+        paginate per_page: 10, max_per_page: 20, offset: 0
+        params do
+          optional :include_details, type: Boolean, default: false, desc: 'Include article details info.'
+        end
         get :recent do
           order = 'updated_at DESC'
           if params[:order_new]
