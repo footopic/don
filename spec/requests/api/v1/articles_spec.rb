@@ -6,6 +6,10 @@ RSpec.describe 'Articles', type: :request do
     let(:path) { '/api/v1/articles/show' }
     before do
       @article = create(:article)
+      # add comment
+      4.times do
+        @article.comments.create(user_id: @article.user.id, text: FFaker::Lorem.sentence)
+      end
       get path, id: @article.id
     end
 

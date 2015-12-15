@@ -3,36 +3,40 @@ module API
     class Articles < Grape::API
       include Grape::Kaminari
 
+      params do
+        optional :include_details, type: Boolean, default: false, desc: 'Include article details info.'
+      end
+      paginate per_page: 10, max_per_page: 20, offset: 0
       resource :articles do
 
+        before_validation do
+          if params.key? :include_details
+            if params[:include_details]
+              @with = Entity::V1::ArticleDetailEntity
+            else
+              @with = Entity::V1::ArticleEntity
+            end
+          end
+        end
         # GET /api/v1/articles
         desc 'Get articles'
-        paginate per_page: 10, max_per_page: 50, offset: 0
-        params do
-          optional :include_details, type: Boolean, default: false, desc: 'Include article details info.'
-        end
         get do
-          with = Entity::V1::ArticleEntity
-          if params[:include_details]
-            with = Entity::V1::ArticleDetailEntity
-          end
           articles = paginate(Article.all)
-          present articles, with: with
+          present articles, with: @with
         end
 
+        params do
+          optional :order_new, type: Boolean, default: false, desc: 'Sorted by new.'
+        end
         # GET /api/v1/articles/recent
         desc 'Get articles'
-        paginate per_page: 10, max_per_page: 20, offset: 0
-        params do
-          optional :include_details, type: Boolean, default: false, desc: 'Include article details info.'
-        end
         get :recent do
-          with = Entity::V1::ArticleEntity
-          if params[:include_details]
-            with = Entity::V1::ArticleDetailEntity
+          order = 'updated_at DESC'
+          if params[:order_new]
+            order = 'id DESC'
           end
-          articls = paginate(Article.order('id DESC'))
-          present articls, with: with
+          articls = paginate(Article.order(order))
+          present articls, with: @with
         end
 
         # GET /api/v1/articles/show
