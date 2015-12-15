@@ -7,6 +7,7 @@ module API
       mount API::V1::Images
       mount API::V1::Articles
       mount API::V1::Users
+      mount API::V1::Comments
       mount API::V1::Templates
 
       add_swagger_documentation base_path: '/api',
