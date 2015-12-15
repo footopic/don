@@ -21,7 +21,11 @@
           <% end %>
         </span>
 
-        <% unless article.status.publish? %>
+        <% if article.status.publish? %>
+            <%= fa_icon 'rocket' %>
+        <% end %>
+
+        <% unless article.unlock? %>
             <%= fa_icon 'lock' %>
         <% end %>
       </div>

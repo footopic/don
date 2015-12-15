@@ -1,10 +1,20 @@
 <% provide(:title, @article.title) %>
 <div class="article-header">
   <div class="article-titles">
-    <h1 calass="title">
+    <h1 class="title">
       <%= @article.title %>
-      <%= link_to edit_article_path(@article) do %>
-          <%= fa_icon 'pencil' %>
+      <% if @article.written_by?(current_user) || @article.unlock? %>
+          <%= link_to edit_article_path(@article) do %>
+              <%= fa_icon 'pencil' %>
+          <% end %>
+      <% end %>
+
+      <% if @article.lock? %>
+          <%= fa_icon 'lock' %>
+      <% end %>
+
+      <% if @article.status.publish? %>
+          <%= fa_icon 'rocket' %>
       <% end %>
     </h1>
     <span class="author">
@@ -21,16 +31,18 @@
       <% end %>
     </span>
 
-    <% unless @article.status.publish? %>
-        <%= fa_icon 'lock' %>
-    <% end %>
 
     <%= link_tags_list_for(@article.tags) %>
-    <% if user_signed_in? %>
-        <% if current_user.owner?(@article) %>
-            <%= link_to '削除', @article, method: :delete, data: { confirm: '本当に削除しますか？' } %>
+
+    <% if user_signed_in? && current_user.owner?(@article) %>
+        <% if @article.unlock? %>
+            <%= link_to '記事を保護する', article_lock_path(@article) %>
+        <% elsif @article.lock? %>
+            <%= link_to '記事の保護を解除する', article_unlock_path(@article) %>
         <% end %>
+        <%= link_to '削除', @article, method: :delete, data: { confirm: '本当に削除しますか？' } %>
     <% end %>
+
   </div>
 
   <div class="article-subinfos">

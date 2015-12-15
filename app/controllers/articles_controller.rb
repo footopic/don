@@ -4,6 +4,7 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
   before_action :published?, only: [:show]
   before_action :check_article_owner, only: [:destroy]
+  before_action :locked?, only: [:edit, :update, :destroy]
 
   # GET /articles
   # GET /articles.json
@@ -100,11 +101,45 @@ class ArticlesController < ApplicationController
     render :index
   end
 
+  def lock
+    @article = Article.find(params[:article_id])
+    return if @article.lock?
+    @article.lock = true
+    respond_to do |format|
+      if @article.save
+        format.html { redirect_to @article, flash: { success: '記事を保護しました' } }
+      else
+        format.html { render :edit }
+        format.json { render json: @article.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def unlock
+    @article = Article.find(params[:article_id])
+    return if @article.unlock?
+    @article.lock = false
+    respond_to do |format|
+      if @article.save
+        format.html { redirect_to @article, flash: { success: '保護を解除しました' } }
+      else
+        format.html { render :edit }
+        format.json { render json: @article.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
 
   def published?
     unless @article.status.publish?
       authenticate_user!
+    end
+  end
+
+  def locked?
+    if !@article.written_by?(current_user) && @article.lock
+      redirect_to @article
     end
   end
 
@@ -115,7 +150,7 @@ class ArticlesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def article_params
-    params.require(:article).permit(:title, :text, :status, :tag_list, :user_id)
+    params.require(:article).permit(:title, :text, :status, :tag_list, :user_id, :lock)
   end
 
   def check_article_owner

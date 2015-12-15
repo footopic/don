@@ -11,6 +11,7 @@ ja:
       article:
         title: タイトル
         status: "公開"
+        lock: "ロック"
     attributes:
       user:
         image: アイコン
@@ -222,6 +223,6 @@ ja:
   enumerize:
     defaults:
       status:
-        publish: "公開"
-        limit: "限定公開"
-        wip: "WIP"
+        publish: 公開
+        limit: ラボ内のみ公開
+        wip: WIP

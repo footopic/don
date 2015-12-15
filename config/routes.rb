@@ -17,6 +17,9 @@ Rails.application.routes.draw do
     collection do
       match 'search' => 'articles#search', via: [:get, :post], as: :search
     end
+
+    get 'lock'
+    get 'unlock'
   end
 
   resources :stars, only: [:create, :destroy]
