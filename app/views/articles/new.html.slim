@@ -1,0 +1,14 @@
+- provide(:title, @article.title)
+.row
+  .col-lg-6
+    = render 'form'
+  |  <meta id="current-user-info" screen_name="
+  = current_user.screen_name
+  | " name="
+  = current_user.name
+  | " > 
+  .col-lg-6
+    ul#tags-preview.tag_list
+    h2#title-preview
+    hr
+    #text-preview-area.markdown-body

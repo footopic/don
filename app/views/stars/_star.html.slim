@@ -1,0 +1,10 @@
+- if current_user == star.user
+  = link_to star_path(star), method: :delete, remote: true do
+    = image_tag(star.user.image.thumb, size: '25x25')
+    span.star__box
+      = fa_icon 'star', class: 'star__box__star'
+- else
+  = link_to star.user do
+    = image_tag(star.user.image.thumb, size: '25x25')
+    span.star__box
+      = fa_icon 'star', class: 'star__box__star'

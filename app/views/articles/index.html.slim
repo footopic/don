@@ -1,0 +1,8 @@
+h1.page-title
+  |  記事一覧 
+  - if params[:tag]
+    = fa_icon 'tag'
+    = params[:tag]
+ul.articles
+  = render @articles
+= paginate @articles

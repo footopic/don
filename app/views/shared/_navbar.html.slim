@@ -1,0 +1,53 @@
+#navbar.navbar.navbar-default
+  .container-fluid
+    .navbar-header
+      = link_to '丼', root_path, class: 'navbar-brand'
+      ul.visible-xs.menus
+        |  <li class="
+        = 'active' if params[:controller] == 'articles' && (params[:action] == 'new' || params[:action] == 'edit')
+        | "> 
+        = link_to new_article_path do
+          = fa_icon 'pencil'
+        |  <li class="
+        = 'active' if params[:controller] == 'articles' && (params[:action] != 'new' && params[:action] != 'edit')
+        | "> 
+        = link_to articles_path do
+          = fa_icon 'th-list'
+        |  <li class="
+        = 'active' if params[:controller] == 'users'
+        | "> 
+        = link_to users_path do
+          = fa_icon 'users'
+      button.navbar-toggle.collapsed[type="button" data-toggle="collapse" data-target="#navbar-user" aria-expanded="false"]
+        = fa_icon 'user'
+    #navbar-user.collapse.navbar-collapse
+      ul.nav.navbar-nav.navbar-right
+        - if user_signed_in?
+          li
+            = search_form_for @q, url: search_articles_path, class: 'form-group', html: { class: 'navbar-form navbar-left' } do |f|
+              = f.search_field :title_or_user_screen_name_or_tags_name_cont, placeholder: '検索', class: 'form-control'
+              = f.submit '検索', class: 'btn btn-default'
+          li
+            = image_tag current_user.image_url, class: 'img-circle', size: '36x36'
+          li.dropdown.hidden-xs
+            = link_to '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' } do
+              = current_user.screen_name
+              span.caret
+            ul.dropdown-menu
+              li
+                = link_to 'マイページ', current_user
+              li
+                = link_to '設定変更', edit_user_path(current_user)
+              li
+                = link_to 'ログアウト', '/sign_out'
+          li.visible-xs
+            = current_user.screen_name
+          li.visible-xs
+            = link_to 'マイページ', current_user
+          li.visible-xs
+            = link_to '設定変更', edit_user_path(current_user)
+          li.visible-xs
+            = link_to 'ログアウト', '/sign_out'
+        - else
+          li
+            = link_to 'Google ログイン', user_omniauth_authorize_path(:google_oauth2)

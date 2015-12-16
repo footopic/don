@@ -1,0 +1,10 @@
+li.user-item-box.col-md-3
+  .user-icon
+    = image_tag user.image_url, class: 'img-circle'
+  .info
+    h2.info-title
+      = link_to user.screen_name, user
+      span.badge
+        = user.articles.size
+    .info-name
+      = user.name

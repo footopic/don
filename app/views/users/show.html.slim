@@ -1,0 +1,15 @@
+- provide(:title, @user.screen_name)
+.user-header
+  .row
+    .col-xs-8
+      .infos
+        h2.title
+          = image_tag @user.image_url, class: 'img-circle', size: '64x64'
+          = link_to @user.screen_name, @user
+        p.name
+          = @user.name
+    .col-xs-4.pull-right
+      - if current_user == @user
+        = link_to 'Edit', edit_user_path(@user), class: 'btn btn-default'
+= render @articles
+= paginate @articles
