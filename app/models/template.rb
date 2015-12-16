@@ -21,28 +21,6 @@
 #  index_articles_on_user_id  (user_id)
 #
 
-FactoryGirl.define do
-  sequence :title do
-    FFaker::Lorem.sentence
-  end
-
-  sequence :text do
-    FFaker::HTMLIpsum.body
-  end
-
-  factory :article do
-    title
-    text
-    user
-    after(:create) do |article|
-      # add tag
-      tags = 3.times.map { FFaker::Lorem.word }
-      article.update_attributes(tag_list: tags)
-      # add star
-      4.times do
-        article.add_star(article.user)
-      end
-    end
-  end
-
+class Template < Article
+  validate :template_name
 end

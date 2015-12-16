@@ -2,18 +2,22 @@
 #
 # Table name: articles
 #
-#  id         :integer          not null, primary key
-#  title      :string           not null
-#  text       :text             not null
-#  user_id    :integer          not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  status     :string
-#  lock       :boolean          default(FALSE)
+#  id            :integer          not null, primary key
+#  title         :string           not null
+#  text          :text             not null
+#  user_id       :integer          not null
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  status        :string
+#  lock          :boolean          default(FALSE)
+#  type          :string
+#  template_id   :integer
+#  template_name :string
 #
 # Indexes
 #
 #  index_articles_on_title    (title)
+#  index_articles_on_type     (type)
 #  index_articles_on_user_id  (user_id)
 #
 
@@ -29,6 +33,7 @@ class Article < ActiveRecord::Base
   validates :title, presence: true
   validates :text, presence: true
   validates :user, presence: true
+  validates :type, presence: true
 
   scope :sorted_by_recently, -> { reorder('updated_at DESC') }
   scope :recently_edit, -> { reorder('updated_at DESC').take(5) }
