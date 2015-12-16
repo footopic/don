@@ -11,7 +11,6 @@
 #  status        :string
 #  lock          :boolean          default(FALSE)
 #  type          :string
-#  template_id   :integer
 #  template_name :string
 #
 # Indexes
@@ -33,7 +32,6 @@ class Article < ActiveRecord::Base
   validates :title, presence: true
   validates :text, presence: true
   validates :user, presence: true
-  validates :type, presence: true
 
   scope :sorted_by_recently, -> { reorder('updated_at DESC') }
   scope :recently_edit, -> { reorder('updated_at DESC').take(5) }

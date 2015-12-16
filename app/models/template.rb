@@ -11,7 +11,6 @@
 #  status        :string
 #  lock          :boolean          default(FALSE)
 #  type          :string
-#  template_id   :integer
 #  template_name :string
 #
 # Indexes
@@ -22,5 +21,5 @@
 #
 
 class Template < Article
-  validate :template_name
+  validates :template_name, presence: true
 end

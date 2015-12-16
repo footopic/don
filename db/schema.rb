@@ -55,7 +55,6 @@ ActiveRecord::Schema.define(version: 20151216063355) do
     t.string   "status"
     t.boolean  "lock",          default: false
     t.string   "type"
-    t.integer  "template_id"
     t.string   "template_name"
   end
 

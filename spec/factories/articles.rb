@@ -11,7 +11,6 @@
 #  status        :string
 #  lock          :boolean          default(FALSE)
 #  type          :string
-#  template_id   :integer
 #  template_name :string
 #
 # Indexes
