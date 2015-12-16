@@ -23,6 +23,6 @@ html
               | Close
           = message
     .container-fluid
-      = yield
+      == yield
     - if Rails.env == 'development'
       = params
