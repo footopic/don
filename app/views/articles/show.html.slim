@@ -3,41 +3,11 @@
   .article-titles
     h1.title
       = @article.title
-      - if @article.written_by?(current_user) || @article.unlock?
-        = link_to edit_article_path(@article) do
-          = fa_icon 'pencil'
-      - if @article.lock?
-        = fa_icon 'lock'
-      - if @article.status.publish?
-        = fa_icon 'rocket'
-    span.author
-      = link_to @article.user.screen_name, user_path(@article.user)
-    |  が 
-    span.date
-      = l(@article.updated_at)
-    |  に 
-    span
-      - if @article.only_created?
-        |  投稿 
-      - else
-        |  編集 
-    .tag_list_block
-      = link_tags_list_for(@article.tags)
-      .add_tag_form.hide
-        input#add_tag_text[type="text"]
-        |  <a id="add_tag_btn" href="#" article-id="
-        = @article.id
-        | ">+
-      - if @article.written_by?(current_user) || @article.unlock?
-        |  <a id="edit_tag" href="#" article-id="
-        = @article.id
-        | ">タグ編集
-    - if user_signed_in? && current_user.owner?(@article)
-      - if @article.unlock?
-        = link_to '記事を保護する', article_lock_path(@article)
-      - elsif @article.lock?
-        = link_to '記事の保護を解除する', article_unlock_path(@article)
-      = link_to '削除', @article, method: :delete, data: { confirm: '本当に削除しますか？' }
+      = render partial: 'articles/icons', locals: { article: @article }
+    = render partial: 'articles/author_info', locals: { article: @article }
+    = render partial: 'articles/tag_list', locals: { article: @article }
+    = render partial: 'articles/lock', locals: { article: @article }
+    = link_to '削除', @article, method: :delete, data: { confirm: '本当に削除しますか？' }
   .article-subinfos
     - @editors.each do |editor|
       = link_to(editor) do
@@ -64,17 +34,10 @@
     = image_tag @user.image_url, class: 'img-circle', size: '64x64'
     = link_to @user.screen_name, @user
     .article__show
-      h4
-        | 新着の投稿
+      h4 新着の投稿
       = render partial: 'article', collection: @recently_articles
     .article-subinfos
-      h4
-        | 編集履歴
+      h4 編集履歴
       - @histories.each do |history|
-        .history
-          = link_to(history.user) do
-            = image_tag history.user.image_url, class: 'img-circle', size: '32x32'
-            = history.user.screen_name
-          = l history.created_at
-          | に編集 
-          hr
+        = render history
+        hr

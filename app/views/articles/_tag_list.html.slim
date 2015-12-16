@@ -1,0 +1,11 @@
+.tag_list_block
+  = link_tags_list_for(article.tags)
+  .add_tag_form.hide
+    input#add_tag_text[type="text"]
+    |  <a id="add_tag_btn" href="#" article-id="
+    = article.id
+    | ">+
+  - if article.written_by?(current_user) || article.unlock?
+    |  <a id="edit_tag" href="#" article-id="
+    = article.id
+    | ">タグ編集
