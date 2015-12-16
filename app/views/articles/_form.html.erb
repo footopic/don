@@ -1,18 +1,24 @@
+<% template_on = true if local_assigns[:template_on].nil? %>
 <%= simple_form_for(@article) do |f| %>
     <div class="field">
-      <div class="input-group">
-        <input type="text" class="form-control" id="pre_article_title" placeholder="タイトル #タグ1 #タグ2"/>
-        <%= f.text_field :title, class: 'hide' %>
+      <% if template_on %>
+          <div class="input-group">
+            <input type="text" class="form-control" id="pre_article_title" placeholder="タイトル #タグ1 #タグ2"/>
+            <%= f.text_field :title, class: 'hide' %>
 
-        <div class="input-group-btn">
-          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Template<span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu" id="templates-dropdown-list">
-            <li class="loading">ロード中</li>
-          </ul>
-        </div><!-- /btn-group -->
-      </div><!-- /input-group -->
+            <div class="input-group-btn">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Template<span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" id="templates-dropdown-list">
+                <li class="loading">ロード中</li>
+              </ul>
+            </div><!-- /btn-group -->
+          </div><!-- /input-group -->
+      <% else %>
+          <input type="text" class="form-control" id="pre_article_title" placeholder="タイトル #タグ1 #タグ2"/>
+          <%= f.text_field :title, class: 'hide' %>
+      <% end %>
     </div>
 
     <div class="field hide">

@@ -1,11 +1,12 @@
 <% provide(:title, @article.title) %>
 <div class="row">
   <div class="col-lg-6">
-    <%= render 'form', template_on: false %>
+    <%= render 'form' %>
   </div>
   <meta id="current-user-info"
         screen_name="<%= current_user.screen_name %>"
-        name="<%= current_user.name %>">
+        name="<%= current_user.name %>"
+  >
 
   <div class="col-lg-6">
     <ul id="tags-preview" class="tag_list"></ul>
