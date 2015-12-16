@@ -41,6 +41,7 @@ gem 'slack-notifier'
 gem 'activeadmin', '~> 1.0.0.pre2'
 gem 'enumerize'
 gem 'simple_form'
+gem 'slim-rails'
 
 group :development, :test do
   gem 'byebug'
@@ -71,5 +72,6 @@ group :development do
   gem 'spring'
   gem 'annotate'
   gem 'pry-rails'
+  gem 'bullet'
 end
 

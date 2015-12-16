@@ -1,0 +1,28 @@
+li.article-item-box
+  .article-icon
+    = image_tag article.user.image_url, class: 'img-circle', size: '64x64'
+  .info
+    .info-head
+      .created
+        span.author
+          = link_to article.user.screen_name, user_path(article.user)
+        |  が 
+        span.date
+          = l(article.updated_at)
+        |  に 
+        span
+          - if article.only_created?
+            |  投稿 
+          - else
+            |  編集 
+        - if article.status.publish?
+          = fa_icon 'rocket'
+        - unless article.unlock?
+          = fa_icon 'lock'
+    .info-title
+      h2.title
+        = link_to article.title, article
+      = link_tags_list_for(article.tags)
+      .star
+        - star_user.each do |star|
+          = render partial: 'stars/article_star', locals: { star: star }
