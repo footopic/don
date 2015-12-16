@@ -3,7 +3,7 @@
   .article-titles
     h1.title
       = @article.title
-      = render partial: 'articles/icons', locals: { article: @article }
+      = render partial: 'icons', locals: { article: @article }
     = render partial: 'articles/author_info', locals: { article: @article }
     = render partial: 'articles/tag_list', locals: { article: @article }
     = render partial: 'articles/lock', locals: { article: @article }
