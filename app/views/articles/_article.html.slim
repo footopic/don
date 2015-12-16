@@ -4,17 +4,7 @@ li.article-item-box
   .info
     .info-head
       .created
-        span.author
-          = link_to article.user.screen_name, user_path(article.user)
-        |  が 
-        span.date
-          = l(article.updated_at)
-        |  に 
-        span
-          - if article.only_created?
-            |  投稿 
-          - else
-            |  編集 
+        = render partial: 'articles/author_info', locals: {article: article}
         - if article.status.publish?
           = fa_icon 'rocket'
         - unless article.unlock?

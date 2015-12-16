@@ -1,0 +1,9 @@
+- if article.only_created?
+    - w = '投稿'
+- else
+    - w = '編集'
+
+span.author
+  = link_to article.user.screen_name, user_path(article.user)
+span.date
+  = "が#{l(article.updated_at)}に#{w}"
