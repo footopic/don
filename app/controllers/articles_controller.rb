@@ -35,7 +35,6 @@ class ArticlesController < ApplicationController
   # GET /articles/new
   def new
     @article = Article.new
-    render :edit
   end
 
   # GET /articles/1/edit
