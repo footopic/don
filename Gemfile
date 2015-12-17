@@ -42,6 +42,7 @@ gem 'activeadmin', '~> 1.0.0.pre2'
 gem 'enumerize'
 gem 'simple_form'
 gem 'slim-rails'
+gem 'redcarpet'
 
 group :development, :test do
   gem 'byebug'

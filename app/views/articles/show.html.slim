@@ -15,7 +15,8 @@
 .article-body.row
   .col-md-8
     .article-text
-      #text-preview.markdown-body[raw_text=@article.text]
+      #text-preview.markdown-body
+        == markdown(@article.text)
     hr
     .star
       - if user_signed_in?
