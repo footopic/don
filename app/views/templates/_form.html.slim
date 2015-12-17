@@ -1,21 +1,7 @@
-- template_on = true if local_assigns[:template_on].nil?
 = simple_form_for(@article) do |f|
   .field
-    - if template_on
-      .input-group
-        input#pre_article_title.form-control[type="text" placeholder="タイトル #タグ1 #タグ2"]
-        = f.text_field :title, class: 'hide'
-        .input-group-btn
-          button.btn.btn-default.dropdown-toggle[type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"]
-            |  Template
-            span.caret
-          ul#templates-dropdown-list.dropdown-menu
-            li.loading
-              | ロード中
-    - else
-      input#pre_article_title.form-control[type="text" placeholder="タイトル #タグ1 #タグ2"]
-      = f.text_field :title, class: 'hide'
-  .field.hide
+    = f.text_field :title, class: 'form-control', placeholder: 'タイトル #タグ1 #タグ2'
+  .field
     = f.text_field :tag_list, value: @article.tag_list.join(','), class: 'form-control', placeholder: ',区切りでタグを入力'
   .field
     = f.text_area :text, class: 'form-control', rows: 30
