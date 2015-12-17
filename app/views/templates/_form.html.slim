@@ -39,11 +39,6 @@ coffee:
     update_text_preview()
     update_tags_preview()
 
-  # 変更処理
-  $("#template_title").keyup update_title_preview
-  $("#template_text").keyup update_text_preview
-  $("#template_tag_list").keyup update_tags_preview
-
   # unsanitize_markup = (text) ->
   #   text.replace(/&lt;sup&gt;/g, "<sup>")
   #       .replace(/&lt;\/sup&gt;/g, "</sup>")
@@ -53,3 +48,9 @@ coffee:
   $ ->
     # ページ読み込み時にプレビュー反映
     update_preview()
+
+    # 変更イベント
+    $("#template_title").keyup update_title_preview
+    $("#template_text").keyup update_text_preview
+    $("#template_tag_list").keyup update_tags_preview
+
