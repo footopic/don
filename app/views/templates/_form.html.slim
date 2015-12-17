@@ -25,7 +25,8 @@ coffee:
 
   # 本文プレビュー反映
   update_text_preview = ->
-    $("#text-preview-area").html(marked($("#template_text").val()))
+    marked_text = marked($("#template_text").val())
+    $("#text-preview-area").html(marked_text)
 
   update_tags_preview = ->
     $('#tags-preview').empty()
@@ -42,6 +43,12 @@ coffee:
   $("#template_title").keyup update_title_preview
   $("#template_text").keyup update_text_preview
   $("#template_tag_list").keyup update_tags_preview
+
+  # unsanitize_markup = (text) ->
+  #   text.replace(/&lt;sup&gt;/g, "<sup>")
+  #       .replace(/&lt;\/sup&gt;/g, "</sup>")
+  #       .replace(/&lt;sub&gt;/g, "<sub>")
+  #       .replace(/&lt;\/sub&gt;/g, "</sub>")
 
   $ ->
     # ページ読み込み時にプレビュー反映

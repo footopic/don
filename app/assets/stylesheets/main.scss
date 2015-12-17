@@ -5,6 +5,9 @@ $sidebar_width: 80px;
 li {
   list-style-type: none;
 }
+.markdown-body li {
+  list-style-type: disc;
+}
 
 h2 {
   margin: 0;
