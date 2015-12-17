@@ -2,7 +2,6 @@
 class ArticlesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :set_article, only: [:show, :edit, :update, :destroy]
-  before_action :type_template?, only: [:show, :edit, :update, :destroy]
   before_action :published?, only: [:show]
   before_action :check_article_owner, only: [:destroy]
   before_action :locked?, only: [:edit, :update, :destroy]
@@ -11,11 +10,9 @@ class ArticlesController < ApplicationController
   # GET /articles.json
   def index
     if params[:tag]
-      @articles = @q.result.with_associations.where(type: nil)
-                      .tagged_with(params[:tag]).sorted_by_recently.page(params[:page])
+      @articles = @q.result.with_associations.tagged_with(params[:tag]).sorted_by_recently.page(params[:page])
     else
-      @articles = @q.result.with_associations.where(type: nil)
-                      .sorted_by_recently.page(params[:page])
+      @articles = @q.result.with_associations.sorted_by_recently.page(params[:page])
     end
   end
 
@@ -148,12 +145,6 @@ class ArticlesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_article
     @article = Article.find(params[:id])
-  end
-
-  def type_template?
-    if @article.kind_of? Template
-      redirect_to template_url @article
-    end
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

@@ -19,6 +19,7 @@
 
 class User < ActiveRecord::Base
   has_many :articles, dependent: :destroy
+  has_many :templates, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :histories, dependent: :destroy
   has_many :stars, dependent: :destroy
