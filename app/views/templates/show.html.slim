@@ -2,8 +2,9 @@
 .article-header
   .article-titles
     h1.title
-      = @template.name
+      = "【#{@template.name}】"
       = render partial: 'icons', locals: { article: @template }
+    p =@template.title
     = render partial: 'articles/author_info', locals: { article: @template }
     = render partial: 'articles/tag_list', locals: { article: @template }
     = link_to '削除', @template, method: :delete, data: { confirm: '本当に削除しますか？' }
