@@ -1,10 +1,10 @@
-= simple_form_for(@article) do |f|
+= simple_form_for(@template) do |f|
   .field
-    = f.input :template_name, label: 'テンプレート名', input_html: { class: 'form-control' }
+    = f.input :name, label: 'テンプレート名', input_html: { class: 'form-control' }
   .field
     = f.input :title, label: 'タイトル', input_html: { class: 'form-control', placeholder: 'タイトル' }
   .field
-    = f.input :tag_list, input_html: { value: @article.tag_list.join(','), class: 'form-control', placeholder: ',区切りでタグを入力' }
+    = f.input :tag_list, input_html: { value: @template.tag_list.join(','), class: 'form-control', placeholder: ',区切りでタグを入力' }
   .field
     = f.input :text, class: 'form-control'
   .field
@@ -14,11 +14,9 @@
     .col-sm-4
       a#upload-btn.btn.btn-default
         = fa_icon 'file-image-o'
-    .col-sm-4
-      = f.input :status, label: false
+      input#async-image-data.hide[type="file" name="template[image]"]
     .col-sm-4
       = f.button :submit, id: 'btn-submit', class: 'form-control'
-input#async-image-data.hide[type="file" name="article[image]"]
 
 coffee:
   # タイトルプレビュー反映
@@ -33,6 +31,7 @@ coffee:
   update_tags_preview = ->
     $('#tags-preview').empty()
     $.each $('#template_tag_list').val().split(','), (i, v) ->
+      return if v == ''
       $('#tags-preview').append($('<li/>').append($('<span/>').text(v)))
 
   # 全プレビュー反映
@@ -41,11 +40,26 @@ coffee:
     update_text_preview()
     update_tags_preview()
 
-  # unsanitize_markup = (text) ->
-  #   text.replace(/&lt;sup&gt;/g, "<sup>")
-  #       .replace(/&lt;\/sup&gt;/g, "</sup>")
-  #       .replace(/&lt;sub&gt;/g, "<sub>")
-  #       .replace(/&lt;\/sub&gt;/g, "</sub>")
+  # 画像マークダウンの挿入
+  insertImgMd = (url) ->
+    target = $('#template_text')
+    img_md = "![#{url}](#{url})\n"
+    insertAtCaret(target, img_md)
+    update_text_preview()
+
+  # ターゲット要素のカーソル位置にテキストを挿入
+  insertAtCaret = (target, str) ->
+    target.focus()
+    if navigator.userAgent.match(/MSIE/)
+      r = document.selection.createRange()
+      r.text = str
+      r.select()
+    else
+      s = target.val()
+      p = target.get(0).selectionStart
+      np = p + str.length
+      target.val(s.substr(0, p) + str + s.substr(p))
+      target.get(0).setSelectionRange(np, np)
 
   $ ->
     # ページ読み込み時にプレビュー反映
@@ -56,3 +70,34 @@ coffee:
     $("#template_text").keyup update_text_preview
     $("#template_tag_list").keyup update_tags_preview
 
+    $('#upload-btn').click ->
+      $('#async-image-data')[0].click()
+      return false
+
+
+    # 画像アップロードボタン
+    $('#async-image-data').change ->
+      if $(@).files < 1
+        return
+      file = $(this)[0].files[0]
+      if file.clientHeight > 2000 or file.clientWidth > 2000
+        alert '画像アップロードでエラーが発生しました 画像サイズが大きいです'
+        return
+
+      fd = new FormData()
+      fd.append('name', 'jquery test')
+      fd.append('file', file)
+
+      $.ajax
+        url: '/api/v1/images/upload'
+        method: "POST"
+        data: fd
+        processData: false
+        contentType: false
+        success: (json) ->
+          url = json.file.url
+          console.log 'http://' + window.location.host + url
+          insertImgMd('http://' + window.location.host + url)
+        error: (json) ->
+          alert '画像アップロードでエラーが発生しました'
+      $('#async-image-data').val('')

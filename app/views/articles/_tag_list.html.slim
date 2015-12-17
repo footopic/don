@@ -47,7 +47,7 @@ coffee:
           $li = $('<li />').attr('tag_name', tag)
           $li.append $('<a />').attr('href', '/articles?tag=' + tag).html(tag)
           $li.append $('<a />').attr('href', '#').attr('tag_text', tag).addClass('delete-tag').html('x').click del_clicked
-          $('.tag_list').append($li)
+          $('.tag_list_block>.tag_list').append($li)
 
     # タグ削除ボタン
     $('.delete-tag').click del_clicked

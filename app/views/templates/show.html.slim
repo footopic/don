@@ -1,0 +1,21 @@
+- provide(:title, @template.title)
+.article-header
+  .article-titles
+    h1.title
+      = "【#{@template.name}】"
+      = render partial: 'icons', locals: { article: @template }
+    p =@template.title
+    = render partial: 'articles/author_info', locals: { article: @template }
+    = render partial: 'articles/tag_list', locals: { article: @template }
+    = link_to '削除', @template, method: :delete, data: { confirm: '本当に削除しますか？' }
+.article-body.row
+  .col-md-8
+    .article-text
+      #text-preview.markdown-body
+        == markdown(@template.text)
+  .col-md-4
+    = image_tag @user.image_url, class: 'img-circle', size: '64x64'
+    = link_to @user.screen_name, @user
+    .article__show
+      h4 新着の投稿
+      = render partial: 'articles/article', collection: @recently_articles

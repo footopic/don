@@ -20,6 +20,10 @@
     overflow: hidden;
     display: table;
 
+    i {
+      padding-left: .5em;
+    }
+
     &-head {
       font-size: 12px;
       margin: 0;
@@ -69,6 +73,9 @@
 
   .article-titles {
     float: left;
+    i {
+      padding-left: .5em;
+    }
   }
   .article-subinfos {
     float: right;

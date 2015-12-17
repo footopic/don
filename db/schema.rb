@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151216063355) do
+ActiveRecord::Schema.define(version: 20151217182800) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -47,19 +47,16 @@ ActiveRecord::Schema.define(version: 20151216063355) do
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
 
   create_table "articles", force: :cascade do |t|
-    t.string   "title",                         null: false
-    t.text     "text",                          null: false
-    t.integer  "user_id",                       null: false
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.string   "title",                      null: false
+    t.text     "text",                       null: false
+    t.integer  "user_id",                    null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.string   "status"
-    t.boolean  "lock",          default: false
-    t.string   "type"
-    t.string   "template_name"
+    t.boolean  "lock",       default: false
   end
 
   add_index "articles", ["title"], name: "index_articles_on_title"
-  add_index "articles", ["type"], name: "index_articles_on_type"
   add_index "articles", ["user_id"], name: "index_articles_on_user_id"
 
   create_table "comments", force: :cascade do |t|
@@ -122,6 +119,18 @@ ActiveRecord::Schema.define(version: 20151216063355) do
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true
+
+  create_table "templates", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.string   "title",      null: false
+    t.text     "text",       null: false
+    t.integer  "user_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "templates", ["title"], name: "index_templates_on_title"
+  add_index "templates", ["user_id"], name: "index_templates_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "provider",    default: "", null: false

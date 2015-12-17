@@ -1,1 +1,11 @@
-= render 'articles/article', article: template
+li.article-item-box
+  .article-icon
+    = image_tag template.user.image_url, class: 'img-circle', size: '64x64'
+  .info
+    .info-head
+      .created
+        = render partial: 'articles/author_info', locals: {article: template}
+    .info-title
+      h2.title
+        = link_to template.title, template
+      = link_tags_list_for(template.tags)

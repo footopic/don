@@ -1,7 +1,2 @@
-- if @article.written_by?(current_user) || @article.unlock?
-  = link_to edit_template_path(@article) do
-    = fa_icon 'pencil'
-- if @article.lock?
-  = fa_icon 'lock'
-- if @article.status.publish?
-  = fa_icon 'rocket'
+= link_to edit_template_path(@template) do
+  = fa_icon 'pencil'
