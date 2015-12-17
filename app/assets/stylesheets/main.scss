@@ -5,9 +5,16 @@ $sidebar_width: 80px;
 li {
   list-style-type: none;
 }
+.markdown-body li {
+  list-style-type: disc;
+}
 
 h2 {
   margin: 0;
+}
+
+i {
+  padding-left: .5em;
 }
 
 #navbar {
@@ -27,6 +34,9 @@ img {
 }
 
 #side-bar {
+  i {
+    padding-left: 0;
+  }
   background: gray none repeat scroll 0 0;
   color: rgba(255, 255, 255, 0.9);
   height: 100%;

@@ -33,20 +33,6 @@ test.fuga({ hoge: :fuga })
 user1 = User.first
 user2 = User.find(2)
 
-5.times do |n|
-  Article.seed do |s|
-    s.user_id = user1.id
-    s.title   = "テンプレート#{n}"
-    s.text    = "テンプレート#{n} の本文です\n---"
-    s.status   = 'publish'
-    s.lock    = true
-  end
-  a = Article.last
-  a.tag_list << 'template'
-  a.tag_list << %w(hoge fuga).sample((0..2).to_a.sample)
-  a.save
-end
-
 30.times do |n|
   Article.seed do |s|
     s.user_id = user1.id
@@ -96,28 +82,6 @@ History.seed do |s|
   s.article_id = Article.last.id
 end
 
-
-Article.seed do |s|
-  s.user_id = user2.id
-  s.title   = 'テンプレート変数 %{me} %{name}'
-  s.text    = '''
-| 変数     | val      |
-|----------|----------|
-| year     | %{year}  |
-| Year     | %{Year}  |
-| month    | %{month} |
-| day      | %{day}   |
-| week     | %{week}  |
-| cDay     | %{cDay}  |
-| cWeek    | %{cWeek} |
-| me       | %{me}    |
-| name     | %{name}  |
-'''
-end
-a = Article.last
-a.tag_list << 'template'
-a.tag_list << '週報%{cWeek}'
-a.save
 
 Article.seed do |s|
   s.user_id = user2.id

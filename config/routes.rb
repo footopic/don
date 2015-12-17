@@ -22,6 +22,11 @@ Rails.application.routes.draw do
     get 'unlock'
   end
 
+  resources :templates do
+    get 'lock'
+    get 'unlock'
+  end
+
   resources :stars, only: [:create, :destroy]
   resources :comments, only: [:create, :update, :destroy]
   resources :uploader, only: [:index, :form, :upload, :download]

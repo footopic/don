@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151215095736) do
+ActiveRecord::Schema.define(version: 20151216063355) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -47,16 +47,19 @@ ActiveRecord::Schema.define(version: 20151215095736) do
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
 
   create_table "articles", force: :cascade do |t|
-    t.string   "title",                      null: false
-    t.text     "text",                       null: false
-    t.integer  "user_id",                    null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.string   "title",                         null: false
+    t.text     "text",                          null: false
+    t.integer  "user_id",                       null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.string   "status"
-    t.boolean  "lock",       default: false
+    t.boolean  "lock",          default: false
+    t.string   "type"
+    t.string   "template_name"
   end
 
   add_index "articles", ["title"], name: "index_articles_on_title"
+  add_index "articles", ["type"], name: "index_articles_on_type"
   add_index "articles", ["user_id"], name: "index_articles_on_user_id"
 
   create_table "comments", force: :cascade do |t|

@@ -1,26 +1,21 @@
 # noinspection ALL
-class ArticlesController < ApplicationController
+class TemplatesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
-  before_action :type_template?, only: [:show, :edit, :update, :destroy]
+  before_action :set_template, only: [:show, :edit, :update, :destroy]
   before_action :published?, only: [:show]
-  before_action :check_article_owner, only: [:destroy]
+  before_action :check_template_owner, only: [:destroy]
   before_action :locked?, only: [:edit, :update, :destroy]
 
-  # GET /articles
-  # GET /articles.json
+  # GET /templates
+  # GET /templates.json
   def index
-    if params[:tag]
-      @articles = @q.result.with_associations.where(type: nil)
-                      .tagged_with(params[:tag]).sorted_by_recently.page(params[:page])
-    else
-      @articles = @q.result.with_associations.where(type: nil)
-                      .sorted_by_recently.page(params[:page])
-    end
+    # @articles = Template.sorted_by_recently.page(params[:page])
+    @articles = Template.with_associations.sorted_by_recently.page(params[:page])
+    render 'articles/index'
   end
 
-  # GET /articles/1
-  # GET /articles/1.json
+  # GET /templates/1
+  # GET /templates/1.json
   def show
     @comments = @article.comments.order('created_at').includes(:user)
 
@@ -33,21 +28,24 @@ class ArticlesController < ApplicationController
     if @user.screen_name == 'esa'
       flash.now[:notice] = t '.esa_message'
     end
+    render 'articles/show'
   end
 
-  # GET /articles/new
+  # GET /template/new
   def new
-    @article = Article.new
+    @article = Template.new
+    render 'articles/new'
   end
 
-  # GET /articles/1/edit
+  # GET /templates/1/edit
   def edit
+    render 'articles/edit'
   end
 
-  # POST /articles
-  # POST /articles.json
+  # POST /templates
+  # POST /templates.json
   def create
-    @article = current_user.articles.create(article_params)
+    @article = current_user.articles.create(template_params)
 
     respond_to do |format|
       if @article.save
@@ -57,20 +55,20 @@ class ArticlesController < ApplicationController
             title: @article.title,
             url:   full_path(article_path(@article))
         }), @article.text)
-        format.html { redirect_to @article, flash: { success: '記事を作成しました' } }
-        format.json { render :show, status: :created, location: @article }
+        format.html { redirect_to template_path(@article), flash: { success: '記事を作成しました' } }
+        format.json { render 'articles/show', status: :created, location: @article }
       else
-        format.html { render :edit }
+        format.html { render 'articles/edit' }
         format.json { render json: @article.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /articles/1
-  # PATCH/PUT /articles/1.json
+  # PATCH/PUT /templates/1
+  # PATCH/PUT /templates/1.json
   def update
     respond_to do |format|
-      if @article.update(article_params)
+      if @article.update(template_params)
         History.create(user: current_user, article: @article)
 
         SlackHook.new.post(current_user, t('.slack_message', {
@@ -80,27 +78,22 @@ class ArticlesController < ApplicationController
         }), @article.text)
 
         format.html { redirect_to @article, flash: { success: '記事を更新しました' } }
-        format.json { render :show, status: :ok, location: @article }
+        format.json { render 'articles/show', status: :ok, location: @article }
       else
-        format.html { render :edit }
+        format.html { render 'articles/edit' }
         format.json { render json: @article.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /articles/1
-  # DELETE /articles/1.json
+  # DELETE /templates/1
+  # DELETE /templates/1.json
   def destroy
     @article.destroy
     respond_to do |format|
-      format.html { redirect_to articles_url, flash: { success: '記事を削除しました' } }
+      format.html { redirect_to template_url, flash: { success: '記事を削除しました' } }
       format.json { head :no_content }
     end
-  end
-
-  def search
-    index
-    render :index
   end
 
   def lock
@@ -146,22 +139,16 @@ class ArticlesController < ApplicationController
   end
 
   # Use callbacks to share common setup or constraints between actions.
-  def set_article
-    @article = Article.find(params[:id])
-  end
-
-  def type_template?
-    if @article.kind_of? Template
-      redirect_to template_url @article
-    end
+  def set_template
+    @article = Template.find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
-  def article_params
-    params.require(:article).permit(:title, :text, :status, :tag_list, :user_id, :lock)
+  def template_params
+    params.require(:template).permit(:template_name, :title, :text, :status, :tag_list, :user_id, :lock, :type)
   end
 
-  def check_article_owner
+  def check_template_owner
     unless current_user.owner?(@article)
       # TODO: セキュリティ上メッセージは消す
       redirect_to @article, notice: '記事の作者ではありません'
