@@ -33,6 +33,10 @@ class Template < ActiveRecord::Base
   scope :sorted_by_recently, -> { reorder('updated_at DESC') }
   scope :with_associations, -> { includes(:tags, :user) }
 
+  def unlock?
+    true
+  end
+
   def written_by?(user)
     user == self.user
   end

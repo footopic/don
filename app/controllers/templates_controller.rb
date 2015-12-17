@@ -2,7 +2,6 @@
 class TemplatesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :set_template, only: [:show, :edit, :update, :destroy]
-  before_action :published?, only: [:show]
 
   # GET /templates
   # GET /templates.json
@@ -13,8 +12,7 @@ class TemplatesController < ApplicationController
   # GET /templates/1
   # GET /templates/1.json
   def show
-    @comments = @template.comments.order('created_at').includes(:user)
-
+    # @comments = @template.comments.order('created_at').includes(:user)
     @user              = @template.user
     @recently_articles = @user.articles.includes(:tags).recently_edit
   end
@@ -69,12 +67,6 @@ class TemplatesController < ApplicationController
   end
 
   private
-
-  def published?
-    unless @template.status.publish?
-      authenticate_user!
-    end
-  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_template
