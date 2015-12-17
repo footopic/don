@@ -7,6 +7,8 @@
     = f.input :tag_list, input_html: { value: @article.tag_list.join(','), class: 'form-control', placeholder: ',区切りでタグを入力' }
   .field
     = f.input :text, class: 'form-control'
+  .field
+    = f.input :type, as: :hidden, input_html: { value: 'Template' }
   hr
   .row
     .col-sm-4

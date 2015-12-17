@@ -45,7 +45,7 @@ class TemplatesController < ApplicationController
   # POST /templates
   # POST /templates.json
   def create
-    @article = current_user.articles.create(article_params)
+    @article = current_user.articles.create(template_params)
 
     respond_to do |format|
       if @article.save
@@ -55,7 +55,7 @@ class TemplatesController < ApplicationController
             title: @article.title,
             url:   full_path(article_path(@article))
         }), @article.text)
-        format.html { redirect_to @article, flash: { success: '記事を作成しました' } }
+        format.html { redirect_to template_path(@article), flash: { success: '記事を作成しました' } }
         format.json { render 'articles/show', status: :created, location: @article }
       else
         format.html { render 'articles/edit' }
@@ -145,7 +145,7 @@ class TemplatesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def template_params
-    params.require(:template).permit(:template_name, :title, :text, :status, :tag_list, :user_id, :lock)
+    params.require(:template).permit(:template_name, :title, :text, :status, :tag_list, :user_id, :lock, :type)
   end
 
   def check_template_owner
