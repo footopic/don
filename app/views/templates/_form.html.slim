@@ -1,10 +1,12 @@
 = simple_form_for(@article) do |f|
   .field
-    = f.text_field :title, class: 'form-control', placeholder: 'タイトル #タグ1 #タグ2'
+    = f.input :template_name, label: 'テンプレート名', input_html: { class: 'form-control' }
   .field
-    = f.text_field :tag_list, value: @article.tag_list.join(','), class: 'form-control', placeholder: ',区切りでタグを入力'
+    = f.input :title, label: 'タイトル', input_html: { class: 'form-control', placeholder: 'タイトル' }
   .field
-    = f.text_area :text, class: 'form-control', rows: 30
+    = f.input :tag_list, input_html: { value: @article.tag_list.join(','), class: 'form-control', placeholder: ',区切りでタグを入力' }
+  .field
+    = f.input :text, class: 'form-control'
   hr
   .row
     .col-sm-4
@@ -13,5 +15,34 @@
     .col-sm-4
       = f.input :status, label: false
     .col-sm-4
-      = f.submit id: 'btn-submit', class: 'form-control'
+      = f.button :submit, id: 'btn-submit', class: 'form-control'
 input#async-image-data.hide[type="file" name="article[image]"]
+
+coffee:
+  # タイトルプレビュー反映
+  update_title_preview = ->
+    $("#title-preview").html(marked($("#template_title").val()))
+
+  # 本文プレビュー反映
+  update_text_preview = ->
+    $("#text-preview-area").html(marked($("#template_text").val()))
+
+  update_tags_preview = ->
+    $('#tags-preview').empty()
+    $.each $('#template_tag_list').val().split(','), (i, v) ->
+      $('#tags-preview').append($('<li/>').append($('<span/>').text(v)))
+
+  # 全プレビュー反映
+  update_preview = ->
+    update_title_preview()
+    update_text_preview()
+    update_tags_preview()
+
+  # 変更処理
+  $("#template_title").keyup update_title_preview
+  $("#template_text").keyup update_text_preview
+  $("#template_tag_list").keyup update_tags_preview
+
+  $ ->
+    # ページ読み込み時にプレビュー反映
+    update_preview()
