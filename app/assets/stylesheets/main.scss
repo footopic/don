@@ -13,6 +13,10 @@ h2 {
   margin: 0;
 }
 
+i {
+  padding-left: .5em;
+}
+
 #navbar {
   .navbar-right {
     img {
@@ -30,6 +34,9 @@ img {
 }
 
 #side-bar {
+  i {
+    padding-left: 0;
+  }
   background: gray none repeat scroll 0 0;
   color: rgba(255, 255, 255, 0.9);
   height: 100%;
