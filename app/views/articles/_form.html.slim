@@ -19,11 +19,11 @@
     .col-sm-4
       a#upload-btn.btn.btn-default
         = fa_icon 'file-image-o'
+      input#async-image-data[type="file" name="article[image]"]
     .col-sm-4
       = f.input :status, label: false
     .col-sm-4
       = f.submit id: 'btn-submit', class: 'form-control'
-input#async-image-data.hide[type="file" name="article[image]"]
 
 coffee:
   # タイトルプレビュー反映
@@ -48,11 +48,63 @@ coffee:
     update_text_preview()
     update_tags_preview()
 
+  # 画像マークダウンの挿入
+  insertImgMd = (url) ->
+    target = $('#article_text')
+    img_md = "![#{url}](#{url})\n"
+    insertAtCaret(target, img_md)
+    update_text_preview()
+
+  # ターゲット要素のカーソル位置にテキストを挿入
+  insertAtCaret = (target, str) ->
+    target.focus()
+    if navigator.userAgent.match(/MSIE/)
+      r = document.selection.createRange()
+      r.text = str
+      r.select()
+    else
+      s = target.val()
+      p = target.get(0).selectionStart
+      np = p + str.length
+      target.val(s.substr(0, p) + str + s.substr(p))
+      target.get(0).setSelectionRange(np, np)
+
   $ ->
-  # ページ読み込み時にプレビュー反映
+    # ページ読み込み時にプレビュー反映
     update_preview()
 
     # 変更イベント
     $("#article_title").keyup update_title_preview
     $("#article_text").keyup update_text_preview
     $("#article_tag_list").keyup update_tags_preview
+
+    $('#upload-btn').click ->
+      $('#async-image-data')[0].click()
+      return false
+
+
+    # 画像アップロードボタン
+    $('#async-image-data').change ->
+      if $(@).files < 1
+        return
+      file = $(this)[0].files[0]
+      if file.clientHeight > 2000 or file.clientWidth > 2000
+        alert '画像アップロードでエラーが発生しました 画像サイズが大きいです'
+        return
+
+      fd = new FormData()
+      fd.append('name', 'jquery test')
+      fd.append('file', file)
+
+      $.ajax
+        url: '/api/v1/images/upload'
+        method: "POST"
+        data: fd
+        processData: false
+        contentType: false
+        success: (json) ->
+          url = json.file.url
+          insertImgMd('http://' + window.location.host + url)
+        error: (json) ->
+          alert '画像アップロードでエラーが発生しました'
+      $('#async-image-data').val('')
