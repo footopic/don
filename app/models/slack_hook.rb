@@ -7,11 +7,27 @@ class SlackHook
     @notifier = Slack::Notifier.new HOOK_URL
   end
 
+  def img_url(text)
+    if /(https?:\/\/.+?(jpg|png|gif|jpeg))/=~ text
+      $1
+    else
+      nil
+    end
+  end
+
   def post(user, msg, text)
     icon_url = File.join(BASE_URL, user.image_url)
 
+    attachments = [
+        {
+            text: text,
+            image_url: img_url(text)
+        }
+    ]
+
     if Rails.env == 'production'
-      @notifier.ping msg, icon_url: icon_url, username: user.screen_name + '@丼', attachments: [{ text: text }]
+      @notifier.ping msg, icon_url: icon_url, username: user.screen_name + '@丼', attachments: attachments
     end
   end
 end
+
