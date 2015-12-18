@@ -32,5 +32,7 @@ require 'capistrano3/unicorn'
 # require 'capistrano/unicorn_nginx'
 require 'capistrano/safe_deploy_to'
 
+# slack
+require 'slackistrano'
 # Load custom tasks from `lib/capistrano/tasks` if you have any defined
 # Dir.glob('lib/capistrano/tasks/*.rake').each { |r| import r }
