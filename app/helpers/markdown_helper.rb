@@ -5,7 +5,7 @@ module MarkdownHelper
       @markdown = Redcarpet::Markdown.new(
           renderer,
           tables: true,
-          strikethrought: true,
+          strikethrough: true,
           fenced_code_blocks: true,
           space_after_headers: true
       )
