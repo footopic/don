@@ -30,10 +30,11 @@ module API
         end
         get '/show' do
           with = Entity::V1::UserDetailEntity
+          user_pre = User.includes(articles: [:tags, :comments, :histories, :stars]).order('articles.updated_at')
           if params[:user_id]
-            user = User.includes(articles: [:tags, :comments, :histories, :stars]).order('articles.updated_at').find(params[:user_id])
+            user = user_pre.find(params[:user_id])
           else
-            user = User.includes(articles: [:tags, :comments, :histories, :stars]).find_by(uid: params[:uid], provider: 'google_oauth2')
+            user = user_pre.find_by(uid: params[:uid], provider: 'google_oauth2')
           end
           present user, with: with
         end
