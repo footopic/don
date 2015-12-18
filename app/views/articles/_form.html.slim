@@ -1,13 +1,18 @@
-- template_on = true if local_assigns[:template_on].nil?
 = simple_form_for(@article) do |f|
-  - if template_on
+  - if defined? @templates
     .dropdown
       button.btn.btn-default.dropdown-toggle[type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"]
         | Template
         span.caret
       ul#templates-dropdown-list.dropdown-menu
-        li.loading
-          | ロード中
+        - @templates.each do |template|
+          li.template-item[data-name=template.name data-title=template.title data-text=template.text data-tags=template.tags.join(',')]
+            a[href='#']
+              = template.name
+        li
+          = link_to new_template_path do
+            = fa_icon :plus
+            | テンプレート追加
   .field
     = f.input :title, class: 'form-control', input_html: { placeholder: 'タイトル' }
   .field
@@ -82,7 +87,6 @@ coffee:
       $('#async-image-data')[0].click()
       return false
 
-
     # 画像アップロードボタン
     $('#async-image-data').change ->
       if $(@).files < 1
@@ -108,3 +112,10 @@ coffee:
         error: (json) ->
           alert '画像アップロードでエラーが発生しました'
       $('#async-image-data').val('')
+
+  # テンプレートのクリック
+  $('#templates-dropdown-list li').click ->
+    $('#article_title').val($(this).data('title'))
+    $('#article_text').val($(this).data('text'))
+    $('#article_tag_list').val($(this).data('tags'))
+    update_preview()

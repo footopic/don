@@ -1,0 +1,40 @@
+.menu_item {
+  padding: 0;
+  margin: 5px;
+  display: flex;
+  li {
+    padding: 5px;
+    &.active {
+      a {
+        color: #777;
+      }
+    }
+    a {
+      font-size: 20px;
+      i {
+        font-size: 14px;
+      }
+      span {
+        font-size: 14px;
+        padding: 0 4px;
+      }
+    }
+  }
+}
+
+#navbar {
+  .navbar-right {
+    img {
+      margin-top: 10px;
+    }
+  }
+}
+
+.navbar-default {
+  background: white;
+  .dropdown-menu {
+    i {
+      padding-right: 5px;
+    }
+  }
+}

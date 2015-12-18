@@ -3,21 +3,9 @@
     .navbar-header
       = link_to '丼', root_path, class: 'navbar-brand'
       ul.visible-xs.menus
-        |  <li class="
-        = 'active' if params[:controller] == 'articles' && (params[:action] == 'new' || params[:action] == 'edit')
-        | "> 
-        = link_to new_article_path do
-          = fa_icon 'pencil'
-        |  <li class="
-        = 'active' if params[:controller] == 'articles' && (params[:action] != 'new' && params[:action] != 'edit')
-        | "> 
-        = link_to articles_path do
-          = fa_icon 'th-list'
-        |  <li class="
-        = 'active' if params[:controller] == 'users'
-        | "> 
-        = link_to users_path do
-          = fa_icon 'users'
+        = menu_link_item('', :pencil, new_article_path, params[:controller] == 'articles' && (params[:action] == 'new' || params[:action] == 'edit'))
+        = menu_link_item('', 'th-list', articles_path, params[:controller] == 'articles' && (params[:action] != 'new' && params[:action] != 'edit'))
+        = menu_link_item('', :users, users_path, params[:controller] == 'users')
       button.navbar-toggle.collapsed[type="button" data-toggle="collapse" data-target="#navbar-user" aria-expanded="false"]
         = fa_icon 'user'
     #navbar-user.collapse.navbar-collapse
@@ -27,6 +15,12 @@
             = search_form_for @q, url: search_articles_path, class: 'form-group', html: { class: 'navbar-form navbar-left' } do |f|
               = f.search_field :title_or_user_screen_name_or_tags_name_cont, placeholder: '検索', class: 'form-control'
               = f.submit '検索', class: 'btn btn-default'
+          li.hidden-xs
+            ul.menu_item
+              // TODO: button
+              = menu_link_item('作成', :pencil, new_article_path, params[:controller] == 'articles' && (params[:action] == 'new' || params[:action] == 'edit'))
+              = menu_link_item('記事一覧', 'th-list', articles_path, params[:controller] == 'articles' && (params[:action] != 'new' && params[:action] != 'edit'))
+              = menu_link_item('メンバー', :users, users_path, params[:controller] == 'users')
           li
             = image_tag current_user.image_url, class: 'img-circle', size: '36x36'
           li.dropdown.hidden-xs
@@ -34,18 +28,15 @@
               = current_user.screen_name
               span.caret
             ul.dropdown-menu
-              li
-                = link_to 'マイページ', current_user
-              li
-                = link_to '設定変更', edit_user_path(current_user)
-              li
-                = link_to 'ログアウト', '/sign_out'
+              = menu_link_item('マイページ', :pencil, current_user, params[:controller] == 'users' && params[:action] == 'show')
+              = menu_link_item('設定', :cog, edit_user_path(current_user), params[:controller] == 'users' && params[:action] == 'edit')
+              = menu_link_item('ログアウト', 'sign-out', '/sign_out', false)
           li.visible-xs
             = current_user.screen_name
           li.visible-xs
             = link_to 'マイページ', current_user
           li.visible-xs
-            = link_to '設定変更', edit_user_path(current_user)
+            = link_to '設定', edit_user_path(current_user)
           li.visible-xs
             = link_to 'ログアウト', '/sign_out'
         - else

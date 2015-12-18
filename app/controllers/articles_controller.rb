@@ -35,6 +35,7 @@ class ArticlesController < ApplicationController
   # GET /articles/new
   def new
     @article = Article.new
+    @templates = Template.includes(:tags)
   end
 
   # GET /articles/1/edit
