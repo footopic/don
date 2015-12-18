@@ -10,7 +10,7 @@ module API
         paginate per_page: 10, max_per_page: 50, offset: 0
         get do
           with = Entity::V1::CommentDetailEntity
-          comments = paginate(Comment.all)
+          comments = paginate(Comment.includes_details)
           present comments, with: with
         end
 
@@ -19,8 +19,8 @@ module API
         paginate per_page: 10, max_per_page: 50, offset: 0
         get :recent do
           with = Entity::V1::CommentDetailEntity
-          articls = paginate(Comment.order('id DESC'))
-          present articls, with: with
+          comments = paginate(Comment.includes_details.order('id DESC'))
+          present comments, with: with
         end
 
         # GET /api/v1/comments/show
@@ -30,7 +30,7 @@ module API
         end
         get :show do
           with = Entity::V1::CommentDetailEntity
-          present Comment.find(params[:comment_id]), with: with
+          present Comment.includes_details.find(params[:comment_id]), with: with
         end
 
         # POST /api/v1/comments/create

@@ -13,7 +13,7 @@ module Entity
       end
 
       expose :article_count do |user|
-        user.articles.count
+        user.articles.size
       end
     end
   end

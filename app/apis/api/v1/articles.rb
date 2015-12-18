@@ -15,10 +15,10 @@ module API
         desc 'Get articles'
         paginate per_page: 10, max_per_page: 20, offset: 0
         params do
-          optional :include_details, type: Boolean, default: false, desc: 'Include article details info.'
+          optional :include_details, type: Boolean, default: false, desc: '[DEPRECATED]Include article details info.'
         end
         get do
-          articles = paginate(Article.all)
+          articles = paginate(Article.includes(:tags, :comments, :user, :histories, :stars))
           present articles, with: @with
         end
 
@@ -36,7 +36,7 @@ module API
           if params[:order_new]
             order = 'id DESC'
           end
-          articls = paginate(Article.order(order))
+          articls = paginate(Article.includes(:tags, :comments, :user, :histories, :stars).order(order))
           present articls, with: @with
         end
 

@@ -4,18 +4,21 @@ module API
       include Grape::Kaminari
 
       resource :users do
+
+        before_validation do
+          @with = Entity::V1::UserEntity
+          if params.key? :include_details and params[:include_details] == "true"
+            @with = Entity::V1::UserDetailEntity
+          end
+        end
         # GET /api/v1/users
         desc 'Get users'
         params do
           optional :include_details, type: Boolean, default: false, desc: 'Include user details info.'
         end
         get '/' do
-          with = Entity::V1::UserEntity
-          if params[:include_details]
-            with = Entity::V1::UserDetailEntity
-          end
-          users = User.all
-          present users, with: with
+          users = User.includes(:articles)
+          present users, with: @with
         end
 
         # GET /api/v1/users/show
@@ -28,11 +31,11 @@ module API
         get '/show' do
           with = Entity::V1::UserDetailEntity
           if params[:user_id]
-            present User.find(params[:user_id]), with: with
+            user = User.includes(articles: [:tags, :comments, :histories, :stars]).order('articles.updated_at').find(params[:user_id])
           else
-            user = User.find_by(uid: params[:uid], provider: 'google_oauth2')
-            present user, with: with
+            user = User.includes(articles: [:tags, :comments, :histories, :stars]).find_by(uid: params[:uid], provider: 'google_oauth2')
           end
+          present user, with: with
         end
       end
     end

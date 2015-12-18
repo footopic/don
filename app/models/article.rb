@@ -39,6 +39,11 @@ class Article < ActiveRecord::Base
 
   paginates_per 20
 
+  # NOTE: n+1対応, tags に含まれる情報なのに tag_list で 再び query が走る
+  def tag_names
+    tags.map &:name
+  end
+
   def written_by?(user)
     user == self.user
   end

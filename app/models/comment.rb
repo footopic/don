@@ -24,6 +24,7 @@ class Comment < ActiveRecord::Base
   validates :user, presence: true
   validates :article, presence: true
   validates :text, presence: true
+  scope :includes_details, -> { includes(user: [:articles], article: [:user, :tags, :comments, :histories, :stars]) }
 
   def posted_by?(user)
     user == self.user
