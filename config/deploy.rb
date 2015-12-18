@@ -42,6 +42,9 @@ set :npm_flags, '--production --silent --no-spin'
 set :npm_roles, :all
 set :npm_env_variables, {}
 
+# slack
+set :slack_webhook, ENV['SLACK_WEBHOOK_URL']
+
 # SSHKit.conifg
 SSHKit.config.command_map[:rake] = 'bundle exec rake'
 

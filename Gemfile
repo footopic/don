@@ -62,6 +62,7 @@ group :development, :test do
   gem 'capistrano-npm'
   gem 'capistrano3-unicorn'
   gem 'capistrano-safe-deploy-to', '~> 1.1.1'
+  gem 'slackistrano', require: false
 end
 
 group :test do
