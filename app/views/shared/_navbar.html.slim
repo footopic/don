@@ -18,7 +18,7 @@
           li.hidden-xs
             ul.menu_item
               // TODO: button
-              = menu_link_item('投稿する', :pencil, new_article_path, params[:controller] == 'articles' && (params[:action] == 'new' || params[:action] == 'edit'))
+              = menu_link_item('作成', :pencil, new_article_path, params[:controller] == 'articles' && (params[:action] == 'new' || params[:action] == 'edit'))
               = menu_link_item('記事一覧', 'th-list', articles_path, params[:controller] == 'articles' && (params[:action] != 'new' && params[:action] != 'edit'))
               = menu_link_item('メンバー', :users, users_path, params[:controller] == 'users')
           li
@@ -36,7 +36,7 @@
           li.visible-xs
             = link_to 'マイページ', current_user
           li.visible-xs
-            = link_to '設定変更', edit_user_path(current_user)
+            = link_to '設定', edit_user_path(current_user)
           li.visible-xs
             = link_to 'ログアウト', '/sign_out'
         - else
