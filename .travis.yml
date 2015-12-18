@@ -5,12 +5,14 @@ rvm:
   - 2.2.3
 bundler_args: --jobs=2
 script: bundle exec rspec
+env:
+  global:
+    secure: "iOxnOrOle7xxOVvr+pkVEaPW3sm8RNzQay0WTHXywWXMjI0AMsKpJO2ijJppnLdEMmFmJLEUw7uFemWm1Lj3YHGrX5W6wKTRlacSvY/2dN2F8W98dAqMEtIFjyqjOhzeb/mNnAj2J1Ny5Kw8W8QSsCB19l0wFABB3fH7ouFlJ5lbDA2c6Lk5+V0kEvF6rivhpWFu+blKzKxO/Od/yHGsWyCqJleJcjaeFBq4JOegTcaHSAriNnBEjEzGMHrO+Fw3XzRxt0e+AIpSUyXMzMA4Zl/54+GX4+Py7rRaZ0fnyC6fzWEliHNXERxD4X+0/CkQovZ0J/VKpFa3GbCtfZ6lNvuKkn9LOKKcCchd9UwTheBTUayIY2eJKdKXo6nYcbag//2APnD/wPNTfeJyHvKH5vfVItw477s8tQTPWt8ahTFliI4shLnhMgcmhNrklRSY7fQNbtyKwT2hZAR+lIQGvR1B/hHT8iXVnYGSo/bXDgH6BUU5VC7vuM7d3OuEFPL8ZtFSXRlyTAPvztLuDebMpKgbO7ldup7c6TrFlszIZP4PM3ZmvuXFNmDOKZE/OeAG/tVrqF1CwZ5wZIdsVNkL5+HO9icJ9xZ+Hzm24WMxLv+Mo1oJmfhCB+EBw0s6gNxMvKVfanodbP/k8aLDw8WpT8PT5a3uO5KFThiI2kyImko="
 after_success:
     - "openssl aes-256-cbc -K $encrypted_d939f3711a53_key -iv $encrypted_d939f3711a53_iv -in footopic.enc -out ~/.ssh/footopic -d"
     - "eval $(ssh-agent)"
     - "chmod 600 ~/.ssh/footopic"
     - "ssh-add ~/.ssh/footopic"
-    - secure: "iOxnOrOle7xxOVvr+pkVEaPW3sm8RNzQay0WTHXywWXMjI0AMsKpJO2ijJppnLdEMmFmJLEUw7uFemWm1Lj3YHGrX5W6wKTRlacSvY/2dN2F8W98dAqMEtIFjyqjOhzeb/mNnAj2J1Ny5Kw8W8QSsCB19l0wFABB3fH7ouFlJ5lbDA2c6Lk5+V0kEvF6rivhpWFu+blKzKxO/Od/yHGsWyCqJleJcjaeFBq4JOegTcaHSAriNnBEjEzGMHrO+Fw3XzRxt0e+AIpSUyXMzMA4Zl/54+GX4+Py7rRaZ0fnyC6fzWEliHNXERxD4X+0/CkQovZ0J/VKpFa3GbCtfZ6lNvuKkn9LOKKcCchd9UwTheBTUayIY2eJKdKXo6nYcbag//2APnD/wPNTfeJyHvKH5vfVItw477s8tQTPWt8ahTFliI4shLnhMgcmhNrklRSY7fQNbtyKwT2hZAR+lIQGvR1B/hHT8iXVnYGSo/bXDgH6BUU5VC7vuM7d3OuEFPL8ZtFSXRlyTAPvztLuDebMpKgbO7ldup7c6TrFlszIZP4PM3ZmvuXFNmDOKZE/OeAG/tVrqF1CwZ5wZIdsVNkL5+HO9icJ9xZ+Hzm24WMxLv+Mo1oJmfhCB+EBw0s6gNxMvKVfanodbP/k8aLDw8WpT8PT5a3uO5KFThiI2kyImko="
     - "gem install capistrano-rails"
     - "bundle exec cap staging deploy"
 cache: bundler
