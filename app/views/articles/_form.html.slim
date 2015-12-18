@@ -6,7 +6,7 @@
         span.caret
       ul#templates-dropdown-list.dropdown-menu
         - @templates.each do |template|
-          li.template-item[data-name=template.name data-title=template.title data-text=template.text data-tags=template.tags.join(',')]
+          li.template-item[data-name=template.name data-title=template.title_vr data-text=template.text_vr data-tags=template.tags_vr.join(',')]
             a[href='#']
               = template.name
         li
@@ -16,7 +16,7 @@
   .field
     = f.input :title, class: 'form-control', input_html: { placeholder: 'タイトル' }
   .field
-    = f.input :tag_list, class: 'form-control', input_html: { value: @article.tag_list.join(','), placeholder: ',区切りでタグを入力' }
+    = f.input :tag_list, class: 'form-control', input_html: {value: @article.tags.join(','), placeholder: ',区切りでタグを入力' }
   .field
     = f.input :text, class: 'form-control'
   hr

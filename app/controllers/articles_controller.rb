@@ -36,6 +36,8 @@ class ArticlesController < ApplicationController
   def new
     @article = Article.new
     @templates = Template.includes(:tags)
+    compare = Compare.new(current_user)
+    @templates.map { |template| template.set_compare(compare) }
   end
 
   # GET /articles/1/edit
