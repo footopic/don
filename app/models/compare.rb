@@ -1,7 +1,7 @@
 class Compare
 
-  def initialize(options)
-    now               = Time.current
+  def initialize(user)
+    now = Time.current
     @compare_patterns = {
         'Year'  => now.strftime('%Y'),
         'year'  => now.strftime('%y'),
@@ -9,8 +9,10 @@ class Compare
         'day'   => now.strftime('%d'),
         'week'  => now.strftime('%a'),
         'cDay'  => now.strftime('%j'),
-        'cWeek' => now.strftime('%V')
-    }.merge(options)
+        'cWeek' => now.strftime('%V'),
+        'me'    => user.screen_name,
+        'name'  => user.name
+    }
   end
 
   def template_variable(text)

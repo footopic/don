@@ -5,7 +5,7 @@ module Entity
       expose :text do |article| article.text_vr end
       expose :user, using: UserEntity
       expose :tags do |article|
-        article.tag_list_vr - ['template']
+        article.tags_vr - ['template']
       end
     end
   end

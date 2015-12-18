@@ -68,7 +68,6 @@ class Template < ActiveRecord::Base
     end
   end
 
-  # TODO: template STL
   def set_compare(compare)
     @compare = compare
   end
@@ -82,7 +81,8 @@ class Template < ActiveRecord::Base
     @compare.template_variable(text)
   end
 
-  def tag_list_vr
-    @compare.template_variable(tag_list)
+
+  def tags_vr
+    @compare.template_variable(tags.map &:name)
   end
 end

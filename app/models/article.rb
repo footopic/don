@@ -79,19 +79,6 @@ class Article < ActiveRecord::Base
     @compare = compare
   end
 
-  # variable を変換して返す
-  def title_vr
-    @compare.template_variable(title)
-  end
-
-  def text_vr
-    @compare.template_variable(text)
-  end
-
-  def tag_list_vr
-    @compare.template_variable(tag_list)
-  end
-
   def star_count_list
     stars      = self.stars.includes(:user)
     count_list = Hash.new(0)
