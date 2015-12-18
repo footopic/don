@@ -1,0 +1,10 @@
+- flash.each do |type, message|
+  |  <div class="alert
+  == alert_class_for(type)
+  |  alert-dismissible fade in">
+  button.close[type="button" data-dismiss="alert"]
+    span[aria-hidden="true"]
+      | ×
+    span.sr-only
+      | Close
+  == message

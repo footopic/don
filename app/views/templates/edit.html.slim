@@ -1,11 +1,12 @@
 - provide(:title, @template.title)
-h1.page-title
-  | テンプレート編集
-.row
-  .col-lg-6
-    = render 'form'
-  .col-lg-6
-    ul#tags-preview.tag_list
-    h2#title-preview
-    hr
-    #text-preview-area.markdown-body
+.container-fluid
+  h1.page-title
+    | テンプレート編集
+  .row
+    .col-lg-6
+      = render 'form'
+    .col-lg-6
+      ul#tags-preview.tag_list
+      h2#title-preview
+      hr
+      #text-preview-area.markdown-body

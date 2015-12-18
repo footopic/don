@@ -19,12 +19,12 @@ module ApplicationHelper
   def link_tags_list_for(tags, del_btn=false)
     content_tag :ul, class: 'tag_list' do
       tags.each do |tag|
-        concat ( content_tag(:li, tag_name: tag.name) do
+        concat (content_tag(:li, tag_name: tag.name) do
           concat content_tag(:a, tag.name, href: articles_path(tag: tag.name))
           if del_btn
             concat content_tag(:a, 'x', href: '#', class: 'delete-tag hide', tag_text: tag.name)
           end
-        end )
+        end)
       end
     end
   end
@@ -47,3 +47,5 @@ module ApplicationHelper
     end
   end
 end
+
+

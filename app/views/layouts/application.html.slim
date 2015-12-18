@@ -8,20 +8,10 @@ html
     meta[name="viewport" content="width=device-width, initial-scale=1"]
     = csrf_meta_tags
   body
-    = render 'shared/navbar'
-    .container-fluid
-      .col-md-4
-        - flash.each do |type, message|
-          |  <div class="alert 
-          = alert_class_for(type)
-          |  alert-dismissible fade in"> 
-          button.close[type="button" data-dismiss="alert"]
-            span[aria-hidden="true"]
-              | ×
-            span.sr-only
-              | Close
-          = message
-    .container-fluid
-      == yield
+    == render 'shared/navbar'
+    .container
+      .notice__area
+        == bootstrap_flash
+    == yield
     - if Rails.env == 'development'
       = params

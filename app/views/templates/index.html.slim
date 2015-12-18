@@ -1,8 +1,9 @@
-h1.page-title
-  |  テンプレート一覧
-  - if params[:tag]
-    = fa_icon 'tag'
-    = params[:tag]
-ul.articles
-  = render @templates
-= paginate @templates
+.container
+  h1.page-title
+    |  テンプレート一覧
+    - if params[:tag]
+      = fa_icon 'tag'
+      = params[:tag]
+  ul.articles
+    = render @templates
+  = paginate @templates

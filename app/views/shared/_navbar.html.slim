@@ -1,7 +1,11 @@
 #navbar.navbar.navbar-default
-  .container-fluid
+  .container
     .navbar-header
       = link_to '丼', root_path, class: 'navbar-brand'
+      - if user_signed_in?
+        = search_form_for @q, url: search_articles_path, class: 'form-group', html: { class: 'navbar-form navbar-left' } do |f|
+          = f.search_field :title_or_user_screen_name_or_tags_name_cont, placeholder: '検索', class: 'form-control'
+          = f.submit '検索', class: 'btn btn-default'
       ul.visible-xs.menus
         = menu_link_item('', :pencil, new_article_path, params[:controller] == 'articles' && (params[:action] == 'new' || params[:action] == 'edit'))
         = menu_link_item('', 'th-list', articles_path, params[:controller] == 'articles' && (params[:action] != 'new' && params[:action] != 'edit'))
@@ -11,17 +15,13 @@
     #navbar-user.collapse.navbar-collapse
       ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
-          li
-            = search_form_for @q, url: search_articles_path, class: 'form-group', html: { class: 'navbar-form navbar-left' } do |f|
-              = f.search_field :title_or_user_screen_name_or_tags_name_cont, placeholder: '検索', class: 'form-control'
-              = f.submit '検索', class: 'btn btn-default'
           li.hidden-xs
             ul.menu_item
               // TODO: button
               = menu_link_item('作成', :pencil, new_article_path, params[:controller] == 'articles' && (params[:action] == 'new' || params[:action] == 'edit'))
               = menu_link_item('記事一覧', 'th-list', articles_path, params[:controller] == 'articles' && (params[:action] != 'new' && params[:action] != 'edit'))
               = menu_link_item('メンバー', :users, users_path, params[:controller] == 'users')
-          li
+          li.hidden-xs
             = image_tag current_user.image_url, class: 'img-circle', size: '36x36'
           li.dropdown.hidden-xs
             = link_to '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' } do
@@ -31,8 +31,6 @@
               = menu_link_item('マイページ', :pencil, current_user, params[:controller] == 'users' && params[:action] == 'show')
               = menu_link_item('設定', :cog, edit_user_path(current_user), params[:controller] == 'users' && params[:action] == 'edit')
               = menu_link_item('ログアウト', 'sign-out', '/sign_out', false)
-          li.visible-xs
-            = current_user.screen_name
           li.visible-xs
             = link_to 'マイページ', current_user
           li.visible-xs
