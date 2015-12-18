@@ -37,4 +37,14 @@ module ApplicationHelper
       "#{page_title} - #{base_title}"
     end
   end
+
+  def menu_link_item(name, icon, link, is_active)
+    link = '#' if is_active
+    content_tag :li, class: is_active ? 'active' : '' do
+      link_to link do
+        concat fa_icon icon
+        concat content_tag :span, name
+      end
+    end
+  end
 end
