@@ -21,10 +21,12 @@
     = f.input :text, class: 'form-control'
   hr
   .row
-    .col-sm-4
+    .col-sm-2
       a#upload-btn.btn.btn-default
         = fa_icon 'file-image-o'
       input#async-image-data.hide[type="file" name="article[image]"]
+    .col-sm-2
+      = f.input :notice, label: 'Slackへ通知'
     .col-sm-4
       = f.input :status, label: false
     .col-sm-4

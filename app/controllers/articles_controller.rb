@@ -34,9 +34,9 @@ class ArticlesController < ApplicationController
 
   # GET /articles/new
   def new
-    @article = Article.new
+    @article   = Article.new
     @templates = Template.includes(:tags)
-    compare = Compare.new(current_user)
+    compare    = Compare.new(current_user)
     @templates.map { |template| template.set_compare(compare) }
   end
 
@@ -52,11 +52,15 @@ class ArticlesController < ApplicationController
     respond_to do |format|
       if @article.save
         History.create(user: current_user, article: @article)
-        SlackHook.new.post(current_user, t('.slack_message', {
-            user:  @article.user.screen_name,
-            title: @article.title,
-            url:   full_path(article_path(@article))
-        }), @article.text)
+
+        if @article.notice
+          SlackHook.new.post(current_user, t('.slack_message', {
+              user:  @article.user.screen_name,
+              title: @article.title,
+              url:   full_path(article_path(@article))
+          }), @article.text)
+        end
+
         format.html { redirect_to @article, flash: { success: '記事を作成しました' } }
         format.json { render :show, status: :created, location: @article }
       else
@@ -73,11 +77,13 @@ class ArticlesController < ApplicationController
       if @article.update(article_params)
         History.create(user: current_user, article: @article)
 
-        SlackHook.new.post(current_user, t('.slack_message', {
-            user:  @article.user.screen_name,
-            title: @article.title,
-            url:   full_path(article_path(@article))
-        }), @article.text)
+        if @article.notice
+          SlackHook.new.post(current_user, t('.slack_message', {
+              user:  @article.user.screen_name,
+              title: @article.title,
+              url:   full_path(article_path(@article))
+          }), @article.text)
+        end
 
         format.html { redirect_to @article, flash: { success: '記事を更新しました' } }
         format.json { render :show, status: :ok, location: @article }
@@ -152,7 +158,7 @@ class ArticlesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def article_params
-    params.require(:article).permit(:title, :text, :status, :tag_list, :user_id, :lock)
+    params.require(:article).permit(:title, :text, :status, :tag_list, :user_id, :lock, :notice)
   end
 
   def check_article_owner

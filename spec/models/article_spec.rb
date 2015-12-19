@@ -10,6 +10,7 @@
 #  updated_at :datetime         not null
 #  status     :string
 #  lock       :boolean          default(FALSE)
+#  notice     :boolean          default(TRUE)
 #
 # Indexes
 #
