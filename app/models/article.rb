@@ -30,7 +30,7 @@ class Article < ActiveRecord::Base
   validates :text, presence: true
   validates :user, presence: true
 
-  scope :sorted_by_recently, -> { reorder('updated_at DESC').take(2) }
+  scope :sorted_by_recently, -> { reorder('updated_at DESC') }
   scope :recently_edit, -> { reorder('updated_at DESC').take(5) }
   scope :recently_create, -> { reorder('created_at DESC').take(5) }
   scope :with_associations, -> { includes(:tags, :user) }
