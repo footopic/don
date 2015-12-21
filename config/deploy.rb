@@ -50,6 +50,7 @@ SSHKit.config.command_map[:rake] = 'bundle exec rake'
 
 before 'deploy:migrate', 'deploy:copy_sqlite'
 after 'deploy:publishing', 'deploy:restart'
+after 'deploy:finishing', 'deploy:emojify_assets'
 
 namespace :deploy do
   task :copy_sqlite do
@@ -69,6 +70,18 @@ namespace :deploy do
         with rails_env: fetch(:rails_env) do
           execute :rake, 'db:seed'
         end
+      end
+    end
+  end
+
+  # HACK: 絵文字の補完で digest つきの 絵文字 url を生成できない
+  # javascript で image_path() が使うべきだが client 側での入力に応じて動的な処理は無理
+  # デプロイ時に /public/assets に emojify/basic/*.jpg を配置する
+  desc 'emojify assets を設置'
+  task :emojify_assets do
+    on roles(:app) do
+      within current_path do
+        execute 'cp -r node_modules/emojify.js/dist/images/basic/ ./public/assets/'
       end
     end
   end
