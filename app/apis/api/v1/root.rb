@@ -4,6 +4,11 @@ module API
       version :v1
       format :json
 
+      http_basic do |user, password|
+        basic_config = Rails.application.secrets.basic
+        { basic_config['user'] => basic_config['pass'] }[user] == password
+      end
+
       mount API::V1::Images
       mount API::V1::Articles
       mount API::V1::Users
