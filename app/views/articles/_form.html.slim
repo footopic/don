@@ -7,7 +7,7 @@
       ul#templates-dropdown-list.dropdown-menu
         - @templates.each do |template|
           li.template-item[data-name=template.name data-title=template.title_vr data-text=template.text_vr data-tags=template.tags_vr.join(',')]
-            a[href='#']
+            a.emojable[href='#']
               = template.name
         li
           = link_to new_template_path do
@@ -41,6 +41,7 @@ coffee:
   update_text_preview = ->
     marked_text = marked($("#article_text").val())
     $("#text-preview-area").html(marked_text)
+    emojify.run($("#text-preview-area").get(0))
 
   update_tags_preview = ->
     $('#tags-preview').empty()

@@ -6,7 +6,7 @@
   .field
     = f.input :tag_list, input_html: { value: @template.tag_list.join(','), class: 'form-control', placeholder: ',区切りでタグを入力' }
   .field
-    = f.input :text, class: 'form-control'
+    = f.input :text, class: 'form-control', html: { class: 'comp-text' }
   .field
     = f.input :type, as: :hidden, input_html: { value: 'Template' }
   hr
@@ -27,6 +27,7 @@ coffee:
   update_text_preview = ->
     marked_text = marked($("#template_text").val())
     $("#text-preview-area").html(marked_text)
+    emojify.run($("#text-preview-area").get(0))
 
   update_tags_preview = ->
     $('#tags-preview').empty()
