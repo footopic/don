@@ -133,6 +133,7 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
+    diffy (3.1.0)
     dotenv (2.0.2)
     dotenv-rails (2.0.2)
       dotenv (= 2.0.2)
@@ -567,6 +568,7 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 4.1.0)
   devise
+  diffy
   dotenv-rails
   enumerize
   factory_girl_rails

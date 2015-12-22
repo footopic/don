@@ -7,6 +7,7 @@
 #  article_id :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  diff       :string
 #
 # Indexes
 #
@@ -21,4 +22,5 @@ class History < ActiveRecord::Base
 
   validates :user, presence: true
   validates :article, presence: true
+  validates :diff, presence: true
 end
