@@ -22,6 +22,7 @@ RSpec.feature '記事の保護', type: :feature do
       end
 
       it { expect(page).to have_link('記事の保護を解除する') }
+      it { expect(page).not_to have_link('記事を保護する') }
 
       context '解除リンクをクリックしたとき' do
         before do
@@ -52,6 +53,8 @@ RSpec.feature '記事の保護', type: :feature do
       end
 
       it { expect(page).to have_link('記事を保護する') }
+      it { expect(page).not_to have_link('記事の保護を解除する') }
+
 
       context '保護リンクをクリックしたとき' do
         subject { page }
