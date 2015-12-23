@@ -38,6 +38,20 @@ module API
           end
           present user, with: with
         end
+
+        # GET /api/v1/users/comp
+        desc 'Get users comp list'
+        params do
+          optional :q, type: String, desc: 'Fragment of userScreen_name.'
+        end
+        get :comp do
+          if params.key? :q && params[:q] == ''
+            users = User.limit(10)
+          else
+            users = User.where('screen_name LIKE ?', "%#{params[:q]}%").limit(10)
+          end
+          present users, with: Entity::V1::UserCompEntity
+        end
       end
     end
   end
