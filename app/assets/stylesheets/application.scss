@@ -29,6 +29,7 @@
 @import "history";
 @import "form";
 @import "navbar";
+@import "comp";
 
 @media (max-width: $screen-xs-max) {
   @import "xs";

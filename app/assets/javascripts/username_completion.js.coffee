@@ -8,7 +8,7 @@ $ ->
       "[@#{user.screen_name}](/#{user.screen_name})"
     template: (user) ->
       console.log user
-      '<img src="' + user.thumb_url + '" />' + user.screen_name
+      '<img src="' + user.thumb_url + '" />' + '<span>' + user.screen_name + '</span>'
     index: 1
     maxCount: 8
   }]
