@@ -1,5 +1,5 @@
 $ ->
-  article_link = [{
+  username_comp = [{
     match: /@([^\s]*)$/
     search: (term, callback) ->
       $.getJSON '/api/v1/users/comp', { q: term }, (res) ->
@@ -12,5 +12,6 @@ $ ->
     index: 1
     maxCount: 8
   }]
-  $('#article_text').textcomplete article_link
-  $('#template_text').textcomplete article_link
+  $('#article_text').textcomplete username_comp
+  $('#template_text').textcomplete username_comp
+  $('#comment_text').textcomplete username_comp
