@@ -1,0 +1,10 @@
+- provide(:title, @article.title)
+
+.container
+  h1.page-title
+    |  記事編集履歴
+  h1
+    = @article.title
+
+  .container
+  = render @histories

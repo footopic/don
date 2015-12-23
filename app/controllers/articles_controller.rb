@@ -32,6 +32,12 @@ class ArticlesController < ApplicationController
     end
   end
 
+  # GET /articles/history/1
+  def history
+    @article   = Article.find(params[:article_id])
+    @histories = @article.histories.includes(:user).order('created_at desc')
+  end
+
   # GET /articles/new
   def new
     @article   = Article.new
