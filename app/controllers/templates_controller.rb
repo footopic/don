@@ -20,10 +20,12 @@ class TemplatesController < ApplicationController
   # GET /template/new
   def new
     @template = Template.new
+    @tag_list = ActsAsTaggableOn::Tag.all.map &:name
   end
 
   # GET /templates/1/edit
   def edit
+    @tag_list = ActsAsTaggableOn::Tag.all.map &:name
   end
 
   # POST /templates

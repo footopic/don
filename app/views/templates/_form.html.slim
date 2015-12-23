@@ -18,6 +18,31 @@
     .col-sm-4
       = f.button :submit, id: 'btn-submit', class: 'form-control'
 
+javascript:
+  $(function() {
+    var tags = #{raw @tag_list};
+    $('#template_tag_list').textcomplete([{
+      match: /(^|,)(\w*)$/,
+      search: function (term, callback) {
+        callback($.map(tags, function (tag) {
+          if (tag.indexOf(term) == 0) {
+            return tag;
+          }
+          return null;
+        }));
+      },
+      replace: function (value) {
+        return "$1" + value;
+      },
+
+      index: 2,
+      maxCount: 10,
+      template: function (value) {
+        return value;
+      }
+    }]);
+  });
+
 coffee:
   # タイトルプレビュー反映
   update_title_preview = ->
@@ -97,7 +122,6 @@ coffee:
         contentType: false
         success: (json) ->
           url = json.file.url
-          console.log 'http://' + window.location.host + url
           insertImgMd('http://' + window.location.host + url)
         error: (json) ->
           alert '画像アップロードでエラーが発生しました'

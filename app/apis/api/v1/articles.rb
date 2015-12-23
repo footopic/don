@@ -52,6 +52,18 @@ module API
           present article, with: with
         end
 
+        # GET /api/v1/articles/comp
+        desc 'Get articles'
+        params do
+          optional :num, type: Integer, desc: 'Fragment of articleId.'
+        end
+        get :comp do
+          if params.key? :num && params[:num] == ''
+            Article.select(:id, :title).order('id DESC').limit(10)
+          else
+            Article.select(:id, :title).order('id DESC').where("id like '#{params[:num]}%'").limit(10)
+          end
+        end
       end
     end
   end

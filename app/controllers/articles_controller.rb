@@ -45,10 +45,12 @@ class ArticlesController < ApplicationController
     @templates = Template.includes(:tags)
     compare    = Compare.new(current_user)
     @templates.map { |template| template.set_compare(compare) }
+    @tag_list = ActsAsTaggableOn::Tag.all.map &:name
   end
 
   # GET /articles/1/edit
   def edit
+    @tag_list = ActsAsTaggableOn::Tag.all.map &:name
   end
 
   # POST /articles
