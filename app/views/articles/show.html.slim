@@ -40,6 +40,9 @@
         = render partial: 'article', collection: @recently_articles
       .article-subinfos.article-history
         h4 編集履歴
-        - @histories.each do |history|
+        - @recently_histories.each do |history|
           = render 'histories/simple_history', history: history
           hr
+        .more
+          .more-history
+            = link_to 'もっと見る', article_path(@article) + '/history'
