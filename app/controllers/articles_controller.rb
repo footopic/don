@@ -36,6 +36,7 @@ class ArticlesController < ApplicationController
   def history
     @article   = Article.find(params[:article_id])
     @histories = @article.histories.includes(:user).order('created_at desc')
+    @css = Diffy::CSS
   end
 
   # GET /articles/new
@@ -81,9 +82,9 @@ class ArticlesController < ApplicationController
   def update
     respond_to do |format|
       # diff = Diffy::Diff.new(article_params[:text], @article.text, :context => 1)
-      diff = Diffy::Diff.new(article_params[:text], @article.text, :context => 1)
+      diff = Diffy::Diff.new(article_params[:text], @article.text, :context => 2)
       if diff.to_s != '' && @article.update(article_params)
-        History.create(user: current_user, article: @article, diff: diff.to_s)
+        History.create(user: current_user, article: @article, diff: diff.to_s(:html))
         if @article.notice
           SlackHook.new.post(current_user, t('.slack_message', {
               user:  @article.user.screen_name,

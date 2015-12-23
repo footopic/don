@@ -1,0 +1,8 @@
+.simple-history
+  = link_to(history.user) do
+    = image_tag history.user.image.thumb.url, class: 'img-circle', size: '32x32'
+    span
+      = history.user.screen_name
+  .created_at
+    = l history.created_at
+  // = fa_icon(:pencil)
