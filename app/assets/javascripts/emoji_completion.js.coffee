@@ -24,3 +24,4 @@ $ ->
   }]
   $('#template_text').textcomplete strategies
   $('#article_text').textcomplete strategies
+  $('#comment_text').textcomplete strategies

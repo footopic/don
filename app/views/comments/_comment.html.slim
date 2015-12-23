@@ -11,3 +11,5 @@
         = link_to '削除', comment_path(comment), method: :delete, data: { confirm: '本当に削除しますか？' }
   .comment__content
     = comment.text
+coffee:
+  emojify.run($('#comment').get(0))
