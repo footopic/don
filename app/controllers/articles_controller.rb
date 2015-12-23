@@ -82,7 +82,7 @@ class ArticlesController < ApplicationController
   def update
     respond_to do |format|
       # diff = Diffy::Diff.new(article_params[:text], @article.text, :context => 1)
-      diff = Diffy::Diff.new(article_params[:text], @article.text, :context => 2)
+      diff = Diffy::Diff.new(@article.text, article_params[:text], :context => 2)
       if article_params[:title] != @article.title
         title_diff =  t('diff.title', { pre_title: @article.title, title: article_params[:title] })
       end
