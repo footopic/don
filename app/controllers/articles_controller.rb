@@ -83,8 +83,16 @@ class ArticlesController < ApplicationController
     respond_to do |format|
       # diff = Diffy::Diff.new(article_params[:text], @article.text, :context => 1)
       diff = Diffy::Diff.new(article_params[:text], @article.text, :context => 2)
-      if diff.to_s != '' && @article.update(article_params)
-        History.create(user: current_user, article: @article, diff: diff.to_s(:html))
+      if article_params[:title] != @article.title
+        title_diff =  t('diff.title', { pre_title: @article.title, title: article_params[:title] })
+      end
+      if @article.update(article_params)
+        if diff.to_s != ''
+          History.create(user: current_user, article: @article, diff: diff.to_s(:html))
+        end
+        if title_diff
+          History.create(user: current_user, article: @article, diff: title_diff)
+        end
         if @article.notice
           SlackHook.new.post(current_user, t('.slack_message', {
               user:  @article.user.screen_name,
@@ -96,9 +104,6 @@ class ArticlesController < ApplicationController
         format.html { redirect_to @article, flash: { success: '記事を更新しました' } }
         format.json { render :show, status: :ok, location: @article }
       else
-        if diff.to_s == ''
-          @article.errors[:text] << '変更がありません'
-        end
         format.html { render :edit }
         format.json { render json: @article.errors, status: :unprocessable_entity }
       end

@@ -228,3 +228,5 @@ ja:
         wip: WIP
   more:
     'もっと見る'
+  diff:
+    title: "タイトルの変更 %{pre_title} -> %{title}"
