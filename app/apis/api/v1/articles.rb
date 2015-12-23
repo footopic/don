@@ -53,15 +53,17 @@ module API
         end
 
         # GET /api/v1/articles/comp
-        desc 'Get articles'
+        desc 'Get articles comp list'
         params do
-          optional :num, type: Integer, desc: 'Fragment of articleId.'
+          optional :q, type: String, desc: 'Fragment of articleId, articleTitle.'
         end
         get :comp do
-          if params.key? :num && params[:num] == ''
+          if params.key? :q && params[:q] == ''
             Article.select(:id, :title).order('id DESC').limit(10)
           else
-            Article.select(:id, :title).order('id DESC').where("id like '#{params[:num]}%'").limit(10)
+            id_like = "#{params[:q]}%"
+            title_like = "%#{params[:q]}%"
+            Article.select(:id, :title).order('id DESC').where('id LIKE ? or title LIKE ?', id_like, title_like).limit(10)
           end
         end
       end
