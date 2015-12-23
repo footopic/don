@@ -36,7 +36,7 @@ javascript:
   $(function() {
     var tags = #{raw @tag_list};
     $('#article_tag_list').textcomplete([{
-      match: /(^|,)(\w*)$/,
+      match: /(^|,)([^\s]*)$/,
       search: function (term, callback) {
         callback($.map(tags, function (tag) {
           if (tag.indexOf(term) == 0) {
