@@ -15,7 +15,7 @@
         #text-preview.markdown-body
           == markdown(@template.text)
     .col-md-4
-      = image_tag @user.image_url, class: 'img-circle', size: '64x64'
+      = image_tag @user.image.url, class: 'img-circle', size: '64x64'
       = link_to @user.screen_name, @user
       .article__show
         h4 新着の投稿

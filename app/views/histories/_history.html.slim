@@ -1,6 +1,6 @@
 .history
   = link_to(history.user) do
-    = image_tag history.user.image_url, class: 'img-circle', size: '32x32'
+    = image_tag history.user.image.url, class: 'img-circle', size: '32x32'
     = history.user.screen_name
   = l history.created_at
   = history.diff

@@ -13,7 +13,7 @@
     .row
       .col-sm-6
         .img-wrap
-          = image_tag current_user.image_url, id: 'img-user-icon', class: 'img-circle', size: '128x128'
+          = image_tag current_user.image.url, id: 'img-user-icon', class: 'img-circle', size: '128x128'
         = f.file_field :image, class: 'form-control'
   .form-group
     = f.label 'screen_name'

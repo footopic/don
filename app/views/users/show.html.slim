@@ -5,7 +5,7 @@
       .col-xs-8
         .infos
           h2.title
-            = image_tag @user.image_url, class: 'img-circle', size: '64x64'
+            = image_tag @user.image.url, class: 'img-circle', size: '64x64'
             = link_to @user.screen_name, @user
           p.name
             = @user.name

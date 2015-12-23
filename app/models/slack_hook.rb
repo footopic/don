@@ -16,7 +16,7 @@ class SlackHook
   end
 
   def post(user, msg, text)
-    icon_url = File.join(BASE_URL, user.image_url)
+    icon_url = File.join(BASE_URL, user.image.url)
 
     attachments = [
         {
