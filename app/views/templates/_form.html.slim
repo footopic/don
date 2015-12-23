@@ -122,7 +122,6 @@ coffee:
         contentType: false
         success: (json) ->
           url = json.file.url
-          console.log 'http://' + window.location.host + url
           insertImgMd('http://' + window.location.host + url)
         error: (json) ->
           alert '画像アップロードでエラーが発生しました'

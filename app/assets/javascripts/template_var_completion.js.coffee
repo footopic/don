@@ -14,14 +14,12 @@ $ ->
   template_var = [{
     match: /%\{([\-+\w]*)$/
     search: (term, callback) ->
-      console.log term
       callback $.map(vars, (tvar) ->
         if tvar[0].indexOf(term) == 0 then tvar.join(':') else null
       )
     replace: (value) ->
       "%{" + value.split(':')[0] + "}"
     template: (value) ->
-      console.log(value)
       value
     index: 1
     maxCount: 8
