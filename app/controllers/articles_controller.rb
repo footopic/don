@@ -50,6 +50,7 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1/edit
   def edit
+    @tag_list = ActsAsTaggableOn::Tag.all.map &:name
   end
 
   # POST /articles
