@@ -60,7 +60,7 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       if @article.save
-        History.create(user: current_user, article: @article)
+        History.create(user: current_user, article: @article, diff: diff = Diffy::Diff.new('', @article.text))
 
         if @article.notice
           SlackHook.new.post(current_user, t('.slack_message', {
