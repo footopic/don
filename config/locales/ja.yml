@@ -226,3 +226,7 @@ ja:
         publish: 公開
         limit: ラボ内のみ公開
         wip: WIP
+  more:
+    'もっと見る'
+  diff:
+    title: "タイトルの変更 %{pre_title} -> %{title}"

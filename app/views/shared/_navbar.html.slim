@@ -22,7 +22,7 @@
               = menu_link_item('記事一覧', 'th-list', articles_path, params[:controller] == 'articles' && (params[:action] != 'new' && params[:action] != 'edit'))
               = menu_link_item('メンバー', :users, users_path, params[:controller] == 'users')
           li.hidden-xs
-            = image_tag current_user.image_url, class: 'img-circle', size: '36x36'
+            = image_tag current_user.image.url, class: 'img-circle', size: '36x36'
           li.dropdown.hidden-xs
             = link_to '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' } do
               = current_user.screen_name

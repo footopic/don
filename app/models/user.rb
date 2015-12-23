@@ -38,10 +38,6 @@ class User < ActiveRecord::Base
     id == article.user_id
   end
 
-  def image_url
-    image.url || 'noimg.png'
-  end
-
   def to_param
     screen_name
   end

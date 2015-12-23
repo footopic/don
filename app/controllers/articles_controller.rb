@@ -26,10 +26,17 @@ class ArticlesController < ApplicationController
     @editors           = User.find(user_ids).uniq
     @stars             = @article.stars.includes(:user)
     @recently_articles = @user.articles.includes(:tags).recently_edit
-    @histories         = @article.histories.includes(:user).order('created_at desc')
+    @recently_histories         = @article.histories.includes(:user).order('created_at desc').take(5)
     if @user.screen_name == 'esa'
       flash.now[:notice] = t '.esa_message'
     end
+  end
+
+  # GET /articles/history/1
+  def history
+    @article   = Article.find(params[:article_id])
+    @histories = @article.histories.includes(:user).order('created_at desc')
+    @css = Diffy::CSS
   end
 
   # GET /articles/new
@@ -74,9 +81,18 @@ class ArticlesController < ApplicationController
   # PATCH/PUT /articles/1.json
   def update
     respond_to do |format|
+      # diff = Diffy::Diff.new(article_params[:text], @article.text, :context => 1)
+      diff = Diffy::Diff.new(article_params[:text], @article.text, :context => 2)
+      if article_params[:title] != @article.title
+        title_diff =  t('diff.title', { pre_title: @article.title, title: article_params[:title] })
+      end
       if @article.update(article_params)
-        History.create(user: current_user, article: @article)
-
+        if diff.to_s != ''
+          History.create(user: current_user, article: @article, diff: diff.to_s(:html))
+        end
+        if title_diff
+          History.create(user: current_user, article: @article, diff: title_diff)
+        end
         if @article.notice
           SlackHook.new.post(current_user, t('.slack_message', {
               user:  @article.user.screen_name,

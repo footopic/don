@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       match 'search' => 'articles#search', via: [:get, :post], as: :search
     end
 
+    get 'history'
     get 'lock'
     get 'unlock'
   end

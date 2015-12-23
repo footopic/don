@@ -12,7 +12,7 @@
     .article-subinfos
       - @editors.each do |editor|
         = link_to(editor) do
-          = image_tag editor.image_url, class: 'img-circle', size: '32x32'
+          = image_tag editor.image.url, class: 'img-circle', size: '32x32'
 
 .container
   .article-body.row
@@ -33,13 +33,16 @@
       - if user_signed_in?
         = render 'comments/form'
     .col-md-4
-      = image_tag @user.image_url, class: 'img-circle', size: '64x64'
+      = image_tag @user.image.url, class: 'img-circle', size: '64x64'
       = link_to @user.screen_name, @user
       .article__show
         h4 新着の投稿
         = render partial: 'article', collection: @recently_articles
-      .article-subinfos
+      .article-subinfos.article-history
         h4 編集履歴
-        - @histories.each do |history|
-          = render history
+        - @recently_histories.each do |history|
+          = render 'histories/simple_history', history: history
           hr
+        .more
+          .more-history
+            = link_to 'もっと見る', article_path(@article) + '/history'

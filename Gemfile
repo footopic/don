@@ -36,6 +36,8 @@ gem 'grape-swagger-ui'
 gem 'grape-swagger-rails'
 gem 'grape-kaminari'
 
+gem 'diffy'
+
 gem 'rack-cors', :require => 'rack/cors'
 gem 'slack-notifier'
 gem 'activeadmin', '~> 1.0.0.pre2'

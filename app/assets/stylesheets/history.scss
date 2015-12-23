@@ -2,15 +2,26 @@
   margin: 10px 5px;
   padding: 2px;
 
-  a {
-    // display: inline-flex;
-    display: block;
-
-    img {
-      display: inline-flex;
-    }
-  }
   hr {
     margin: 0;
+  }
+}
+
+.simple-history {
+  display: flex;
+  img {
+    height: 1.3em;
+    width: 1.3em;
+  }
+  a>* {
+    float: left;
+    margin-right: 5px;
+  }
+}
+
+.article-subinfos.article-history {
+  hr {
+    margin-top: 5px;
+    margin-bottom: 5px;
   }
 }
