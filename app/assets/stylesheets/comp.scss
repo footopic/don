@@ -1,0 +1,13 @@
+.dropdown-menu.textcomplete-dropdown {
+  li a {
+    display: flex;
+    img {
+      width: 2em;
+      height: 2em;
+      margin-right: .5em;
+    }
+    span {
+      line-height: 2em;
+    }
+  }
+}
