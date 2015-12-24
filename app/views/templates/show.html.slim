@@ -1,13 +1,19 @@
 - provide(:title, @template.title)
 .article-header
-  .article-titles
-    h1.title
-      = "【#{@template.name}】"
-      = render partial: 'icons', locals: { article: @template }
-    p =@template.title
-    = render partial: 'articles/author_info', locals: { article: @template }
+  .container
+    .article-titles
+      h1.title.emojable
+        = @template.title
+        = render partial: 'icons', locals: { article: @template }
+      p.emojable = "【#{@template.name}】"
+      = render partial: 'articles/author_info', locals: { article: @template }
+      = render partial: 'articles/tag_list', locals: { article: @template }
+      = link_to '削除', @template, method: :delete, data: { confirm: '本当に削除しますか？' }
+
+.tag-header
+  .container
     = render partial: 'articles/tag_list', locals: { article: @template }
-    = link_to '削除', @template, method: :delete, data: { confirm: '本当に削除しますか？' }
+
 .container
   .article-body.row
     .col-md-8
