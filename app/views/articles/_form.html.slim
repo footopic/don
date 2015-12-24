@@ -1,6 +1,6 @@
 = simple_form_for(@article) do |f|
   - if defined? @templates
-    .dropdown
+    .dropdown.pull-right
       button.btn.btn-default.dropdown-toggle[type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"]
         | Template
         span.caret
@@ -9,10 +9,15 @@
           li.template-item[data-name=template.name data-title=template.title_vr data-text=template.text_vr data-tags=template.tags_vr.join(',')]
             a.emojable[href='#']
               = template.name
+        li.divider
         li
           = link_to new_template_path do
             = fa_icon :plus
             | テンプレート追加
+        li
+          = link_to templates_path do
+            = fa_icon :list
+            | テンプレート管理
   .field
     = f.input :title, class: 'form-control', input_html: { placeholder: 'タイトル' }
   .field
