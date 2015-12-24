@@ -78,7 +78,6 @@ module API
           optional :notice, type: Boolean, desc: 'Do Notice with post.'
         end
         post :create do
-          binding.pry
           user = User.find(params[:user_id])
           article = user.articles.create(params.slice(:title, :text, :status, :tag_list, :notice).to_hash)
           with = Entity::V1::ArticleDetailEntity
