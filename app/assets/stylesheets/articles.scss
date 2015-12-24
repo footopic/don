@@ -61,8 +61,8 @@
   overflow: hidden;
   border-bottom: solid;
   padding: 40px 20px;
-  border-bottom: solid;
-  background-color: #337ab7;
+  /* border-bottom: solid; */
+  background-color: #754;
   margin-top: -20px;
   color: white;
 
@@ -107,4 +107,9 @@
 
 button.close {
   margin-left: 0.5em;
+}
+
+.tag-header {
+  background: white;
+  border-bottom: solid orange;
 }

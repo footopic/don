@@ -19,6 +19,15 @@ body {
   > .container-fluid {
     padding: 0 40px;
   }
+  background: #FFF7E9;
+}
+
+a {
+  color: #330000;
+  text-decoration: underline;
+  &:hover {
+    color: #845f4b;
+  }
 }
 
 .page-title {
