@@ -7,7 +7,9 @@
         = render partial: 'icons', locals: { article: @article }
       = render partial: 'articles/author_info', locals: { article: @article }
       = render partial: 'articles/lock', locals: { article: @article }
-      = link_to '削除', @article, method: :delete, data: { confirm: '本当に削除しますか？' }
+      = link_to @article, method: :delete, data: { confirm: '本当に削除しますか？' } do
+        = fa_icon :trash
+        | 削除
     .article-subinfos
       - @editors.each do |editor|
         = link_to(editor) do

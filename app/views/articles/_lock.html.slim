@@ -1,5 +1,9 @@
 - if user_signed_in? && current_user.owner?(@article)
   - if @article.unlock?
-    = link_to '記事を保護する', article_lock_path(@article)
+    = link_to article_lock_path(@article) do
+      = fa_icon :lock
+      | 記事を保護する
   - elsif @article.lock?
-    = link_to '記事の保護を解除する', article_unlock_path(@article)
+    = link_to article_unlock_path(@article) do
+      =  fa_icon :lock
+      | 記事の保護を解除する
