@@ -23,6 +23,9 @@
 }
 
 #navbar {
+  border: none;
+  border-radius: 0;
+  border-bottom: solid gray 1px;
   .navbar-right {
     img {
       margin-top: 10px;

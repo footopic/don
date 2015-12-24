@@ -4,6 +4,10 @@
 .tag_list_block {
   .add_tag_form {
     display: inline;
+    .input-group {
+      display: inline-table;
+      width: 24em;
+    }
   }
   #add_tag_text {
     color: black;
@@ -14,7 +18,7 @@
   }
   a.delete-tag {
     padding: 0px 5px;
-    background: gray;
+    background: red;
     margin: 0px 1px 0 4px;
     color: white !important;
   }
@@ -46,28 +50,13 @@
     position: relative;
     font-size: 85%;
     margin-left: .7em;
-    color: #555 !important;
 
     &:before {
-      width: 0;
-      height: 0;
-      right: 100%;
-      content: '';
-      position: absolute;
-      pointer-events: none;
-      border: solid transparent;
-      border-color: transparent;
-      border-right-color: $bg_color;
-      border-width: .6em;
-      top: 50%;
-      margin-top: -.6em;
+      content: '#';
     }
 
     &:hover {
       background-color: $bg_color - #333;
-      &:before {
-        border-right-color: $bg_color - #333;
-      }
     }
 
     span {

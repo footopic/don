@@ -1,9 +1,13 @@
 .tag_list_block
   = link_tags_list_for(article.tags, true)
   .add_tag_form.hide
-    input#add_tag_text[type="text"]
-    a#add_tag_btn[href='#'] = '+'
-  a#edit_tag[href='#' article-id=article.id] = 'タグ編集'
+    .input-group.input-group-sm
+      span#tag_addon.input-group-addon = '#'
+      input#add_tag_text.form-control[type="text" placeholder="タグ" aria-describedby="tag_addon"]
+      a#add_tag_btn.input-group-addon[href='#'] = '+ 登録'
+  a#edit_tag[href='#' article-id=article.id]
+    = fa_icon 'wrench'
+    | 編集
 
 coffee:
   $ ->
@@ -22,7 +26,7 @@ coffee:
     $('#edit_tag').click ->
       if not $(this).hasClass('on')
         $(this).addClass('on')
-        $(this).text('完了')
+        $(this).text('タグ編集完了')
         $('.add_tag_form').removeClass('hide');
         $('.delete-tag').removeClass('hide')
       else

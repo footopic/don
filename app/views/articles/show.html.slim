@@ -6,13 +6,15 @@
         = @article.title
         = render partial: 'icons', locals: { article: @article }
       = render partial: 'articles/author_info', locals: { article: @article }
-      = render partial: 'articles/tag_list', locals: { article: @article }
       = render partial: 'articles/lock', locals: { article: @article }
       = link_to '削除', @article, method: :delete, data: { confirm: '本当に削除しますか？' }
     .article-subinfos
       - @editors.each do |editor|
         = link_to(editor) do
           = image_tag editor.image.url, class: 'img-circle', size: '32x32'
+.tag-header
+  .container
+    = render partial: 'articles/tag_list', locals: { article: @article }
 
 .container
   .article-body.row

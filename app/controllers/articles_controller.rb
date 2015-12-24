@@ -89,18 +89,23 @@ class ArticlesController < ApplicationController
         title_diff =  t('diff.title', { pre_title: @article.title, title: article_params[:title] })
       end
       if @article.update(article_params)
+        slack_text = ''
         if diff.to_s != ''
+          slack_text = diff.to_s
           History.create(user: current_user, article: @article, diff: diff.to_s(:html))
         end
         if title_diff
+          slack_text = title_diff
           History.create(user: current_user, article: @article, diff: title_diff)
         end
-        if @article.notice
+        if @article.notice and slack_text != ''
           SlackHook.new.post(current_user, t('.slack_message', {
               user:  @article.user.screen_name,
               title: @article.title,
               url:   full_path(article_path(@article))
-          }), @article.text)
+          }), slack_text)
+          p slack_text
+          binding.pry
         end
 
         format.html { redirect_to @article, flash: { success: '記事を更新しました' } }
