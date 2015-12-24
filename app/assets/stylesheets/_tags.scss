@@ -46,28 +46,13 @@
     position: relative;
     font-size: 85%;
     margin-left: .7em;
-    color: #555 !important;
 
     &:before {
-      width: 0;
-      height: 0;
-      right: 100%;
-      content: '';
-      position: absolute;
-      pointer-events: none;
-      border: solid transparent;
-      border-color: transparent;
-      border-right-color: $bg_color;
-      border-width: .6em;
-      top: 50%;
-      margin-top: -.6em;
+      content: '#';
     }
 
     &:hover {
       background-color: $bg_color - #333;
-      &:before {
-        border-right-color: $bg_color - #333;
-      }
     }
 
     span {
