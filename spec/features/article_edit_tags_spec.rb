@@ -10,8 +10,7 @@ RSpec.feature 'タグの編集', type: :feature do
       visit article_path(article)
     end
 
-    it { expect(page).to have_link('タグ編集') }
-
+    it { expect(page).to have_link('編集') }
     # TODO: capybara-webkit
     # context 'タグ編集をクリックしたとき' do
     #   before do
