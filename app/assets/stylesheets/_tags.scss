@@ -4,6 +4,10 @@
 .tag_list_block {
   .add_tag_form {
     display: inline;
+    .input-group {
+      display: inline-table;
+      width: 24em;
+    }
   }
   #add_tag_text {
     color: black;
@@ -14,7 +18,7 @@
   }
   a.delete-tag {
     padding: 0px 5px;
-    background: gray;
+    background: red;
     margin: 0px 1px 0 4px;
     color: white !important;
   }
