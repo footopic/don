@@ -75,4 +75,30 @@ RSpec.describe 'Articles', type: :request do
       expect(@json[4]['id']).to eq @recent_articles[4].id
     end
   end
+
+  describe 'POST/api/v1/articles/create' do
+    let(:path) { '/api/v1/articles/create' }
+    before do
+      @user = create(:user)
+      @params = {
+        user_id: @user.id,
+        title: 'title',
+        text: 'text',
+        status: 'limit',
+        tag_list: 'hoge,fuga',
+        notice: '1'
+      }
+      post path, @params
+    end
+    it '201が返ってくる' do
+      expect(response).to be_success
+      expect(response.status).to eq 201
+    end
+
+    it '投稿されている' do
+      @json = JSON.parse(response.body)
+      expect(@json['title']).to eq @params[:title]
+      expect(@json['text']).to eq @params[:text]
+    end
+  end
 end

@@ -66,6 +66,23 @@ module API
             Article.select(:id, :title).order('id DESC').where('id LIKE ? or title LIKE ?', id_like, title_like).limit(10)
           end
         end
+
+        # POST /api/v1/articles/create
+        desc 'Create articles'
+        params do
+          requires :user_id, type: Integer, desc: 'User Id.'
+          requires :title, type: String, desc: 'Title.'
+          requires :text, type: String, desc: 'Text.'
+          optional :status, default: :limit, type: String, desc: 'Status [:publish, :limit, :wip]. default: :limit'
+          optional :tag_list, type: String, desc: 'TagList separated ",". (ex. "hoge,fuga,piyo".'
+          optional :notice, type: Boolean, desc: 'Do Notice with post.'
+        end
+        post :create do
+          user = User.find(params[:user_id])
+          article = user.articles.create(params.slice(:title, :text, :status, :tag_list, :notice).to_hash)
+          with = Entity::V1::ArticleDetailEntity
+          present article, with: with
+        end
       end
     end
   end
