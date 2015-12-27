@@ -105,7 +105,6 @@ class ArticlesController < ApplicationController
               url:   full_path(article_path(@article))
           }), slack_text)
           p slack_text
-          binding.pry
         end
 
         format.html { redirect_to @article, flash: { success: '記事を更新しました' } }
