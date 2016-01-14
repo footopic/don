@@ -23,7 +23,6 @@
     .col-md-8
       .article-text
         #text-preview.markdown-body
-          == markdown(@article.text)
       hr
       .star
         - if user_signed_in?
@@ -50,3 +49,12 @@
         .more
           .more-history
             = link_to 'もっと見る', article_path(@article) + '/history'
+
+javascript:
+  $(function () {
+    $('#text-preview').html(marked(#{raw @article.text.to_json}));
+    emojify.run($("#text-preview").get(0));
+    $('pre code').each(function (i, block) {
+      hljs.highlightBlock(block);
+    })
+  });
