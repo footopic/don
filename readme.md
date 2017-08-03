@@ -72,3 +72,28 @@ cap staging remote_rake:invoke task=hoge:fuga
 | %{cWeek}                  | 暦週               | 50         |
 | %{me}                     | 自分の screen name | hiro       |
 | %{name}                   | 自分の名前         | 高橋洸人   |
+
+## 開発
+
+macOSの場合
+
+```
+$ brew cask install vagrant virtualbox
+```
+
+```
+$ vagrant plugin install vagrant-itamae
+$ vagrant up
+```
+
+Itamaeによるプロビジョニングが走るので待つ
+
+```
+$ vagrant ssh
+$ cd /vagrant
+$ bundle install
+$ npm install
+$ ./bin/rake db:migrate
+$ ./bin/rake db:seed_fu
+```
+
